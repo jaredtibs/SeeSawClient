@@ -25,7 +25,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    //this._getUserLocation();
+    this._getUserLocation();
   }
 
   async _getUserLocation() {
@@ -33,10 +33,11 @@ class Main extends Component {
       const locations = await Engine.getCurrentLocations();
       console.log(locations);
 
-      if (locations["candidates"] && locations["candidates"].length > 0) {
-        const bestCandidate = locations["candidates"][0];
+      if (locations["places"] && locations["places"].length > 0) {
+        const bestCandidate = locations["places"][0];
         this.props.fetchCurrentLocation(bestCandidate);
       } else {
+        console.log(locations);
         this._getUserLocation();
         //this.props.findingLocation();
       }
