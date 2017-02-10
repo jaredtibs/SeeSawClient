@@ -25,19 +25,18 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    this._getUserLocation();
+    //this._getUserLocation();
   }
 
   async _getUserLocation() {
     try {
       const locations = await Engine.getCurrentLocations();
+      console.log(locations);
 
       if (locations["candidates"] && locations["candidates"].length > 0) {
         const bestCandidate = locations["candidates"][0];
         this.props.fetchCurrentLocation(bestCandidate);
       } else {
-        // you might not need this extra request, it might be needed because simulator 
-        // does not recognize new location on first load, need to test on iphone
         this._getUserLocation();
         //this.props.findingLocation();
       }
