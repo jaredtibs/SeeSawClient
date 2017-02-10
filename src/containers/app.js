@@ -8,7 +8,7 @@ import LaunchContainer from './LaunchContainer';
 import Landing from '../components/Landing';
 import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
-//import MainContainer from './MainContainer';
+import MainContainer from './MainContainer';
 import ShareFormContainer from './ShareFormContainer';
 
 class App extends Component {
@@ -24,6 +24,7 @@ class App extends Component {
           <Scene key="landing" component={Landing} title="Landing"/>
           <Scene key="login" component={LoginContainer} title="Login"/>
           <Scene key="register" component={RegisterContainer} title="Register"/>
+          <Scene key="main" component={MainContainer} title="Main" initial={true}/>
           <Scene key="shareForm" direction='vertical' component={ShareFormContainer} title="Share"/>
         </Scene>
       </RouterWithRedux>
@@ -33,4 +34,3 @@ class App extends Component {
 
 export default App
 
-//<Scene key="main" component={MainContainer} title="Main" initial={true}/>
