@@ -29,7 +29,7 @@ RCT_EXPORT_MODULE();
 
 - (void)factualDataRequest:(FactualDataRequest *)request didFailWithError:(NSError *) error {
   self._responseError = error;
-  //RCTLogInfo(@"error %@ : ", error);
+  RCTLogInfo(@"error %@ : ", error);
 }
 
 - (void)factualDataRequest:(FactualDataRequest *)request didFinishWithData:(id) data {
@@ -45,7 +45,7 @@ RCT_REMAP_METHOD(getCurrentLocations,
   FactualEngine *engine = [FactualEngine sharedEngine];
   
   [engine startWithApiKey:@"1A9mu1kF3coG2ym149mjyFr8BL5AToQfJeRNzhYy"
-           acceptedTosUrl: @"http://tethr.com/tos"
+          acceptedTosUrl: @"http://tethr.com/tos"
           acceptedTosDate: [NSDate date]];
   
   // request candidates
