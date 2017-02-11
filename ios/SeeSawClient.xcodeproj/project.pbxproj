@@ -37,6 +37,8 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		7F26B3641E4834DA000B7C10 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F26B3621E4834DA000B7C10 /* EvilIcons.ttf */; };
 		7F26B3651E4834DA000B7C10 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F26B3631E4834DA000B7C10 /* FontAwesome.ttf */; };
+		7F4E8D001E4EE7D600E54111 /* libFactualEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4E8CFF1E4EE7D600E54111 /* libFactualEngine.a */; };
+		7F4E8D0E1E4EE97900E54111 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4E8D0D1E4EE97900E54111 /* Engine.m */; };
 		7F8AB0961E4D93DB004AC74D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8AB0951E4D93DB004AC74D /* libc++.tbd */; };
 		7F8AB0981E4D93E9004AC74D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8AB0971E4D93E9004AC74D /* libz.tbd */; };
 		7F8AB09A1E4D95F2004AC74D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8AB0991E4D95F2004AC74D /* CoreTelephony.framework */; };
@@ -285,6 +287,10 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7F26B3621E4834DA000B7C10 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		7F26B3631E4834DA000B7C10 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		7F4E8CFE1E4EE7D600E54111 /* FactualEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FactualEngine.h; path = engine/FactualEngine.h; sourceTree = "<group>"; };
+		7F4E8CFF1E4EE7D600E54111 /* libFactualEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFactualEngine.a; path = engine/libFactualEngine.a; sourceTree = "<group>"; };
+		7F4E8D0C1E4EE90900E54111 /* Engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Engine.h; path = SeeSawClient/Engine.h; sourceTree = "<group>"; };
+		7F4E8D0D1E4EE97900E54111 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Engine.m; path = SeeSawClient/Engine.m; sourceTree = "<group>"; };
 		7F8AB0951E4D93DB004AC74D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		7F8AB0971E4D93E9004AC74D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7F8AB0991E4D95F2004AC74D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -342,6 +348,7 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				7F4E8D001E4EE7D600E54111 /* libFactualEngine.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +458,8 @@
 		13B07FAE1A68108700A75B9A /* SeeSawClient */ = {
 			isa = PBXGroup;
 			children = (
+				7F4E8CFE1E4EE7D600E54111 /* FactualEngine.h */,
+				7F4E8CFF1E4EE7D600E54111 /* libFactualEngine.a */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -568,6 +577,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7F4E8D0D1E4EE97900E54111 /* Engine.m */,
+				7F4E8D0C1E4EE90900E54111 /* Engine.h */,
 				13B07FAE1A68108700A75B9A /* SeeSawClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SeeSawClientTests */,
@@ -1039,6 +1050,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				7F4E8D0E1E4EE97900E54111 /* Engine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
