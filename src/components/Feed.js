@@ -77,7 +77,7 @@ class Feed extends Component {
               <Icon name='ios-arrow-round-down' size={22} style={styles.voteIcon}></Icon>
             </TouchableOpacity>
 
-            <View style={{flex: 1}}>
+            <View>
               <Text style={styles.voteCount}> {rowData.attributes['upvote-count']} </Text>
             </View>
 
