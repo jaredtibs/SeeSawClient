@@ -37,7 +37,6 @@ class Main extends Component {
         const bestCandidate = locations["places"][0];
         this.props.fetchCurrentLocation(bestCandidate);
       } else {
-        console.log(locations);
         this._getUserLocation();
         //this.props.findingLocation();
       }
@@ -60,12 +59,9 @@ class Main extends Component {
     const {dispatch, navigator} = this.props
 
     return (
-      <View tabLabel="location" style={styles.tabView}>
-        <LocationContainer
-          dispatch={dispatch}
-          navigator={navigator}
-          tabLabel="location"/>
-      </View>
+      <LocationContainer
+        dispatch={dispatch}
+        tabLabel="location"/>
     )
   }
 

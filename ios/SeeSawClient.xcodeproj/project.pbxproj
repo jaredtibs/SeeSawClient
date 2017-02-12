@@ -37,6 +37,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		7F26B3641E4834DA000B7C10 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F26B3621E4834DA000B7C10 /* EvilIcons.ttf */; };
 		7F26B3651E4834DA000B7C10 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F26B3631E4834DA000B7C10 /* FontAwesome.ttf */; };
+		7F3CBF031E51263E000A36B7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
 		7F4E8D0E1E4EE97900E54111 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4E8D0D1E4EE97900E54111 /* Engine.m */; };
 		7F4E8D111E4EEE5E00E54111 /* libFactualEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4E8D101E4EEE5E00E54111 /* libFactualEngine.a */; };
 		7F8AB0961E4D93DB004AC74D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F8AB0951E4D93DB004AC74D /* libc++.tbd */; };
@@ -977,6 +978,7 @@
 				7F99703A1E4C334700B1EF03 /* Calibre-BoldItalic.otf in Resources */,
 				7F9970381E4C334700B1EF03 /* Calibre-BlackItalic.otf in Resources */,
 				7F9970521E4C335C00B1EF03 /* MaisonNeueTRIAL-LightItalic.otf in Resources */,
+				7F3CBF031E51263E000A36B7 /* Info.plist in Resources */,
 				7F9970411E4C334700B1EF03 /* Calibre-Semibold.otf in Resources */,
 				7F9970541E4C335C00B1EF03 /* MaisonNeueTRIAL-MediumItalic.otf in Resources */,
 				7F99703F1E4C334700B1EF03 /* Calibre-Regular.otf in Resources */,
