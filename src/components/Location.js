@@ -63,10 +63,6 @@ class Location extends Component {
   }
 
   _openInputForm() {
-    //this.props.navigator.push({
-    //  component: ShareFormContainer,
-    //  name: 'ShareForm'
-    //})
     Actions.shareForm();
   }
 
