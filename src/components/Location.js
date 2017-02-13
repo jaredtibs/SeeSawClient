@@ -69,16 +69,19 @@ class Location extends Component {
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
-    //<Image
-    //         style={styles.image}
-    //         source={require('../assets/images/bungalow.jpg')}
-    //       />
+
+    console.log(this.props)
 
     return(
       <View style={styles.container}>
 
         <ScrollView>
           <View style={styles.imageContainer}>
+            <Image
+              style={styles.image}
+              resizeMode="contain"
+              source={require('../assets/images/bungalow.jpg')}
+            />
           </View>
           { !isFetching ? this.renderLocationHeader(location) : null}
           { !isFetching ? this.renderFeed() : null}
@@ -104,15 +107,19 @@ const styles = StyleSheet.create({
   },
 
   imageContainer: {
+    flex: 1,
+    flexDirection: 'row',
     height: 150,
-    backgroundColor: 'blue'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   image: {
-    height: 150
+    flex: 1
   },
 
   headerContainer: {
+    flex: 1,
     height: 120,
     backgroundColor: '#FAF8F7',
     paddingTop: 20,

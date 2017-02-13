@@ -59,9 +59,11 @@ class Main extends Component {
     const {dispatch, navigator} = this.props
 
     return (
-      <LocationContainer
-        dispatch={dispatch}
-        tabLabel="location"/>
+      <View tabLabel="location" style={styles.tabView}>
+        <LocationContainer
+          dispatch={dispatch}
+          tabLabel="location"/>
+      </View>
     )
   }
 
