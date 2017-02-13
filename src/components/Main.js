@@ -69,8 +69,7 @@ class Main extends Component {
 
   renderLocationLoadingState() {
     return(
-      <View style={styles.locationLoadingState}
-            tabLabel="location">
+      <View style={styles.locationLoadingState} tabLabel="location">
         <Text style={styles.loadingText}> Finding your location... </Text>
       </View>
     )
