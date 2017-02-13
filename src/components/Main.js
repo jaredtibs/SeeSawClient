@@ -84,6 +84,7 @@ class Main extends Component {
       <View style={styles.container}>
         <ScrollableTabView
           style={{marginTop: 20}}
+          locked={true}
           initialPage={1}
           renderTabBar={() => <TabBar />}>
 
