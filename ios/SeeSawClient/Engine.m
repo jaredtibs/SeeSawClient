@@ -44,7 +44,7 @@ RCT_REMAP_METHOD(getCurrentLocations,
   //initialize engine
   FactualEngine *engine = [FactualEngine sharedEngine];
   
-  [engine startWithApiKey:@"wnECQE0liUVecG15f6hogOWZlgOIaWx5D3PCo1H2"
+  [engine startWithApiKey:@"1A9mu1kF3coG2ym149mjyFr8BL5AToQfJeRNzhYy"
           acceptedTosUrl: @"http://tethr.com/tos"
           acceptedTosDate: [NSDate date]];
   
