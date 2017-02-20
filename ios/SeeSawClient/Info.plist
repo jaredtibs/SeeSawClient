@@ -2,12 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>SeeSaw needs your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>SeeSaw needs your location</string>
+	<string>SeeSaw needs your location to provide you the best experience</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>SeeSaw needs your location to provide you the best experience</string>
 	<key>NSLocationUsageDescription</key>
 	<string>SeeSaw needs your location to provide you the best experience</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>SeeSaw needs to access your photos library in order for you to upload</string>
+	<key>NSCameraUsageDescription</key>
+	<string>SeeSaw would like to access your camera</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

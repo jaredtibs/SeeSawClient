@@ -216,7 +216,7 @@ class Register extends Component {
   renderSpinner() {
     return(
       <ActivityIndicator
-        animating={this.props.loginLoading}
+        animating={this.props.loading}
         style={[styles.loadingSpinner, {height: 20}]}
         size="small"
       />
@@ -247,7 +247,7 @@ class Register extends Component {
           </TouchableOpacity>
         </View>
 
-        { this.props.loginLoading ? this.renderSpinner() : null }
+        { this.props.loading ? this.renderSpinner() : null }
 
         <View style={styles.inputs}>
           <Form

@@ -31,6 +31,11 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  [[FactualEngine sharedEngine]
+   startWithApiKey:@"wnECQE0liUVecG15f6hogOWZlgOIaWx5D3PCo1H2"
+   acceptedTosUrl:@"http://yoursite.com/your_app_tos"
+   acceptedTosDate:[NSDate date]];
   return YES;
 }
 

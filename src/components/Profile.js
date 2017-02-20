@@ -5,12 +5,53 @@ import {
   Text,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
+
+const ImagePicker = require('react-native-image-picker');
+
+var avatarOptions = {
+  title: 'choose a photo',
+};
 
 class Profile extends Component {
   constructor(props) {
     super(props)
+  }
+
+  _editAvatar() {
+    ImagePicker.launchImageLibrary(avatarOptions, (response)  => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let data = { file: response.data};
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+        this.props.updateAvatar(data)
+      }
+    });
+  }
+
+  renderSpinner() {
+    return(
+      <ActivityIndicator
+        animating={this.props.user.loading}
+        style={{height: 20, marginBottom: 25}}
+        color="white"
+        size="small"
+      />
+    )
   }
 
   render() {
@@ -19,11 +60,18 @@ class Profile extends Component {
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
-            source={require('../assets/images/me_avatar.jpg')}
+            source={
+              this.props.user.avatar ?
+              {uri: this.props.user.avatar} :
+              require('../assets/images/me_avatar.jpg')}
           >
-            <View style={styles.editAvatarContainer}>
+            { this.props.user.loading ? this.renderSpinner() : null }
+            <TouchableOpacity
+              style={styles.editAvatarContainer}
+              onPress={() => this._editAvatar() }
+            >
               <Text style={styles.editAvatar}> Edit </Text>
-            </View>
+            </TouchableOpacity>
           </Image>
           <Text style={styles.username}> jmtibs </Text>
         </View>
@@ -83,7 +131,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'MaisonNeueTRIAL-Demi',
     marginTop: 10
-  }
+  },
+
 });
 
 export default Profile;
