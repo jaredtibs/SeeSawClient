@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>SeeSaw needs your location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>SeeSaw needs your location</string>
-	<key>NSLocationUsageDescription</key>
-	<string>SeeSaw needs your location to provide you the best experience</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -39,6 +33,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>SeeSaw needs your location</string>
+	<key>NSLocationUsageDescription</key>
+	<string>SeeSaw needs your location to provide you the best experience</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SeeSaw needs your location</string>
+    <key>NSMotionUsageDescription</key>
+    <string>needs your motion</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>MaisonNeueTRIAL-Bold.otf</string>
@@ -49,6 +51,10 @@
 		<string>EvilIcons.ttf</string>
 		<string>FontAwesome.ttf</string>
 		<string>Ionicons.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

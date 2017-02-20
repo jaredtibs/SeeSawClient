@@ -41,15 +41,17 @@ RCT_REMAP_METHOD(getCurrentLocations,
                  resolver: (RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject) {
   
-  //initialize engine
-  FactualEngine *engine = [FactualEngine sharedEngine];
+  dispatch_sync(dispatch_get_main_queue(),^ {
+    //initialize engine
+   // FactualEngine *engine = [FactualEngine sharedEngine];
   
-  [engine startWithApiKey:@"1A9mu1kF3coG2ym149mjyFr8BL5AToQfJeRNzhYy"
-          acceptedTosUrl: @"http://tethr.com/tos"
-          acceptedTosDate: [NSDate date]];
+    //[engine startWithApiKey:@"1A9mu1kF3coG2ym149mjyFr8BL5AToQfJeRNzhYy"
+     //       acceptedTosUrl: @"http://tethr.com/tos"
+      //      acceptedTosDate: [NSDate date]];
   
-  // request candidates
-  [engine genPlaceCandidatesWithDelegate: self];
+    // request candidates
+    [[FactualEngine sharedEngine] genPlaceCandidatesWithDelegate: self];
+  });
   
   // ugly - sleep to allow variable to be set with data
   [NSThread sleepForTimeInterval:1.0f];
