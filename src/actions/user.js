@@ -140,7 +140,7 @@ export function updateAvatar(data) {
   //let token = await fetchToken();
   //console.log(token)
   return dispatch => {
-    //dispatch(loading());
+    dispatch(loading());
     return fetch("http://localhost:3000/api/v1/user/avatar", {
       method: "POST",
       headers: {

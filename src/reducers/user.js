@@ -1,5 +1,5 @@
 const initialState = {
-  loginLoading: false,
+  loading: false,
   isLoggedIn: false,
   username: '',
   avatar: '',
@@ -12,7 +12,7 @@ export default function user(state=initialState, action) {
       return {
         ...state,
         username: action.username,
-        loginLoading: false,
+        loading: false,
         isLoggedIn: true
       };
     case 'LOGGED_OUT':
@@ -26,17 +26,18 @@ export default function user(state=initialState, action) {
     case 'LOADING':
       return {
         ...state,
-        loginLoading: true
+        loading: true
       };
     case 'REGISTER_ERROR':
       return {
         ...state,
-        loginLoading: false,
+        loading: false,
         errors: constructErrorObject(action.errors)
       };
     case 'AVATAR_UPDATED':
       return {
         ...state,
+        loading: false,
         avatar: action.avatar
       }
     default:

@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 
 const ImagePicker = require('react-native-image-picker');
@@ -42,8 +43,18 @@ class Profile extends Component {
     });
   }
 
+  renderSpinner() {
+    return(
+      <ActivityIndicator
+        animating={this.props.user.loading}
+        style={{height: 20, marginBottom: 25}}
+        color="white"
+        size="small"
+      />
+    )
+  }
+
   render() {
-    console.log(this.props)
     return(
       <View style={styles.container}>
         <View style={styles.avatarContainer}>
@@ -54,6 +65,7 @@ class Profile extends Component {
               {uri: this.props.user.avatar} :
               require('../assets/images/me_avatar.jpg')}
           >
+            { this.props.user.loading ? this.renderSpinner() : null }
             <TouchableOpacity
               style={styles.editAvatarContainer}
               onPress={() => this._editAvatar() }
@@ -119,7 +131,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'MaisonNeueTRIAL-Demi',
     marginTop: 10
-  }
+  },
+
 });
 
 export default Profile;
