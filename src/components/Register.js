@@ -13,7 +13,7 @@ import { Form, InputField, Separator } from 'react-native-form-generator';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const dismissKeyboard = require('dismissKeyboard');
-//const ReactNativeComponentTree = require('react-native');
+//const ReactNativeComponentTree = require('react/lib/ReactNativeComponentTree');
 
 class Register extends Component {
   constructor(props) {
@@ -61,7 +61,7 @@ class Register extends Component {
   }
 
   handleFormFocus(e, component) {
-    //let targetComponent = ReactNativeComponentTree.getNodeFromInstance(component);
+    //let targetComponent = ReactNativeComponentTree.getInstanceFromNode(component);
     //let inputRef = targetComponent._currentElement.props.fieldRef;
     switch ('email') {
       case 'email':
