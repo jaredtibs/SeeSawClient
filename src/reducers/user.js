@@ -1,7 +1,8 @@
 const initialState = {
   loginLoading: false,
   isLoggedIn: false,
-  attributes: {},
+  username: '',
+  avatar: '',
   errors: {count: 0}
 };
 
@@ -33,6 +34,11 @@ export default function user(state=initialState, action) {
         loginLoading: false,
         errors: constructErrorObject(action.errors)
       };
+    case 'AVATAR_UPDATED':
+      return {
+        ...state,
+        avatar: action.avatar
+      }
     default:
       return state;
   }

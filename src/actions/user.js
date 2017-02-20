@@ -140,7 +140,7 @@ export function updateAvatar(data) {
   //let token = await fetchToken();
   //console.log(token)
   return dispatch => {
-    dispatch(loading());
+    //dispatch(loading());
     return fetch("http://localhost:3000/api/v1/user/avatar", {
       method: "POST",
       headers: {
@@ -152,15 +152,16 @@ export function updateAvatar(data) {
       })
     })
     .then((response) => response.json())
-    .then((responseData) => dispatch(userProfileUpdated(responseData)))
+    .then((responseData) => dispatch(userAvatarUpdated(responseData)))
     .catch(error => console.error(error))
   }
 }
 
-export function userProfileUpdated(data) {
+export function userAvatarUpdated(data) {
+  const avatar = data.data.attributes.avatar.url;
   return {
-    type: "PROFILE_UPDATED",
-    avatar: data.avatar
+    type: "AVATAR_UPDATED",
+    avatar: avatar
   }
 }
 

@@ -49,7 +49,10 @@ class Profile extends Component {
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
-            source={require('../assets/images/me_avatar.jpg')}
+            source={
+              this.props.user.avatar ?
+              {uri: this.props.user.avatar} :
+              require('../assets/images/me_avatar.jpg')}
           >
             <TouchableOpacity
               style={styles.editAvatarContainer}
