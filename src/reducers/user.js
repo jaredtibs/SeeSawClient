@@ -1,7 +1,7 @@
 const initialState = {
   loginLoading: false,
   isLoggedIn: false,
-  username: '',
+  attributes: {},
   errors: {count: 0}
 };
 

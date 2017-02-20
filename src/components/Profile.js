@@ -33,19 +33,17 @@ class Profile extends Component {
         console.log('User tapped custom button: ', response.customButton);
       }
       else {
-        let source = { uri: response.uri };
+        let data = { file: response.data};
 
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.setState({
-          avatarSource: source
-        });
+        this.props.updateAvatar(data)
       }
     });
   }
 
   render() {
+    console.log(this.props)
     return(
       <View style={styles.container}>
         <View style={styles.avatarContainer}>

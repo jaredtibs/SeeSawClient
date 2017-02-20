@@ -135,3 +135,41 @@ export function loading() {
     type: "LOADING"
   }
 }
+
+export function updateAvatar(data) {
+  //let token = await fetchToken();
+  //console.log(token)
+  return dispatch => {
+    dispatch(loading());
+    return fetch("http://localhost:3000/api/v1/user/avatar", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        file: data["file"]
+      })
+    })
+    .then((response) => response.json())
+    .then((responseData) => dispatch(userProfileUpdated(responseData)))
+    .catch(error => console.error(error))
+  }
+}
+
+export function userProfileUpdated(data) {
+  return {
+    type: "PROFILE_UPDATED",
+    avatar: data.avatar
+  }
+}
+
+async function fetchToken() {
+  let token;
+  try {
+    token = await store.get('userToken');
+    return token
+  } catch(e) {
+    console.error(e)
+  }
+}
