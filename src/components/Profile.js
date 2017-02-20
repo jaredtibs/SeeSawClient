@@ -8,9 +8,41 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+const ImagePicker = require('react-native-image-picker');
+
+var avatarOptions = {
+  title: 'choose a photo',
+};
+
 class Profile extends Component {
   constructor(props) {
     super(props)
+  }
+
+  _editAvatar() {
+    ImagePicker.launchImageLibrary(avatarOptions, (response)  => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          avatarSource: source
+        });
+      }
+    });
   }
 
   render() {
@@ -21,9 +53,12 @@ class Profile extends Component {
             style={styles.avatar}
             source={require('../assets/images/me_avatar.jpg')}
           >
-            <View style={styles.editAvatarContainer}>
+            <TouchableOpacity
+              style={styles.editAvatarContainer}
+              onPress={() => this._editAvatar() }
+            >
               <Text style={styles.editAvatar}> Edit </Text>
-            </View>
+            </TouchableOpacity>
           </Image>
           <Text style={styles.username}> jmtibs </Text>
         </View>
