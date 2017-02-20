@@ -72,7 +72,5 @@
 - (void)disableCircumstanceNotifierWithId:(NSString *)identifier;
 - (void)evaluateCircumstanceWithId:(NSString *)identifier error:(NSError **)error;
 - (void)evaluateAllCircumstances;
-- (void)setLocationOverride:(CLLocation *)loc;
-- (void)unsetLocationOverride;
 
 @end

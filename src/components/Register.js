@@ -13,7 +13,6 @@ import { Form, InputField, Separator } from 'react-native-form-generator';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const dismissKeyboard = require('dismissKeyboard');
-//const ReactNativeComponentTree = require('react-native');
 
 class Register extends Component {
   constructor(props) {
@@ -61,18 +60,12 @@ class Register extends Component {
   }
 
   handleFormFocus(e, component) {
-    //let targetComponent = ReactNativeComponentTree.getNodeFromInstance(component);
-    //let inputRef = targetComponent._currentElement.props.fieldRef;
-    switch ('email') {
-      case 'email':
-        this.setState({emailPlaceholder: '', focusedInput: 'email'});
-        break;
-      case 'username':
-        this.setState({usernamePlaceholder: '', focusedInput: 'username'});
-        break;
-      case 'password':
-        this.setState({passwordPlaceholder: '', focusedInput: 'password'});
-        break;
+    if (this._focusedInput('email') == true ) {
+      this.setState({emailPlaceholder: '', focusedInput: 'email'});
+    } else if (this._focusedInput('username') == true) {
+      this.setState({usernamePlaceholder: '', focusedInput: 'username'});
+    } else if (this._focusedInput('password') == true) {
+      this.setState({passwordPlaceholder: '', focusedInput: 'password'});
     }
   }
 
@@ -89,6 +82,21 @@ class Register extends Component {
       case "password":
         this._validateInput('password');
         this.setState({passwordPlaceholder: 'Password'});
+        break;
+    }
+  }
+
+  _focusedInput(ref) {
+    const formRefs = this.refs.registrationForm.refs
+    switch (ref) {
+      case "email":
+        return formRefs.email.refs.fieldComponent.refs.inputBox.isFocused()
+        break;
+      case "username":
+        return formRefs.username.refs.fieldComponent.refs.inputBox.isFocused()
+        break;
+      case "password":
+        return formRefs.password.refs.fieldComponent.refs.inputBox.isFocused()
         break;
     }
   }
@@ -450,7 +458,7 @@ const formStyles = StyleSheet.create({
   activeLabelContainer: {
     borderBottomWidth: 0,
     paddingTop: 10,
-    height: 10
+    height: 20
   },
 
   activeLabel: {
@@ -467,7 +475,6 @@ const formStyles = StyleSheet.create({
     fontSize: 10,
     color: '#F76148',
     marginLeft: 10,
-    paddingBottom: 0
   },
 
   validIcon: {
@@ -477,6 +484,7 @@ const formStyles = StyleSheet.create({
   },
 
   errorIcon: {
+    fontFamily: 'MaisonNeueTRIAL-Demi',
     marginTop: 7,
     marginLeft: 15,
     color: '#F76148'
