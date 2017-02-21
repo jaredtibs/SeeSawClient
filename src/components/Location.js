@@ -55,12 +55,6 @@ class Location extends Component {
     )
   }
 
-  _publishPost(text) {
-    locationId = this.props.location.data.data.id;
-    this.props.createPost(locationId, text);
-    this.refs.textInput.setNativeProps({text: ''})
-  }
-
   _openInputForm() {
     Actions.shareForm();
   }
