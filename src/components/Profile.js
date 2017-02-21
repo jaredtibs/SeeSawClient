@@ -12,7 +12,7 @@ import {
 const ImagePicker = require('react-native-image-picker');
 
 var avatarOptions = {
-  title: 'Choose a photo',
+  title: '',
   allowsEditing: true,
   mediaType: 'photo'
 };
