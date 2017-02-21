@@ -11,9 +11,6 @@ import RegisterContainer from './RegisterContainer';
 import MainContainer from './MainContainer';
 import ShareFormContainer from './ShareFormContainer';
 
-//TEMPORARY - REMOVE
-import ProfileContainer from './ProfileContainer';
-
 class App extends Component {
   constructor(props) {
    super(props)

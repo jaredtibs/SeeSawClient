@@ -8,7 +8,6 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "FactualEngine.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

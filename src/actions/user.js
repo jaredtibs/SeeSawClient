@@ -16,7 +16,7 @@ export function requestLogin (username, password) {
       })
     })
     .then((response) => response.json())
-    .then((responseData) => dispatch(receiveSession(responseData)))
+    .then((responseData) => dispatch(finishLogin(responseData)))
     .catch(error => console.log(error))
   }
 }
@@ -52,8 +52,6 @@ export function fetchUserSession(token) {
 }
 
 export function sessionFetched(data) {
-  console.log("session fetched with following attributes")
-  console.log(data.attributes)
   return {
     type: "SESSION_FETCHED",
     data: data.attributes
@@ -61,6 +59,13 @@ export function sessionFetched(data) {
 }
 
 export function finishRegister(sessionData) {
+  return dispatch => {
+    dispatch(receiveSession(sessionData));
+    dispatch(pushToMain(false));
+  }
+}
+
+export function finishLogin(sessionData) {
   return dispatch => {
     dispatch(receiveSession(sessionData));
     dispatch(pushToMain(false));

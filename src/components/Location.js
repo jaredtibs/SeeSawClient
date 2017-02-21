@@ -45,12 +45,11 @@ class Location extends Component {
   }
 
   renderFeed() {
-    const {dispatch, navigator, location} = this.props
+    const {dispatch, location} = this.props
 
     return (
       <FeedContainer
         dispatch={dispatch}
-        navigator={navigator}
         location={location}
       />
     )

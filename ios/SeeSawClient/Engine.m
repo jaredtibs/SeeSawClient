@@ -42,15 +42,14 @@ RCT_REMAP_METHOD(getCurrentLocations,
                  rejecter:(RCTPromiseRejectBlock)reject) {
   
   //initialize engine
-  //FactualEngine *engine = [FactualEngine sharedEngine];
+  FactualEngine *engine = [FactualEngine sharedEngine];
   
-  //[engine startWithApiKey:@"1A9mu1kF3coG2ym149mjyFr8BL5AToQfJeRNzhYy"
-  //        acceptedTosUrl: @"http://tethr.com/tos"
-  //        acceptedTosDate: [NSDate date]];
+  [engine startWithApiKey:@"1A9mu1kF3coG2ym149mjyFr8BL5AToQfJeRNzhYy"
+          acceptedTosUrl: @"http://tethr.com/tos"
+          acceptedTosDate: [NSDate date]];
   
   // request candidates
-  //[engine genPlaceCandidatesWithDelegate: self];
-  [[FactualEngine sharedEngine] genPlaceCandidatesWithDelegate: self];
+  [engine genPlaceCandidatesWithDelegate: self];
   
   // ugly - sleep to allow variable to be set with data
   [NSThread sleepForTimeInterval:1.0f];
