@@ -1,8 +1,9 @@
 const initialState = {
   loading: false,
   isLoggedIn: false,
+  email: null,
   username: '',
-  avatar: '',
+  avatar: null,
   errors: {count: 0}
 };
 
@@ -11,7 +12,9 @@ export default function user(state=initialState, action) {
     case 'LOGGED_IN':
       return {
         ...state,
-        username: action.username,
+        username: action.data.username,
+        email: action.data.email,
+        avatar: action.data.avatar.url,
         loading: false,
         isLoggedIn: true
       };
@@ -21,7 +24,9 @@ export default function user(state=initialState, action) {
       return {
         ...state,
         isLoggedIn: true,
-        username: action.data.username
+        email: action.data.email,
+        username: action.data.username,
+        avatar: action.data.avatar.url
       };
     case 'LOADING':
       return {

@@ -16,7 +16,7 @@ export function requestLogin (username, password) {
       })
     })
     .then((response) => response.json())
-    .then((responseData) => dispatch(receiveSession(responseData.token, username)))
+    .then((responseData) => dispatch(receiveSession(responseData)))
     .catch(error => console.log(error))
   }
 }
@@ -52,25 +52,27 @@ export function fetchUserSession(token) {
 }
 
 export function sessionFetched(data) {
+  console.log("session fetched with following attributes")
+  console.log(data.attributes)
   return {
     type: "SESSION_FETCHED",
     data: data.attributes
   }
 }
 
-export function finishRegister(token, username) {
+export function finishRegister(sessionData) {
   return dispatch => {
-    dispatch(receiveSession(token, username));
+    dispatch(receiveSession(sessionData));
     dispatch(pushToMain(false));
   }
 }
 
-export function receiveSession (token, username) {
-  store.save('userToken', token);
+export function receiveSession (sessionData) {
+  store.save('userToken', sessionData.token);
 
   return {
     type: "LOGGED_IN",
-    username: username
+    data: sessionData.user.data.attributes
   }
 }
 
@@ -109,7 +111,7 @@ export function register (email, username, password) {
       if (responseData.errors) {
         dispatch(handleError(responseData.errors))
       } else {
-        dispatch(finishRegister(responseData.token, username))
+        dispatch(finishRegister(responseData))
       }
     })
     .catch(error => console.log(error))
@@ -137,23 +139,26 @@ export function loading() {
 }
 
 export function updateAvatar(data) {
-  //let token = await fetchToken();
-  //console.log(token)
   return dispatch => {
     dispatch(loading());
-    return fetch("http://localhost:3000/api/v1/user/avatar", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        file: data["file"]
+
+    store.get('userToken')
+    .then(token => {
+      return fetch("http://localhost:3000/api/v1/user/avatar", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + token
+        },
+        body: JSON.stringify({
+          file: data["file"]
+        })
       })
+      .then((response) => response.json())
+      .then((responseData) => dispatch(userAvatarUpdated(responseData)))
+      .catch(error => console.error(error))
     })
-    .then((response) => response.json())
-    .then((responseData) => dispatch(userAvatarUpdated(responseData)))
-    .catch(error => console.error(error))
   }
 }
 
@@ -162,15 +167,5 @@ export function userAvatarUpdated(data) {
   return {
     type: "AVATAR_UPDATED",
     avatar: avatar
-  }
-}
-
-async function fetchToken() {
-  let token;
-  try {
-    token = await store.get('userToken');
-    return token
-  } catch(e) {
-    console.error(e)
   }
 }

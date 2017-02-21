@@ -24,8 +24,6 @@ class Profile extends Component {
 
   _editAvatar() {
     ImagePicker.showImagePicker(avatarOptions, (response)  => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       }
@@ -37,9 +35,6 @@ class Profile extends Component {
       }
       else {
         let data = { file: response.data};
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
         this.props.updateAvatar(data)
       }
     });
@@ -57,13 +52,14 @@ class Profile extends Component {
   }
 
   render() {
+    console.log(this.props)
     return(
       <View style={styles.container}>
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
             source={
-              this.props.user.avatar ?
+              this.props.user.avatar != null ?
               {uri: this.props.user.avatar} :
               require('../assets/images/me_avatar.jpg')}
           >

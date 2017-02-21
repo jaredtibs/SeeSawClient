@@ -77,7 +77,7 @@ class Main extends Component {
 
   render() {
     const fetchingLocation = this.props.location.findingLocation
-    //console.log(this.props);
+    console.log(this.props);
 
     return(
       <View style={styles.container}>
