@@ -12,7 +12,9 @@ import {
 const ImagePicker = require('react-native-image-picker');
 
 var avatarOptions = {
-  title: 'choose a photo',
+  title: 'Choose a photo',
+  allowsEditing: true,
+  mediaType: 'photo'
 };
 
 class Profile extends Component {
@@ -21,7 +23,7 @@ class Profile extends Component {
   }
 
   _editAvatar() {
-    ImagePicker.launchImageLibrary(avatarOptions, (response)  => {
+    ImagePicker.showImagePicker(avatarOptions, (response)  => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
