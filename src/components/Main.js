@@ -37,10 +37,10 @@ class Main extends Component {
       this.props.fetchCurrentLocation({
         place_id: "f94bb932-24c4-433c-b6c4-8e9f5e83cb5a",
         name: "Apple HQ",
-        category_ids: []
+       category_ids: []
       });
 
-      /*
+        /*
       if (locations["places"] && locations["places"].length > 0) {
         const bestCandidate = locations["places"][0];
         this.props.fetchCurrentLocation(bestCandidate);
@@ -86,12 +86,10 @@ class Main extends Component {
 
   render() {
     const fetchingLocation = this.props.location.findingLocation
-    console.log(this.props);
 
     return(
       <View style={styles.container}>
         <ScrollableTabView
-          style={{marginTop: 20}}
           locked={true}
           initialPage={1}
           renderTabBar={() => <TabBar />}>

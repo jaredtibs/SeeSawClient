@@ -17,6 +17,11 @@ static FactualEngine* staticEngine;
 
 @implementation Engine
 
+- (dispatch_queue_t)methodQueue
+{
+  return dispatch_get_main_queue();
+}
+
 RCT_EXPORT_MODULE();
 
 + (FactualEngine*) engine {
@@ -44,7 +49,7 @@ RCT_REMAP_METHOD(getCurrentLocations,
   //initialize engine
   FactualEngine *engine = [FactualEngine sharedEngine];
   
-  [engine startWithApiKey:@"1A9mu1kF3coG2ym149mjyFr8BL5AToQfJeRNzhYy"
+  [engine startWithApiKey:@"wnECQE0liUVecG15f6hogOWZlgOIaWx5D3PCo1H2"
           acceptedTosUrl: @"http://tethr.com/tos"
           acceptedTosDate: [NSDate date]];
   

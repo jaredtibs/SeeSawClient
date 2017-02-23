@@ -69,8 +69,6 @@ class Location extends Component {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
 
-    console.log(this.props)
-
     return(
       <View style={styles.container}>
 

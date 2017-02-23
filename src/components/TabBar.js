@@ -52,7 +52,7 @@ const TabBar = React.createClass({
                   return (
                     <View style={styles.locationTabContainer}>
                       <Text style={styles.textTab}> 
-                        LOCATION
+                        current location
                       </Text>
                     </View>
                   )
@@ -92,18 +92,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 10,
   },
   tabs: {
-    height: 40,
+    height: 65,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 5,
+    alignItems: 'center',
+    paddingTop: 10,
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomColor: 'rgba(0,0,0,0.05)',
+    backgroundColor: 'rgba(9, 9, 12, .80)'
   },
 
   locationTabContainer: {
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
 
   textTab: {
     fontSize: 12,
-    color: '#302F30',
+    color: '#FAF8F7',
     fontFamily: 'Calibre-Semibold',
   },
 
