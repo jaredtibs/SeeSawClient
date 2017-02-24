@@ -5,6 +5,7 @@ import {
   View,
   Text,
   TextInput,
+  TouchableHighlight,
   StyleSheet,
   ListView,
   ScrollView,
@@ -86,13 +87,23 @@ class Location extends Component {
           { !isFetching ? this.renderFeed() : null}
         </ScrollView>
 
-        <TextInput
-          ref='textInput'
-          style={styles.input}
-          onFocus={() => this._openInputForm()}
-          placeholder='Share a thought...'
-        />
+        <View style={styles.input}>
+          <TouchableHighlight
+            onPress={() => this._openInputForm()}
+            underlayColor='#FFFFFF'
+            style={styles.inputButton}>
 
+            <Text style={styles.inputTextContainer}>
+              <Icon name='md-add' size={18} style={styles.plusIcon}></Icon>
+
+              <Text style={styles.inputText}> Share a thought... </Text>
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.cameraButton}>
+            <Icon name='ios-camera-outline' size={20} style={styles.cameraIcon}></Icon>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -176,15 +187,14 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     height: 55,
     backgroundColor: '#FFFFFF',
-    fontSize: 14,
-    fontFamily: 'MaisonNeueTRIAL-Medium',
-    color: 'rgba(0,0,0,.30)',
     borderWidth: 1,
     borderColor: 'rgba(56, 55, 61, 0.2)',
     shadowOffset: {
@@ -194,7 +204,37 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(25, 24, 26, 0.19)',
     shadowOpacity: 1.0,
     padding: 10
+  },
+
+  inputButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+
+  inputTextContainer: {
+    padding: 5
+  },
+
+  inputText: {
+    fontSize: 14,
+    fontFamily: 'MaisonNeueTRIAL-Medium',
+    color: 'rgba(0,0,0,.30)',
+  },
+
+  plusIcon: {
+    color: '#343442'
+  },
+
+  cameraButton: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  cameraIcon: {
+    color: '#343442'
   }
+
 })
 
 export default Location;
