@@ -93,14 +93,16 @@ class Location extends Component {
             underlayColor='#FFFFFF'
             style={styles.textInputButton}>
 
-            <Text>
+            <View style={styles.inputText}>
               <Icon name='md-add' size={18} style={styles.plusIcon}></Icon>
-              <Text style={styles.inputText}> Share a thought... </Text>
-            </Text>
+              <Text style={styles.placeholder}>
+                Share a thought...
+              </Text>
+            </View>
           </TouchableHighlight>
           <TouchableHighlight
             style={styles.cameraButton}>
-            <Icon name='ios-camera-outline' size={20} style={styles.cameraIcon}></Icon>
+            <Icon name='ios-camera-outline' size={25} style={styles.cameraIcon}></Icon>
           </TouchableHighlight>
         </View>
       </View>
@@ -212,15 +214,21 @@ const styles = StyleSheet.create({
   },
 
   inputText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  placeholder: {
     fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Medium',
     color: 'rgba(0,0,0,.30)',
-    marginLeft: 10
+    paddingLeft: 15
   },
 
   plusIcon: {
     color: '#343442',
-    marginRight: 10
+    paddingLeft: 10
   },
 
   cameraButton: {
@@ -229,7 +237,8 @@ const styles = StyleSheet.create({
   },
 
   cameraIcon: {
-    color: '#343442'
+    color: '#343442',
+    paddingRight: 5
   }
 
 })
