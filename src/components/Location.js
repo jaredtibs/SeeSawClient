@@ -87,15 +87,14 @@ class Location extends Component {
           { !isFetching ? this.renderFeed() : null}
         </ScrollView>
 
-        <View style={styles.input}>
+        <View style={styles.shareButton}>
           <TouchableHighlight
             onPress={() => this._openInputForm()}
             underlayColor='#FFFFFF'
-            style={styles.inputButton}>
+            style={styles.textInputButton}>
 
-            <Text style={styles.inputTextContainer}>
+            <Text>
               <Icon name='md-add' size={18} style={styles.plusIcon}></Icon>
-
               <Text style={styles.inputText}> Share a thought... </Text>
             </Text>
           </TouchableHighlight>
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Calibre-Regular'
   },
 
-  input: {
+  shareButton: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -206,24 +205,22 @@ const styles = StyleSheet.create({
     padding: 10
   },
 
-  inputButton: {
+  textInputButton: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-start'
-  },
-
-  inputTextContainer: {
-    padding: 5
   },
 
   inputText: {
     fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Medium',
     color: 'rgba(0,0,0,.30)',
+    marginLeft: 10
   },
 
   plusIcon: {
-    color: '#343442'
+    color: '#343442',
+    marginRight: 10
   },
 
   cameraButton: {
