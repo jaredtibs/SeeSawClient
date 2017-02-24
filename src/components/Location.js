@@ -14,7 +14,7 @@ import {
 
 import FeedContainer from '../containers/FeedContainer';
 import ShareFormContainer from '../containers/ShareFormContainer';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class Location extends Component {
   constructor(props) {
@@ -90,7 +90,7 @@ class Location extends Component {
           ref='textInput'
           style={styles.input}
           onFocus={() => this._openInputForm()}
-          placeholder='Share something fun...'
+          placeholder='Share a thought...'
         />
 
       </View>
@@ -177,18 +177,14 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     position: 'absolute',
-    bottom: 15,
+    bottom: 0,
     left: 0,
-    height: 45,
-    width: 345,
-    marginRight: 15,
-    marginLeft: 15,
-    padding: 15,
-    backgroundColor: 'white',
-    fontSize: 16,
-    fontFamily: 'Calibre-Regular',
-    color: "#848388",
-    borderRadius: 20,
+    right: 0,
+    height: 55,
+    backgroundColor: '#FFFFFF',
+    fontSize: 14,
+    fontFamily: 'MaisonNeueTRIAL-Medium',
+    color: 'rgba(0,0,0,.30)',
     borderWidth: 1,
     borderColor: 'rgba(56, 55, 61, 0.2)',
     shadowOffset: {
@@ -196,7 +192,8 @@ const styles = StyleSheet.create({
       height: 1
     },
     shadowColor: 'rgba(25, 24, 26, 0.19)',
-    shadowOpacity: 1.0
+    shadowOpacity: 1.0,
+    padding: 10
   }
 })
 
