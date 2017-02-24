@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
 
   textTab: {
-    fontSize: 12,
+    fontSize: 10,
     color: '#FAF8F7',
     fontFamily: 'MaisonNeueTRIAL-Bold'
   },
