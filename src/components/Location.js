@@ -8,7 +8,8 @@ import {
   StyleSheet,
   ListView,
   ScrollView,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 
 import FeedContainer from '../containers/FeedContainer';
@@ -71,8 +72,10 @@ class Location extends Component {
 
     return(
       <View style={styles.container}>
-
-        <ScrollView>
+       <StatusBar
+        barStyle="light-content"
+        />
+        <ScrollView bounces={false} automaticallyAdjustContentInsets={false}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
@@ -103,14 +106,13 @@ const styles = StyleSheet.create({
 
   imageContainer: {
     flex: 1,
-    flexDirection: 'row',
-    height: 150,
+    height: 280,
     justifyContent: 'center',
     alignItems: 'center'
   },
 
   image: {
-    flex: 1
+  
   },
 
   headerContainer: {
@@ -176,7 +178,6 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(25, 24, 26, 0.19)',
     shadowOpacity: 1.0
   }
-
 })
 
 export default Location;

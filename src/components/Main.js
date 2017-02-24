@@ -94,6 +94,7 @@ class Main extends Component {
           initialPage={1}
           renderTabBar={() => <TabBar />}
           tabBarPosition='overlayTop'>
+
           <View tabLabel="profile" style={styles.tabView}>
             {this.renderProfile()}
           </View>
