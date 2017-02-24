@@ -54,6 +54,10 @@ const TabBar = React.createClass({
                       <Text style={styles.textTab}> 
                         current location
                       </Text>
+                      <Icon name='ios-arrow-down-outline'
+                            size={18}
+                            style={styles.moreLocationIcon}
+                      />
                     </View>
                   )
                 } else if (tab == 'profile') {
@@ -103,20 +107,24 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderBottomColor: 'rgba(0,0,0,0.05)',
     backgroundColor: 'rgba(9, 9, 12, .80)'
   },
 
   locationTabContainer: {
+    marginTop: 10,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
 
+  moreLocationIcon: {
+    color: '#FAF8F7',
+  },
+
   textTab: {
     fontSize: 12,
     color: '#FAF8F7',
-    fontFamily: 'Calibre-Semibold',
+    fontFamily: 'MaisonNeueTRIAL-Bold'
   },
 
   avatar: {

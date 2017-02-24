@@ -92,8 +92,8 @@ class Main extends Component {
         <ScrollableTabView
           locked={true}
           initialPage={1}
-          renderTabBar={() => <TabBar />}>
-
+          renderTabBar={() => <TabBar />}
+          tabBarPosition='overlayTop'>
           <View tabLabel="profile" style={styles.tabView}>
             {this.renderProfile()}
           </View>
