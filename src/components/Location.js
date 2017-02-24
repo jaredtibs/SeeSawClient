@@ -21,25 +21,24 @@ class Location extends Component {
     super(props)
   }
 
-  renderLocationHeader(location) {
+  renderStats(location) {
     locationName = location.data.data.attributes.name;
     locationCity = "Los Angeles, CA"
-
     postCount = this.props.feed.postCount
 
     return(
-      <View style={styles.headerContainer}>
-        <Text style={styles.locationName}>
-          {locationName}
-        </Text>
-        <Text style={styles.city}>
-          {locationCity}
-        </Text>
-        <View style={styles.feedMeta}>
-          <Icon name='comment-o' size={16} style={styles.feedMetaIcon}></Icon>
-          <Text style={styles.feedMetaText}> {postCount} </Text>
-          <Icon name='picture-o' size={16} style={styles.feedMetaIcon}></Icon>
-          <Text style={styles.feedMetaText}> 0 </Text>
+      <View style={styles.statsContainer}>
+        <View style={styles.stat}>
+          <Text style={styles.statValue}> {postCount} </Text>
+          <Text style={styles.statText}> posts </Text>
+        </View>
+        <View style={styles.stat}>
+          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statText}> votes </Text>
+        </View>
+        <View style={styles.stat}>
+          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statText}> photos </Text>
         </View>
       </View>
     )
@@ -83,7 +82,7 @@ class Location extends Component {
               source={require('../assets/images/bungalow.jpg')}
             />
           </View>
-          { !isFetching ? this.renderLocationHeader(location) : null}
+          { !isFetching ? this.renderStats(location) : null}
           { !isFetching ? this.renderFeed() : null}
         </ScrollView>
 
@@ -112,17 +111,55 @@ const styles = StyleSheet.create({
   },
 
   image: {
-  
   },
 
-  headerContainer: {
-    flex: 1,
-    height: 120,
-    backgroundColor: '#FAF8F7',
-    paddingTop: 20,
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    height: 72,
+    backgroundColor: '#FAF8F7',
     borderBottomWidth: 1,
-    borderBottomColor: '#E7E7E9'
+    borderBottomColor: 'rgba(52,52,66,.10)'
+  },
+
+  stat: {
+    padding: 30
+  },
+
+  /* other way of formatting stats by using these styles on each view
+   * and removing above style
+  postStat: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-end'
+  },
+
+  votesStat: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  photoStat: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+  */
+
+  statText: {
+    fontSize: 10,
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    color: 'rgba(52,52,66,.50)',
+    marginTop: 3,
+    textAlign: 'center'
+  },
+
+  statValue: {
+    fontSize: 18,
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    textAlign: 'center'
   },
 
   locationName: {
@@ -135,23 +172,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#848388',
     fontFamily: 'Calibre-Regular'
-  },
-
-  feedMeta: {
-    flexDirection: 'row',
-    paddingTop: 5
-  },
-
-  feedMetaText: {
-    color: '#302F30',
-    fontFamily: 'Calibre-Regular',
-    fontSize: 18,
-    paddingRight: 10
-  },
-
-  feedMetaIcon: {
-    color: '#302F30',
-    marginRight: 5
   },
 
   input: {
