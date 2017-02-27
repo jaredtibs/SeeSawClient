@@ -23,8 +23,6 @@ class Location extends Component {
   }
 
   renderStats(location) {
-    locationName = location.data.data.attributes.name;
-    locationCity = "Los Angeles, CA"
     postCount = this.props.feed.postCount
 
     return(
@@ -69,6 +67,8 @@ class Location extends Component {
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
+    const locationName = location.data.data.attributes.name;
+    const locationCity = "Los Angeles, CA"
 
     return(
       <View style={styles.container}>
@@ -79,9 +79,13 @@ class Location extends Component {
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              resizeMode="contain"
               source={require('../assets/images/bungalow.jpg')}
-            />
+            >
+              <View style={styles.locationHeader}>
+                <Text style={styles.locationName}> {locationName} </Text>
+                <Text style={styles.locationCity}> {locationCity} </Text>
+              </View>
+            </Image>
           </View>
           { !isFetching ? this.renderStats(location) : null}
           { !isFetching ? this.renderFeed() : null}
@@ -118,11 +122,35 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     height: 280,
+    width: undefined,
     justifyContent: 'center',
     alignItems: 'center'
   },
 
   image: {
+    height: 280,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+
+  locationHeader: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginBottom: 20
+  },
+
+  locationName: {
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    color: '#FAF8F7',
+    fontSize: 24,
+    textAlign: 'center',
+  },
+
+  locationCity: {
+    fontFamily: 'MaisonNeueTRIAL-Demi',
+    color: 'rgba(255,255,255,.80)',
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 8
   },
 
   statsContainer: {
@@ -150,18 +178,6 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 18,
     fontFamily: 'GTPressuraMonoTrial-Bold',
-  },
-
-  locationName: {
-    fontSize: 34,
-    color: '#302F30',
-    fontFamily: 'Calibre-Semibold'
-  },
-
-  city: {
-    fontSize: 16,
-    color: '#848388',
-    fontFamily: 'Calibre-Regular'
   },
 
   shareButton: {
