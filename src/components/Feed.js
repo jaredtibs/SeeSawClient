@@ -115,7 +115,7 @@ class Feed extends Component {
   render() {
     const isFetching = this.props.feed.isFetching;
     let currentFeed = this.props.feed.currentFeedType;
-    let hasPosts = this.props.feed.posts.count > 0
+    let hasPosts = this.props.feed.posts.length > 0
 
     return(
       <View style={styles.container}>
