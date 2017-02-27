@@ -45,6 +45,43 @@ class Feed extends Component {
     )
   }
 
+  renderNewRow(rowData) {
+    return(
+      <View style={styles.row}>
+        <View style={styles.avatarContainer}>
+          <Image
+            style={styles.avatar}
+            source={require('../assets/images/me_avatar.jpg')}
+          />
+        </View>
+        <View style={styles.cardContainer}>
+          <View style={styles.cardHeader}>
+            <Text style={styles.username}> jmtibs </Text>
+            <Text style={styles.voteCount}> {rowData.attributes['upvote-count']} </Text>
+          </View>
+
+          <View style={styles.cardBody}>
+            <Text style={styles.postBody}> {rowData.attributes.body} </Text>
+          </View>
+
+          <View style={styles.cardFooter}>
+            <View>
+              <Text style={styles.timestamp}>{rowData.attributes["created-at"]} ago</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.voteContainer}>
+          <TouchableOpacity
+            style={styles.voteButton}
+            onPress={() => this._vote(rowData.id, 'upvote')}>
+            <Icon name='ios-arrow-round-up' size={22} style={styles.voteIcon}></Icon>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
+
   renderRow(rowData) {
     return (
       <View style={styles.row}>
@@ -112,7 +149,7 @@ class Feed extends Component {
             enableEmptySections={true}
             dataSource={dataSource}
             style={styles.feed}
-            renderRow={(rowData) => this.renderRow(rowData)}>
+            renderRow={(rowData) => this.renderNewRow(rowData)}>
           </ListView>
           : this.renderEmptyState()}
       </View>
@@ -220,28 +257,26 @@ const styles = StyleSheet.create({
   },
 
   row: {
+    flexDirection: 'row',
     marginLeft: 15,
     marginRight: 15,
-    marginBottom: 10,
-    borderRadius: 15,
-    backgroundColor: 'white',
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowColor: '#E7E7E9',
-    shadowColor: 'rgba(0, 0, 0, 0.2)',
-    shadowOpacity: 1.0,
+    marginBottom: 15,
+  },
+
+  avatarContainer: {
+    justifyContent: 'flex-start',
+    marginTop: 25
+  },
+
+  cardContainer: {
+    flex: 1
   },
 
   cardHeader: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
-    paddingBottom: 0,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E7E7E9'
+    //marginBottom: 5
   },
 
   userContainer: {
@@ -249,36 +284,38 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
-  moreIcon: {
-    color: 'rgba(25, 24, 26, 0.4)',
-    paddingTop: 3,
-    paddingRight: 5
-  },
-
   cardBody: {
-    flexWrap: 'wrap'
+    width: 285,
+    height: 85,
+    backgroundColor: 'white',
+    borderRadius: 4,
+    flexWrap: 'wrap',
+    shadowOffset: {
+      width: 0.5,
+      height: 1
+    },
+    shadowColor: 'rgba(0, 0, 0, 0.17)',
+    shadowOpacity: 5
   },
 
   cardFooter: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10
+    justifyContent: 'space-between'
   },
 
   timestamp: {
-    color: '#B3B2B6',
-    fontSize: 14,
-    fontFamily: 'Calibre-Regular',
-    paddingLeft: 5
+    color: 'rgba(52,52,66,.30)',
+    fontSize: 12,
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    marginTop: 7
   },
 
   postBody: {
-    color: '#848388',
-    fontSize: 18,
-    fontFamily: 'Calibre-Regular',
-    paddingTop: 18,
-    paddingLeft: 12,
+    color: '#343442',
+    fontSize: 15,
+    fontFamily: 'MaisonNeueTRIAL-Medium',
+    paddingTop: 9,
+    paddingLeft: 7,
     paddingRight: 12,
   },
 
@@ -293,9 +330,9 @@ const styles = StyleSheet.create({
   },
 
   username: {
-    color: '#302F30',
-    fontSize: 14,
-    fontFamily: 'Calibre-Semibold'
+    color: 'rgba(52,52,66,.80)',
+    fontSize: 12,
+    fontFamily: 'MaisonNeueTRIAL-Bold'
   },
 
   emptyText: {
@@ -305,15 +342,21 @@ const styles = StyleSheet.create({
     color: '#D3D3D3',
   },
 
-  votingContainer: {
-    flexDirection: 'row',
+  voteContainer: {
     justifyContent: 'center',
-    alignItems: 'center'
+    borderWidth: 1
+    //width: 40,
+    //height: 40
   },
 
   voteButton: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 1
   },
 
   voteIcon: {
@@ -321,12 +364,11 @@ const styles = StyleSheet.create({
   },
 
   voteCount: {
-    color: '#38373D',
-    fontSize: 14,
-    fontFamily: 'Calibre-Semibold',
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 5
+    color: 'rgba(52,52,66,.30)',
+    fontSize: 12,
+    fontFamily: 'GTPressuraMonoTrial-Bold',
+    marginRight: 14,
+    paddingBottom: 3
   }
 
 })
