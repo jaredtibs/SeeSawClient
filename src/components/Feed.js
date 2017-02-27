@@ -125,24 +125,26 @@ class Feed extends Component {
 
     return(
       <View style={styles.container}>
-        <View style={styles.feedButtons}>
-          <TouchableHighlight
-            style={ currentFeed == 'recent' ? styles.buttonActiveContainer : styles.buttonContainer }
-            underlayColor='#F2F2F4'
-            onPress={() => this._toggleFeed('recent')}>
-            <Text style={ currentFeed == 'recent' ? styles.buttonActiveText : styles.buttonText}>
-              RECENT
-            </Text>
-          </TouchableHighlight>
+        <View style={styles.feedButtonsContainer}>
+          <View style={styles.feedButtons}>
+            <TouchableHighlight
+              style={ currentFeed == 'recent' ? styles.buttonActiveContainer : styles.buttonContainer }
+              underlayColor='#F2F2F4'
+              onPress={() => this._toggleFeed('recent')}>
+              <Text style={ currentFeed == 'recent' ? styles.buttonActiveText : styles.buttonText}>
+                RECENT
+              </Text>
+            </TouchableHighlight>
 
-          <TouchableHighlight
-            style={ currentFeed == 'popular' ? styles.buttonActiveContainer : styles.buttonContainer }
-            underlayColor='#F2F2F4'
-            onPress={() => this._toggleFeed('popular')}>
-            <Text style={ currentFeed == 'popular' ? styles.buttonActiveText : styles.buttonText}>
-              POPULAR
-            </Text>
-          </TouchableHighlight>
+            <TouchableHighlight
+              style={ currentFeed == 'popular' ? styles.buttonActiveContainer : styles.buttonContainer }
+              underlayColor='#F2F2F4'
+              onPress={() => this._toggleFeed('popular')}>
+              <Text style={ currentFeed == 'popular' ? styles.buttonActiveText : styles.buttonText}>
+                POPULAR
+              </Text>
+            </TouchableHighlight>
+          </View>
         </View>
 
         {isFetching ?
@@ -173,41 +175,48 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
-  feedButtons: {
+  feedButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 10,
+    marginTop: 25,
+    marginBottom: 10
+  },
+
+  feedButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'rgba(216,216,216,.50)',
+    width: 197,
+    height: 40,
     padding: 10
   },
 
   buttonActiveContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 130,
+    width: 95,
     height: 30,
-    borderRadius: 15,
-    backgroundColor: '#302F30',
+    backgroundColor: '#FAF8F7'
   },
 
   buttonContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 130,
-    height: 30,
+    width: 95,
+    height: 30
   },
 
   buttonText: {
-    fontFamily: 'Calibre-Semibold',
+    fontFamily: 'MaisonNeueTRIAL-Bold',
     fontSize: 12,
-    color: '#302F30',
-    marginTop: 4
+    color: 'rgba(52,52,66,.30)'
   },
 
   buttonActiveText: {
-    fontFamily: 'Calibre-Semibold',
+    fontFamily: 'MaisonNeueTRIAL-Bold',
     fontSize: 12,
-    color: '#FFFFFF',
-    marginTop: 4
+    color: '#343442',
   },
 
   row: {
