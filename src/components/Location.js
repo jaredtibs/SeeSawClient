@@ -190,14 +190,13 @@ const styles = StyleSheet.create({
     right: 0,
     height: 55,
     backgroundColor: '#FFFFFF',
-    borderWidth: 1,
     borderColor: 'rgba(56, 55, 61, 0.2)',
     shadowOffset: {
       width: 1,
       height: 1
     },
-    shadowColor: 'rgba(25, 24, 26, 0.19)',
-    shadowOpacity: 1.0,
+    shadowColor: 'rgba(0,0,0,0.26)',
+    shadowOpacity: 0.5,
     padding: 10
   },
 

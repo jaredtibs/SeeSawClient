@@ -45,7 +45,7 @@ class Feed extends Component {
     )
   }
 
-  renderNewRow(rowData) {
+  renderRow(rowData) {
     return(
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
@@ -82,53 +82,6 @@ class Feed extends Component {
     )
   }
 
-  renderRow(rowData) {
-    return (
-      <View style={styles.row}>
-        <View style={styles.cardHeader}>
-          <View style={styles.userContainer}>
-            <Image
-              style={styles.avatar}
-              source={require('../assets/images/me_avatar.jpg')}
-            />
-            <Text style={styles.username}> jmtibs </Text>
-          </View>
-          <View>
-            <Icon name='ios-more' size={22} style={styles.moreIcon}></Icon>
-          </View>
-        </View>
-
-        <View style={styles.cardBody}>
-          <Text style={styles.postBody}> {rowData.attributes.body} </Text>
-        </View>
-
-        <View style={styles.cardFooter}>
-          <View>
-            <Text style={styles.timestamp}>{rowData.attributes["created-at"]} ago</Text>
-          </View>
-
-          <View style={styles.votingContainer}>
-            <TouchableOpacity
-              style={styles.voteButton}
-              onPress={() => this._vote(rowData.id, 'downvote')}>
-              <Icon name='ios-arrow-round-down' size={22} style={styles.voteIcon}></Icon>
-            </TouchableOpacity>
-
-            <View>
-              <Text style={styles.voteCount}> {rowData.attributes['upvote-count']} </Text>
-            </View>
-
-            <TouchableOpacity
-              style={styles.voteButton}
-              onPress={() => this._vote(rowData.id, 'upvote')}>
-              <Icon name='ios-arrow-round-up' size={22} style={styles.voteIcon}></Icon>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    )
-  }
-
   renderLoadingState() {
     return(
       <View style={styles.emptyFeed}>
@@ -149,7 +102,7 @@ class Feed extends Component {
             enableEmptySections={true}
             dataSource={dataSource}
             style={styles.feed}
-            renderRow={(rowData) => this.renderNewRow(rowData)}>
+            renderRow={(rowData) => this.renderRow(rowData)}>
           </ListView>
           : this.renderEmptyState()}
       </View>
