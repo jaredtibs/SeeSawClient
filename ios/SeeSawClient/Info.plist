@@ -45,6 +45,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>GT-Pressura-Mono-Trial-Bold.otf</string>
 		<string>MaisonNeueTRIAL-Bold.otf</string>
 		<string>MaisonNeueTRIAL-Demi.otf</string>
 		<string>MaisonNeueTRIAL-Medium.otf</string>

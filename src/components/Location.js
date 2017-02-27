@@ -139,27 +139,6 @@ const styles = StyleSheet.create({
     padding: 30
   },
 
-  /* other way of formatting stats by using these styles on each view
-   * and removing above style
-  postStat: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end'
-  },
-
-  votesStat: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  photoStat: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start'
-  },
-  */
-
   statText: {
     fontSize: 10,
     fontFamily: 'MaisonNeueTRIAL-Bold',
@@ -170,8 +149,7 @@ const styles = StyleSheet.create({
 
   statValue: {
     fontSize: 18,
-    fontFamily: 'MaisonNeueTRIAL-Bold',
-    textAlign: 'center'
+    fontFamily: 'GTPressuraMonoTrial-Bold',
   },
 
   locationName: {
