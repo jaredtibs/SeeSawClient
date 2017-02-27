@@ -5,40 +5,39 @@ import {
   View,
   Text,
   TextInput,
+  TouchableHighlight,
   StyleSheet,
   ListView,
   ScrollView,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 
 import FeedContainer from '../containers/FeedContainer';
 import ShareFormContainer from '../containers/ShareFormContainer';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class Location extends Component {
   constructor(props) {
     super(props)
   }
 
-  renderLocationHeader(location) {
-    locationName = location.data.data.attributes.name;
-    locationCity = "Los Angeles, CA"
-
+  renderStats(location) {
     postCount = this.props.feed.postCount
 
     return(
-      <View style={styles.headerContainer}>
-        <Text style={styles.locationName}>
-          {locationName}
-        </Text>
-        <Text style={styles.city}>
-          {locationCity}
-        </Text>
-        <View style={styles.feedMeta}>
-          <Icon name='comment-o' size={16} style={styles.feedMetaIcon}></Icon>
-          <Text style={styles.feedMetaText}> {postCount} </Text>
-          <Icon name='picture-o' size={16} style={styles.feedMetaIcon}></Icon>
-          <Text style={styles.feedMetaText}> 0 </Text>
+      <View style={styles.statsContainer}>
+        <View style={styles.stat}>
+          <Text style={styles.statValue}> {postCount} </Text>
+          <Text style={styles.statText}> posts </Text>
+        </View>
+        <View style={styles.stat}>
+          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statText}> votes </Text>
+        </View>
+        <View style={styles.stat}>
+          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statText}> photos </Text>
         </View>
       </View>
     )
@@ -68,29 +67,48 @@ class Location extends Component {
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
+    const locationName = location.data.data.attributes.name;
+    const locationCity = "Los Angeles, CA"
 
     return(
       <View style={styles.container}>
-
-        <ScrollView>
+       <StatusBar
+        barStyle="light-content"
+        />
+        <ScrollView bounces={false} automaticallyAdjustContentInsets={false}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              resizeMode="contain"
               source={require('../assets/images/bungalow.jpg')}
-            />
+            >
+              <View style={styles.locationHeader}>
+                <Text style={styles.locationName}> {locationName} </Text>
+                <Text style={styles.locationCity}> {locationCity} </Text>
+              </View>
+            </Image>
           </View>
-          { !isFetching ? this.renderLocationHeader(location) : null}
+          { !isFetching ? this.renderStats(location) : null}
           { !isFetching ? this.renderFeed() : null}
         </ScrollView>
 
-        <TextInput
-          ref='textInput'
-          style={styles.input}
-          onFocus={() => this._openInputForm()}
-          placeholder='Share something fun...'
-        />
+        <View style={styles.shareButton}>
+          <TouchableHighlight
+            onPress={() => this._openInputForm()}
+            underlayColor='#FFFFFF'
+            style={styles.textInputButton}>
 
+            <View style={styles.inputText}>
+              <Icon name='md-add' size={18} style={styles.plusIcon}></Icon>
+              <Text style={styles.placeholder}>
+                Share a thought...
+              </Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.cameraButton}>
+            <Icon name='ios-camera-outline' size={25} style={styles.cameraIcon}></Icon>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -103,78 +121,117 @@ const styles = StyleSheet.create({
 
   imageContainer: {
     flex: 1,
-    flexDirection: 'row',
-    height: 150,
+    height: 280,
+    width: undefined,
     justifyContent: 'center',
     alignItems: 'center'
   },
 
   image: {
-    flex: 1
+    height: 280,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
 
-  headerContainer: {
-    flex: 1,
-    height: 120,
-    backgroundColor: '#FAF8F7',
-    paddingTop: 20,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E7E7E9'
+  locationHeader: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginBottom: 20
   },
 
   locationName: {
-    fontSize: 34,
-    color: '#302F30',
-    fontFamily: 'Calibre-Semibold'
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    color: '#FAF8F7',
+    fontSize: 24,
+    textAlign: 'center',
   },
 
-  city: {
-    fontSize: 16,
-    color: '#848388',
-    fontFamily: 'Calibre-Regular'
+  locationCity: {
+    fontFamily: 'MaisonNeueTRIAL-Demi',
+    color: 'rgba(255,255,255,.80)',
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 8
   },
 
-  feedMeta: {
+  statsContainer: {
     flexDirection: 'row',
-    paddingTop: 5
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 72,
+    backgroundColor: '#FAF8F7',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(52,52,66,.10)'
   },
 
-  feedMetaText: {
-    color: '#302F30',
-    fontFamily: 'Calibre-Regular',
+  stat: {
+    padding: 30
+  },
+
+  statText: {
+    fontSize: 10,
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    color: 'rgba(52,52,66,.50)',
+    marginTop: 3,
+    textAlign: 'center'
+  },
+
+  statValue: {
     fontSize: 18,
-    paddingRight: 10
+    fontFamily: 'GTPressuraMonoTrial-Bold',
   },
 
-  feedMetaIcon: {
-    color: '#302F30',
-    marginRight: 5
-  },
-
-  input: {
+  shareButton: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     position: 'absolute',
-    bottom: 15,
+    bottom: 0,
     left: 0,
-    height: 45,
-    width: 345,
-    marginRight: 15,
-    marginLeft: 15,
-    padding: 15,
-    backgroundColor: 'white',
-    fontSize: 16,
-    fontFamily: 'Calibre-Regular',
-    color: "#848388",
-    borderRadius: 20,
-    borderWidth: 1,
+    right: 0,
+    height: 55,
+    backgroundColor: '#FFFFFF',
     borderColor: 'rgba(56, 55, 61, 0.2)',
     shadowOffset: {
       width: 1,
       height: 1
     },
-    shadowColor: 'rgba(25, 24, 26, 0.19)',
-    shadowOpacity: 1.0
+    shadowColor: 'rgba(0,0,0,0.26)',
+    shadowOpacity: 0.5,
+    padding: 10
+  },
+
+  textInputButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+
+  inputText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  placeholder: {
+    fontSize: 14,
+    fontFamily: 'MaisonNeueTRIAL-Medium',
+    color: 'rgba(0,0,0,.30)',
+    paddingLeft: 15
+  },
+
+  plusIcon: {
+    color: '#343442',
+    paddingLeft: 10
+  },
+
+  cameraButton: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  cameraIcon: {
+    color: '#343442',
+    paddingRight: 5
   }
 
 })
