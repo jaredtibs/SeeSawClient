@@ -40,7 +40,10 @@ class Feed extends Component {
   renderEmptyState() {
     return(
       <View style={styles.emptyFeed}>
-        <Text style={styles.emptyText}> There aren't any posts here yet. Be the first to leave one!</Text>
+        <Text style={styles.emptyText}>
+           Bummer, nothing has been shared at this location.
+            I guess the power is yours. We believe in you.
+        </Text>
       </View>
     )
   }
@@ -112,25 +115,28 @@ class Feed extends Component {
   render() {
     const isFetching = this.props.feed.isFetching;
     let currentFeed = this.props.feed.currentFeedType;
+    let hasPosts = this.props.feed.posts.count > 0
 
     return(
       <View style={styles.container}>
         <View style={styles.feedButtonsContainer}>
           <View style={styles.feedButtons}>
             <TouchableHighlight
-              style={ currentFeed == 'recent' ? styles.buttonActiveContainer : styles.buttonContainer }
+              disabled={!hasPosts}
+              style={ (currentFeed == 'recent' && hasPosts) ? styles.buttonActiveContainer : styles.buttonContainer }
               underlayColor='#F2F2F4'
               onPress={() => this._toggleFeed('recent')}>
-              <Text style={ currentFeed == 'recent' ? styles.buttonActiveText : styles.buttonText}>
+              <Text style={ (currentFeed == 'recent' && hasPosts) ? styles.buttonActiveText : styles.buttonText}>
                 RECENT
               </Text>
             </TouchableHighlight>
 
             <TouchableHighlight
-              style={ currentFeed == 'popular' ? styles.buttonActiveContainer : styles.buttonContainer }
+              disabled={!hasPosts}
+              style={ (currentFeed == 'popular' && hasPosts) ? styles.buttonActiveContainer : styles.buttonContainer }
               underlayColor='#F2F2F4'
               onPress={() => this._toggleFeed('popular')}>
-              <Text style={ currentFeed == 'popular' ? styles.buttonActiveText : styles.buttonText}>
+              <Text style={ (currentFeed == 'popular' && hasPosts) ? styles.buttonActiveText : styles.buttonText}>
                 POPULAR
               </Text>
             </TouchableHighlight>
@@ -234,7 +240,7 @@ const styles = StyleSheet.create({
 
   cardBody: {
     width: 285,
-    height: 85,
+    minHeight: 85,
     backgroundColor: 'white',
     borderRadius: 4,
     flexWrap: 'wrap',
@@ -264,7 +270,9 @@ const styles = StyleSheet.create({
     fontFamily: 'MaisonNeueTRIAL-Medium',
     paddingTop: 12,
     paddingLeft: 8,
-    paddingRight: 12,
+    paddingRight: 24,
+    paddingBottom: 5,
+    lineHeight: 22
   },
 
   avatar: {
@@ -284,10 +292,11 @@ const styles = StyleSheet.create({
   },
 
   emptyText: {
-    color: 'white',
-    fontFamily: 'Avenir',
+    fontFamily: 'MaisonNeueTRIAL-Demi',
+    fontSize: 12,
     textAlign: 'center',
-    color: '#D3D3D3',
+    color: 'rgba(52,52,66,.50)',
+    lineHeight: 20
   },
 
   voteContainer: {
