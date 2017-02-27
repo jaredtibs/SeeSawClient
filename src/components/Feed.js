@@ -75,7 +75,7 @@ class Feed extends Component {
           <TouchableOpacity
             style={styles.voteButton}
             onPress={() => this._vote(rowData.id, 'upvote')}>
-            <Icon name='ios-arrow-round-up' size={22} style={styles.voteIcon}></Icon>
+            <Icon name='md-arrow-up' size={18} style={styles.voteIcon}></Icon>
           </TouchableOpacity>
         </View>
       </View>
@@ -261,6 +261,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     marginBottom: 15,
+    marginTop: 8
   },
 
   avatarContainer: {
@@ -276,12 +277,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    //marginBottom: 5
-  },
-
-  userContainer: {
-    flexDirection: 'row',
-    alignItems: 'center'
   },
 
   cardBody: {
@@ -314,8 +309,8 @@ const styles = StyleSheet.create({
     color: '#343442',
     fontSize: 15,
     fontFamily: 'MaisonNeueTRIAL-Medium',
-    paddingTop: 9,
-    paddingLeft: 7,
+    paddingTop: 12,
+    paddingLeft: 8,
     paddingRight: 12,
   },
 
@@ -343,10 +338,7 @@ const styles = StyleSheet.create({
   },
 
   voteContainer: {
-    justifyContent: 'center',
-    borderWidth: 1
-    //width: 40,
-    //height: 40
+    justifyContent: 'center'
   },
 
   voteButton: {
@@ -356,18 +348,23 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    borderWidth: 1
+    shadowOffset: {
+      width: 0.5,
+      height: 1
+    },
+    shadowColor: 'rgba(0, 0, 0, 0.17)',
+    shadowOpacity: 2
   },
 
   voteIcon: {
-    color: 'rgba(56, 55, 61, 0.5)'
+    color: '#343442'
   },
 
   voteCount: {
     color: 'rgba(52,52,66,.30)',
     fontSize: 12,
     fontFamily: 'GTPressuraMonoTrial-Bold',
-    marginRight: 14,
+    marginRight: -24,
     paddingBottom: 3
   }
 
