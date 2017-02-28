@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   emptyFeed: {
     flex: 1,
     height: 250,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
 
@@ -296,7 +296,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     color: 'rgba(52,52,66,.50)',
-    lineHeight: 20
+    lineHeight: 20,
+    marginTop: 80
   },
 
   voteContainer: {
