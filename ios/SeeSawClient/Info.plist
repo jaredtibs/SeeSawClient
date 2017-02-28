@@ -4,9 +4,9 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>SeeSaw needs your location to provide you the best experience</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>SeeSaw needs your location to provide you the best experience</string>
 	<key>NSLocationUsageDescription</key>
+	<string>SeeSaw needs your location to provide you the best experience</string>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>SeeSaw needs your location to provide you the best experience</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>SeeSaw needs to access your photos library in order for you to upload</string>

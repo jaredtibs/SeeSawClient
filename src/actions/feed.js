@@ -1,4 +1,5 @@
-// posts create
+import store from 'react-native-simple-store';
+
 export function createPost (locationId, text) {
   return dispatch => {
     dispatch(publishingPost());
@@ -71,21 +72,26 @@ export function toggleFeed(type, locationId) {
 
 export function castVote(postId, type) {
   return dispatch => {
-    let url = `http://localhost:3000/api/v1/posts/${postId}/${type}`;
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    })
-    .then((response) => response.json())
-    .then((responseData) => dispatch(voteCasted(responseData.data)))
-    .catch(error => console.log(error))
+    store.get('userToken')
+    .then(token => {
+      let url = `http://localhost:3000/api/v1/posts/${postId}/${type}`;
+      return fetch(url, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + token
+        },
+      })
+      .then((response) => response.json())
+      .then((responseData) => dispatch(voteCasted(responseData.data)))
+      .catch(error => console.log(error))
+    });
   }
 }
 
 export function voteCasted(updatedPost) {
+  console.log(updatedPost)
   return {
     type: "POST_UPDATED",
     data: updatedPost

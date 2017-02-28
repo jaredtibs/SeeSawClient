@@ -26,6 +26,14 @@ class Main extends Component {
 
   componentDidMount() {
     this._getUserLocation();
+    //navigator.geolocation.getCurrentPosition(
+    // (position) => {
+    //   var initialPosition = JSON.stringify(position);
+    //   console.log(initialPosition);
+    // },
+    // (error) => alert(JSON.stringify(error)),
+    // {enableHighAccuracy: true, timeout: 20000, maximumAge: 0}
+    //);
   }
 
   async _getUserLocation() {
@@ -39,6 +47,7 @@ class Main extends Component {
         name: "Apple HQ",
        category_ids: []
       });
+
 
         /*
       if (locations["places"] && locations["places"].length > 0) {

@@ -191,7 +191,7 @@ class Login extends Component {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.headerText}> SIGN UP </Text>
+            <Text style={styles.headerText}> LOGIN </Text>
           </View>
 
           <TouchableOpacity

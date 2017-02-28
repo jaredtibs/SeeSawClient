@@ -163,7 +163,7 @@ export function updateAvatar(data) {
       .then((response) => response.json())
       .then((responseData) => dispatch(userAvatarUpdated(responseData)))
       .catch(error => console.error(error))
-    })
+    });
   }
 }
 

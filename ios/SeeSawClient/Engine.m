@@ -53,6 +53,8 @@ RCT_REMAP_METHOD(getCurrentLocations,
           acceptedTosUrl: @"http://tethr.com/tos"
           acceptedTosDate: [NSDate date]];
   
+  //[NSThread sleepForTimeInterval:2.0f];
+  
   // request candidates
   [engine genPlaceCandidatesWithDelegate: self];
   
