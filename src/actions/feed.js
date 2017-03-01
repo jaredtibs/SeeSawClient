@@ -3,20 +3,24 @@ import store from 'react-native-simple-store';
 export function createPost (locationId, text) {
   return dispatch => {
     dispatch(publishingPost());
-    let url = `http://localhost:3000/api/v1/locations/${locationId}/posts`;
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        body: text,
+    store.get('userToken')
+    .then(token => {
+      let url = `http://localhost:3000/api/v1/locations/${locationId}/posts`;
+      return fetch(url, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + token
+        },
+        body: JSON.stringify({
+          body: text,
+        })
       })
-    })
-    .then((response) => response.json())
-    .then((responseData) => dispatch(postPublished(responseData)))
-    .catch(error => console.log(error))
+      .then((response) => response.json())
+      .then((responseData) => dispatch(postPublished(responseData)))
+      .catch(error => console.log(error))
+    });
   }
 }
 
@@ -35,20 +39,23 @@ export function publishingPost() {
 
 export function fetchPosts (locationId, type) {
   return dispatch => {
-    dispatch(fetchingPosts());
-    let url = `http://localhost:3000/api/v1/locations/${locationId}/posts?sort=${type}`;
-    return fetch(url, {
-      method: "GET",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    })
-    .then((response) => response.json())
-    .then((responseData) => dispatch(postsFetched(responseData.data, type)))
-    .catch(error => console.log(error))
+    store.get('userToken')
+    .then(token => {
+      dispatch(fetchingPosts());
+      let url = `http://localhost:3000/api/v1/locations/${locationId}/posts?sort=${type}`;
+      return fetch(url, {
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + token
+        },
+      })
+      .then((response) => response.json())
+      .then((responseData) => dispatch(postsFetched(responseData.data, type)))
+      .catch(error => console.log(error))
+    });
   }
-
 }
 
 export function postsFetched(posts, type) {
@@ -91,7 +98,6 @@ export function castVote(postId, type) {
 }
 
 export function voteCasted(updatedPost) {
-  console.log(updatedPost)
   return {
     type: "POST_UPDATED",
     data: updatedPost

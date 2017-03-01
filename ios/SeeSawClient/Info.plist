@@ -2,18 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>SeeSaw needs your location to provide you the best experience</string>
-	<key>NSLocationUsageDescription</key>
-	<string>SeeSaw needs your location to provide you the best experience</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>SeeSaw needs your location to provide you the best experience</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>SeeSaw needs to access your photos library in order for you to upload</string>
-	<key>NSCameraUsageDescription</key>
-	<string>SeeSaw would like to access your camera</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>SeeSaw</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -43,6 +35,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>SeeSaw would like to access your camera</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>SeeSaw needs your location to provide you the best experience</string>
+	<key>NSLocationUsageDescription</key>
+	<string>SeeSaw needs your location to provide you the best experience</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SeeSaw needs your location to provide you the best experience</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>SeeSaw needs to access your photos library in order for you to upload</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>GT-Pressura-Mono-Trial-Bold.otf</string>
@@ -55,6 +57,10 @@
 		<string>FontAwesome.ttf</string>
 		<string>Ionicons.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -64,8 +70,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

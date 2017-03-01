@@ -68,6 +68,7 @@ class Location extends Component {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
     const locationName = location.data.data.attributes.name;
+    //TODO swap with api value
     const locationCity = "Los Angeles, CA"
 
     return(
