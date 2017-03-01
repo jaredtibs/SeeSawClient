@@ -81,7 +81,13 @@ class Feed extends Component {
         <View style={styles.voteContainer}>
           <TouchableOpacity
             style={permissions['voted-for'] ? styles.voteButtonVoted : styles.voteButton}
-            onPress={() => this._vote(rowData.id, 'upvote')}>
+            onPress={() => {
+              if (permissions['voted-for']) {
+                this._vote(rowData.id, 'unvote')
+              } else {
+                this._vote(rowData.id, 'upvote')
+              }
+            }}>
             <Icon name='md-arrow-up' size={18} style={styles.voteIcon}></Icon>
           </TouchableOpacity>
         </View>
