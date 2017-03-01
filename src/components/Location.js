@@ -10,7 +10,8 @@ import {
   ListView,
   ScrollView,
   Image,
-  StatusBar
+  StatusBar,
+  RefreshControl
 } from 'react-native';
 
 import FeedContainer from '../containers/FeedContainer';
@@ -64,9 +65,15 @@ class Location extends Component {
     Actions.shareForm();
   }
 
+  _onRefresh() {
+    const locationId = this.props.location.data.data.id;
+    this.props.fetchPosts(locationId, 'recent');
+  }
+
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
+    const refreshingPosts = this.props.feed.isFetching;
     const locationName = location.data.data.attributes.name;
     //TODO swap with api value
     const locationCity = "Los Angeles, CA"
@@ -80,7 +87,14 @@ class Location extends Component {
        <StatusBar
         barStyle="light-content"
         />
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={isFetchingPosts}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
+        >
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
