@@ -71,12 +71,16 @@ class Location extends Component {
     //TODO swap with api value
     const locationCity = "Los Angeles, CA"
 
+    //on ScrollView
+    //bounces={false}
+    //not sure if this prop below is having any effect
+    //automaticallyAdjustContentInsets={false}
     return(
       <View style={styles.container}>
        <StatusBar
         barStyle="light-content"
         />
-        <ScrollView bounces={false} automaticallyAdjustContentInsets={false}>
+        <ScrollView>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
