@@ -49,6 +49,8 @@ class Feed extends Component {
   }
 
   renderRow(rowData) {
+    const permissions = rowData.attributes.permissions
+
     return(
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
@@ -60,7 +62,9 @@ class Feed extends Component {
         <View style={styles.cardContainer}>
           <View style={styles.cardHeader}>
             <Text style={styles.username}> jmtibs </Text>
-            <Text style={styles.voteCount}> {rowData.attributes['upvote-count']} </Text>
+            <Text style={permissions['voted-for'] ? styles.voteCountVoted : styles.voteCount}>
+              {rowData.attributes['upvote-count']}
+            </Text>
           </View>
 
           <View style={styles.cardBody}>
@@ -76,7 +80,7 @@ class Feed extends Component {
 
         <View style={styles.voteContainer}>
           <TouchableOpacity
-            style={styles.voteButton}
+            style={permissions['voted-for'] ? styles.voteButtonVoted : styles.voteButton}
             onPress={() => this._vote(rowData.id, 'upvote')}>
             <Icon name='md-arrow-up' size={18} style={styles.voteIcon}></Icon>
           </TouchableOpacity>
@@ -319,15 +323,38 @@ const styles = StyleSheet.create({
     shadowOpacity: 2
   },
 
+  voteButtonVoted: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#23EC69',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    shadowOffset: {
+      width: 0.5,
+      height: 1
+    },
+    shadowColor: 'rgba(0, 0, 0, 0.17)',
+    shadowOpacity: 2
+  },
+
   voteIcon: {
     color: '#343442'
   },
 
   voteCount: {
     color: 'rgba(52,52,66,.30)',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'GTPressuraMonoTrial-Bold',
-    marginRight: -24,
+    marginRight: -20,
+    paddingBottom: 3
+  },
+
+  voteCountVoted: {
+    color: 'rgb(52,52,66)',
+    fontSize: 14,
+    fontFamily: 'GTPressuraMonoTrial-Bold',
+    marginRight: -20,
     paddingBottom: 3
   }
 
