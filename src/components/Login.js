@@ -120,7 +120,7 @@ class Login extends Component {
         if (this.state.focusedInput === 'email' || (this.state.formData.email && this.state.emailValid)) {
           return(
             <Separator
-              label="Email"
+              label="Email or Username"
               labelStyle={formStyles.activeLabel}
               containerStyle={formStyles.activeLabelContainer}
             />
