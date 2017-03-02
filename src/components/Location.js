@@ -67,13 +67,14 @@ class Location extends Component {
 
   _onRefresh() {
     const locationId = this.props.location.data.data.id;
-    this.props.fetchPosts(locationId, 'recent');
+    const currentFeedType = this.props.feed.currentFeedType;
+    this.props.fetchPosts(locationId, currentFeedType);
   }
 
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
-    const refreshingPosts = this.props.feed.isFetching;
+    const isRefreshing = isFetching && this.props.feed.posts.length > 0
     const locationName = location.data.data.attributes.name;
     //TODO swap with api value
     const locationCity = "Los Angeles, CA"
@@ -88,9 +89,10 @@ class Location extends Component {
         barStyle="light-content"
         />
         <ScrollView
+          bouncesZoom={true}
           refreshControl={
             <RefreshControl
-              refreshing={isFetchingPosts}
+              refreshing={isRefreshing}
               onRefresh={this._onRefresh.bind(this)}
             />
           }
