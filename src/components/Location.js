@@ -144,6 +144,11 @@ const styles = StyleSheet.create({
   },
 
   locationHeader: {
+    flex: 1,
+    height: 280,
+    width: undefined,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
     marginBottom: 20
   },
