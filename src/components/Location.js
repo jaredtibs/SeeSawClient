@@ -91,6 +91,7 @@ class Location extends Component {
         />
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}
+          windowHeight={280}
           header={(
             <View style={styles.locationHeader}>
               <Text style={styles.locationName}> {locationName} </Text>
@@ -129,24 +130,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  imageContainer: {
-    flex: 1,
-    height: 280,
-    width: undefined,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  image: {
-    height: 280,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  },
-
   locationHeader: {
     flex: 1,
-    height: 280,
-    width: undefined,
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
