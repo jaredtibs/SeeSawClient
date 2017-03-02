@@ -17,6 +17,7 @@ import {
 import FeedContainer from '../containers/FeedContainer';
 import ShareFormContainer from '../containers/ShareFormContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ParallaxView from 'react-native-parallax-view';
 
 class Location extends Component {
   constructor(props) {
@@ -88,29 +89,17 @@ class Location extends Component {
        <StatusBar
         barStyle="light-content"
         />
-        <ScrollView
-          bouncesZoom={true}
-          refreshControl={
-            <RefreshControl
-              refreshing={isRefreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
-        >
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require('../assets/images/bungalow.jpg')}
-            >
-              <View style={styles.locationHeader}>
-                <Text style={styles.locationName}> {locationName} </Text>
-                <Text style={styles.locationCity}> {locationCity} </Text>
-              </View>
-            </Image>
-          </View>
-          { !isFetching ? this.renderStats(location) : null}
-          { !isFetching ? this.renderFeed() : null}
-        </ScrollView>
+        <ParallaxView
+          backgroundSource={require('../assets/images/bungalow.jpg')}
+          header={(
+            <View style={styles.locationHeader}>
+              <Text style={styles.locationName}> {locationName} </Text>
+              <Text style={styles.locationCity}> {locationCity} </Text>
+            </View>
+          )}>
+            { !isFetching ? this.renderStats(location) : null}
+            { !isFetching ? this.renderFeed() : null}
+        </ParallaxView>
 
         <View style={styles.shareButton}>
           <TouchableHighlight
@@ -255,6 +244,6 @@ const styles = StyleSheet.create({
     paddingRight: 5
   }
 
-})
+});
 
 export default Location;

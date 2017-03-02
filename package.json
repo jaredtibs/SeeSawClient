@@ -11,6 +11,7 @@
     "react-native": "0.41.1",
     "react-native-form-generator": "^0.9.9",
     "react-native-image-picker": "^0.25.5",
+    "react-native-parallax-view": "^2.0.6",
     "react-native-router-flux": "^3.37.0",
     "react-native-scrollable-tab-view": "^0.7.2",
     "react-native-simple-store": "^1.1.0",
