@@ -94,14 +94,14 @@ class Main extends Component {
   }
 
   render() {
-    const fetchingLocation = this.props.location.findingLocation
+    const fetchingLocation = this.props.location.findingLocation;
 
     return(
       <View style={styles.container}>
         <ScrollableTabView
           locked={true}
           initialPage={1}
-          renderTabBar={() => <TabBar />}
+          renderTabBar={() => <TabBar location={this.props.location} />}
           tabBarPosition='overlayTop'>
 
           <View tabLabel="profile" style={styles.tabView}>

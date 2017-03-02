@@ -10,7 +10,8 @@ import {
   ListView,
   ScrollView,
   Image,
-  StatusBar
+  StatusBar,
+  Animated
 } from 'react-native';
 
 import FeedContainer from '../containers/FeedContainer';
@@ -64,6 +65,12 @@ class Location extends Component {
     Actions.shareForm();
   }
 
+
+  handleScroll(event: Object) {
+    let scrollPosition = event.nativeEvent.contentOffset.y;
+    this.props.scrolledLocation(scrollPosition);
+  }
+
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
@@ -80,7 +87,10 @@ class Location extends Component {
        <StatusBar
         barStyle="light-content"
         />
-        <ScrollView>
+        <ScrollView
+          scrollEventThrottle={16}
+          onScroll={this.handleScroll.bind(this)}
+        >
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
@@ -114,6 +124,7 @@ class Location extends Component {
             <Icon name='ios-camera-outline' size={25} style={styles.cameraIcon}></Icon>
           </TouchableHighlight>
         </View>
+
       </View>
     )
   }
