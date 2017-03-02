@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
+import {scrolledLocation} from '../actions/location';
 
 import Location from '../components/Location';
 
@@ -20,4 +21,12 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(LocationContainer)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    scrolledLocation: (scrollValue) => {
+      dispatch(scrolledLocation(scrollValue))
+    },
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationContainer)

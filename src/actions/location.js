@@ -37,3 +37,15 @@ export function findingLocation() {
     type: "FINDING_LOCATION"
   }
 }
+
+export function scrolledLocation(value) {
+  if (value >= 217) {
+    return {
+      type: "LOCATION_SCROLL_DOWN"
+    }
+  } else {
+    return {
+      type: "LOCATION_SCROLL_UP"
+    }
+  }
+}
