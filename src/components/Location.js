@@ -17,6 +17,7 @@ import {
 import FeedContainer from '../containers/FeedContainer';
 import ShareFormContainer from '../containers/ShareFormContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 class Location extends Component {
   constructor(props) {
@@ -88,29 +89,25 @@ class Location extends Component {
        <StatusBar
         barStyle="light-content"
         />
-        <ScrollView
-          bouncesZoom={true}
-          refreshControl={
-            <RefreshControl
-              refreshing={isRefreshing}
-              onRefresh={this._onRefresh.bind(this)}
-            />
-          }
-        >
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require('../assets/images/bungalow.jpg')}
-            >
-              <View style={styles.locationHeader}>
-                <Text style={styles.locationName}> {locationName} </Text>
-                <Text style={styles.locationCity}> {locationCity} </Text>
-              </View>
-            </Image>
+
+      <ParallaxScrollView
+        renderBackground={() => <Image source={require('../assets/images/bungalow.jpg')}/>}
+        parallaxHeaderHeight={300}
+        renderStickyHeader={() => (
+          <View style={styles.scrolledNavHeader}>
+            <Text> THIS IS A TEST </Text>
           </View>
+        )}
+        stickyHeaderHeight={65}
+        renderForeground={() => (
+          <View style={styles.locationHeader}>
+            <Text style={styles.locationName}> {locationName} </Text>
+            <Text style={styles.locationCity}> {locationCity} </Text>
+          </View>
+        )}>
           { !isFetching ? this.renderStats(location) : null}
           { !isFetching ? this.renderFeed() : null}
-        </ScrollView>
+        </ParallaxScrollView>
 
         <View style={styles.shareButton}>
           <TouchableHighlight
@@ -140,21 +137,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  imageContainer: {
+  scrolledNavHeader: {
     flex: 1,
-    height: 280,
-    width: undefined,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  image: {
-    height: 280,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white'
   },
 
   locationHeader: {
+    flex: 1,
+    height: 300,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     backgroundColor: 'rgba(0,0,0,0)',
     marginBottom: 20
   },
