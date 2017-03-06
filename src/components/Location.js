@@ -76,10 +76,11 @@ class Location extends Component {
 
   handleScroll(event: Object) {
     let scrollPosition = event.nativeEvent.contentOffset.y
-    if (scrollPosition >= 217 && !this.state.scrolledDown) {
+    console.log(scrollPosition);
+    if (scrollPosition >= 198 && !this.state.scrolledDown) {
       this.setState({scrolledDown: true});
       this.props.scrolledDown();
-    } else if(this.state.scrolledDown && scrollPosition < 217){
+    } else if(this.state.scrolledDown && scrollPosition < 198){
       this.setState({scrolledDown: false});
       this.props.scrolledUp();
     }
@@ -104,6 +105,12 @@ class Location extends Component {
           windowHeight={280}
           scrollEventThrottle={16}
           onScroll={this.handleScroll.bind(this)}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />
+          }
           header={(
             <View style={styles.locationHeader}>
               <Text style={styles.locationName}> {locationName} </Text>

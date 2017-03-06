@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
 
   scrolledLocationNav: {
     height: 65,
+    paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
