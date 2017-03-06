@@ -42,11 +42,11 @@ const TabBar = React.createClass({
   },
 
   render() {
-    const location = this.props.location;
-    const scrolledLocation = location.scrolledLocationNav;
-    const locationData = this.props.location.data;
+    const { location, activeTab } = this.props
+    const locationData = location.data;
+    const lightTabBar = location.scrolledLocationNav || activeTab == 0 || activeTab == 2
 
-    return <View style={scrolledLocation ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
+    return <View style={lightTabBar ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
       {this.props.tabs.map((tab, i) => {
         return(
           <View key={tab}>
@@ -55,10 +55,10 @@ const TabBar = React.createClass({
                 if (tab == 'location') {
                   return (
                     <View style={styles.locationTabContainer}>
-                      <Text style={scrolledLocation ? styles.scrolledTextTab : styles.textTab}>
-                        { (scrolledLocation && locationData) ? locationData.data.attributes.name : "current location" }
+                      <Text style={lightTabBar ? styles.scrolledTextTab : styles.textTab}>
+                        { (lightTabBar && locationData) ? locationData.data.attributes.name : "current location" }
                       </Text>
-                       {!scrolledLocation ?
+                       {!lightTabBar ?
                         <Icon name='ios-arrow-down-outline'
                               size={18}
                               style={styles.moreLocationIcon}
@@ -123,12 +123,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FAF8F7',
-    shadowOffset: {
-      width: 0.5,
-      height: 1
-    },
-    shadowColor: 'rgba(0, 0, 0, 0.15)',
-    shadowOpacity: 1
+    borderBottomWidth: 1,
+    borderBottomColor: '#D8D8D8'
   },
 
   locationTabContainer: {
