@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {fetchPosts} from '../actions/feed';
+import {scrolledDown, scrolledUp} from '../actions/location';
 
 import Location from '../components/Location';
 
@@ -25,6 +26,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: (locationId, type) => {
       dispatch(fetchPosts(locationId, type))
+    },
+
+    scrolledDown: () => {
+      dispatch(scrolledDown())
+    },
+
+    scrolledUp: () => {
+      dispatch(scrolledUp())
     }
   }
 };

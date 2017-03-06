@@ -22,6 +22,9 @@ import ParallaxView from 'react-native-parallax-view';
 class Location extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      scrolledDown: false
+    }
   }
 
   renderStats(location) {
@@ -72,6 +75,17 @@ class Location extends Component {
     this.props.fetchPosts(locationId, currentFeedType);
   }
 
+  handleScroll(event: Object) {
+    let scrollPosition = event.nativeEvent.contentOffset.y
+    if (scrollPosition >= 217 && !this.state.scrolledDown) {
+      this.setState({scrolledDown: true});
+      this.props.scrolledDown();
+    } else if(this.state.scrolledDown && scrollPosition < 217){
+      this.setState({scrolledDown: false});
+      this.props.scrolledUp();
+    }
+  }
+
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
@@ -92,6 +106,8 @@ class Location extends Component {
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}
           windowHeight={280}
+          scrollEventThrottle={16}
+          onScroll={this.handleScroll.bind(this)}
           header={(
             <View style={styles.locationHeader}>
               <Text style={styles.locationName}> {locationName} </Text>

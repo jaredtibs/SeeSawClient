@@ -42,6 +42,10 @@ const TabBar = React.createClass({
   },
 
   render() {
+    const location = this.props.location;
+    const scrolledLocation = location.scrolledLocationNav;
+    const locationData = this.props.location.data;
+
     return <View style={[styles.tabs, this.props.style, ]}>
       {this.props.tabs.map((tab, i) => {
         return(
@@ -51,13 +55,15 @@ const TabBar = React.createClass({
                 if (tab == 'location') {
                   return (
                     <View style={styles.locationTabContainer}>
-                      <Text style={styles.textTab}> 
-                        current location
+                      <Text style={styles.textTab}>
+                        { (scrolledLocation && locationData) ? locationData.data.attributes.name : "current location" }
                       </Text>
-                      <Icon name='ios-arrow-down-outline'
-                            size={18}
-                            style={styles.moreLocationIcon}
-                      />
+                       {!scrolledLocation ?
+                        <Icon name='ios-arrow-down-outline'
+                              size={18}
+                              style={styles.moreLocationIcon}
+                        />
+                      : null}
                     </View>
                   )
                 } else if (tab == 'profile') {
