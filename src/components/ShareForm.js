@@ -9,7 +9,8 @@ import {
   StyleSheet,
   Image,
   Keyboard,
-  Dimensions
+  Dimensions,
+  StatusBar
 } from 'react-native';
 
 import ShareOptions from '../components/ShareOptions';
@@ -74,10 +75,12 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled;
-    console.log(this.state)
 
     return(
       <View style={styles.container}>
+        <StatusBar
+          barStyle="light-content"
+        />
         <View style={styles.headerBar}>
           <View>
             <TouchableHighlight
