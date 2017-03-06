@@ -16,6 +16,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 class Feed extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      selectedFeed: null
+    }
   }
 
   componentDidMount() {
@@ -29,6 +33,7 @@ class Feed extends Component {
   }
 
   _toggleFeed(type) {
+    this.setState({selectedFeed: type})
     locationId = this.props.location.data.data.id;
     this.props.toggleFeed(type, locationId);
   }
@@ -124,7 +129,7 @@ class Feed extends Component {
 
   render() {
     const isFetching = this.props.feed.isFetching;
-    let currentFeed = this.props.feed.currentFeedType;
+    let currentFeed = (this.state.selectedFeed ? this.state.selectedFeed : this.props.feed.currentFeedType);
     let hasPosts = this.props.feed.posts.length > 0
 
     return(

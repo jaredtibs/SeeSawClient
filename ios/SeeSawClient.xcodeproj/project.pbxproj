@@ -67,6 +67,7 @@
 		7F9970541E4C335C00B1EF03 /* MaisonNeueTRIAL-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F99704C1E4C335C00B1EF03 /* MaisonNeueTRIAL-MediumItalic.otf */; };
 		7F9970631E4C358600B1EF03 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F9970621E4C358600B1EF03 /* Ionicons.ttf */; };
 		7F9EC89B1E63C68500C6FF34 /* GT-Pressura-Mono-Trial-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F9EC89A1E63C68500C6FF34 /* GT-Pressura-Mono-Trial-Bold.otf */; };
+		7FA2E8091E6CC9E500466A2F /* MaisonNeueTRIAL-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2E8081E6CC9E500466A2F /* MaisonNeueTRIAL-Book.otf */; };
 		7FD5F72B1E5AC7D600F0A1E0 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD5F71F1E5AC77B00F0A1E0 /* libRNImagePicker.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -328,6 +329,7 @@
 		7F99704C1E4C335C00B1EF03 /* MaisonNeueTRIAL-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MaisonNeueTRIAL-MediumItalic.otf"; path = "../src/assets/fonts/MaisonNeueTrial/MaisonNeueTRIAL-MediumItalic.otf"; sourceTree = "<group>"; };
 		7F9970621E4C358600B1EF03 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		7F9EC89A1E63C68500C6FF34 /* GT-Pressura-Mono-Trial-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GT-Pressura-Mono-Trial-Bold.otf"; path = "../src/assets/fonts/GT-Pressura-Mono-Trial-Bold.otf"; sourceTree = "<group>"; };
+		7FA2E8081E6CC9E500466A2F /* MaisonNeueTRIAL-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MaisonNeueTRIAL-Book.otf"; path = "../src/assets/fonts/MaisonNeueTrial/MaisonNeueTRIAL-Book.otf"; sourceTree = "<group>"; };
 		7FD5F7011E5AC77B00F0A1E0 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -517,6 +519,7 @@
 		7F26B3481E483431000B7C10 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7FA2E8081E6CC9E500466A2F /* MaisonNeueTRIAL-Book.otf */,
 				7F9EC89A1E63C68500C6FF34 /* GT-Pressura-Mono-Trial-Bold.otf */,
 				7F9970621E4C358600B1EF03 /* Ionicons.ttf */,
 				7F9970451E4C335C00B1EF03 /* MaisonNeueTRIAL-Bold.otf */,
@@ -1000,6 +1003,7 @@
 			files = (
 				7F9970511E4C335C00B1EF03 /* MaisonNeueTRIAL-Light.otf in Resources */,
 				7F99703D1E4C334700B1EF03 /* Calibre-Medium.otf in Resources */,
+				7FA2E8091E6CC9E500466A2F /* MaisonNeueTRIAL-Book.otf in Resources */,
 				7F9970631E4C358600B1EF03 /* Ionicons.ttf in Resources */,
 				7F9970501E4C335C00B1EF03 /* MaisonNeueTRIAL-DemiItalic.otf in Resources */,
 				7F9970441E4C334700B1EF03 /* Calibre-ThinItalic.otf in Resources */,
