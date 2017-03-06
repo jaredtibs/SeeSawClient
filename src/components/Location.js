@@ -10,17 +10,20 @@ import {
   ListView,
   ScrollView,
   Image,
-  StatusBar,
   RefreshControl
 } from 'react-native';
 
 import FeedContainer from '../containers/FeedContainer';
 import ShareFormContainer from '../containers/ShareFormContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ParallaxView from 'react-native-parallax-view';
 
 class Location extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      scrolledDown: false
+    }
   }
 
   renderStats(location) {
@@ -71,6 +74,18 @@ class Location extends Component {
     this.props.fetchPosts(locationId, currentFeedType);
   }
 
+  handleScroll(event: Object) {
+    let scrollPosition = event.nativeEvent.contentOffset.y
+    console.log(scrollPosition);
+    if (scrollPosition >= 198 && !this.state.scrolledDown) {
+      this.setState({scrolledDown: true});
+      this.props.scrolledDown();
+    } else if(this.state.scrolledDown && scrollPosition < 198){
+      this.setState({scrolledDown: false});
+      this.props.scrolledUp();
+    }
+  }
+
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
@@ -85,32 +100,26 @@ class Location extends Component {
     //automaticallyAdjustContentInsets={false}
     return(
       <View style={styles.container}>
-       <StatusBar
-        barStyle="light-content"
-        />
-        <ScrollView
-          bouncesZoom={true}
+        <ParallaxView
+          backgroundSource={require('../assets/images/bungalow.jpg')}
+          windowHeight={280}
+          scrollEventThrottle={16}
+          onScroll={this.handleScroll.bind(this)}
           refreshControl={
             <RefreshControl
               refreshing={isRefreshing}
               onRefresh={this._onRefresh.bind(this)}
             />
           }
-        >
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require('../assets/images/bungalow.jpg')}
-            >
-              <View style={styles.locationHeader}>
-                <Text style={styles.locationName}> {locationName} </Text>
-                <Text style={styles.locationCity}> {locationCity} </Text>
-              </View>
-            </Image>
-          </View>
-          { !isFetching ? this.renderStats(location) : null}
-          { !isFetching ? this.renderFeed() : null}
-        </ScrollView>
+          header={(
+            <View style={styles.locationHeader}>
+              <Text style={styles.locationName}> {locationName} </Text>
+              <Text style={styles.locationCity}> {locationCity} </Text>
+            </View>
+          )}>
+            { !isFetching ? this.renderStats(location) : null}
+            { !isFetching ? this.renderFeed() : null}
+        </ParallaxView>
 
         <View style={styles.shareButton}>
           <TouchableHighlight
@@ -140,21 +149,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  imageContainer: {
-    flex: 1,
-    height: 280,
-    width: undefined,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  image: {
-    height: 280,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  },
-
   locationHeader: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
     marginBottom: 20
   },
@@ -255,6 +253,6 @@ const styles = StyleSheet.create({
     paddingRight: 5
   }
 
-})
+});
 
 export default Location;

@@ -1,7 +1,8 @@
 const initialState = {
   data: null,
   findingLocation: true,
-  locationFound: false
+  locationFound: false,
+  scrolledLocationNav: false
 };
 
 export default function location(state=initialState, action) {
@@ -18,6 +19,16 @@ export default function location(state=initialState, action) {
         data: action.data,
         findingLocation: false,
         locationFound: true
+      }
+    case 'LOCATION_SCROLL_DOWN':
+      return {
+        ...state,
+        scrolledLocationNav: true
+      }
+    case 'LOCATION_SCROLL_UP':
+      return {
+        ...state,
+        scrolledLocationNav: false
       }
     default:
       return state;

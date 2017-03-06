@@ -37,3 +37,15 @@ export function findingLocation() {
     type: "FINDING_LOCATION"
   }
 }
+
+export function scrolledDown() {
+  return {
+    type: "LOCATION_SCROLL_DOWN"
+  }
+}
+
+export function scrolledUp() {
+  return {
+    type: "LOCATION_SCROLL_UP"
+  }
+}
