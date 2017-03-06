@@ -20,12 +20,12 @@ class App extends Component {
     return (
       <RouterWithRedux>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="launch" component={LaunchContainer} title="Launch"/>
+          <Scene key="launch" component={LaunchContainer} title="Launch" initial={true}/>
           <Scene key="landing" component={Landing} title="Landing"/>
           <Scene key="login" component={LoginContainer} title="Login"/>
           <Scene key="register" component={RegisterContainer} title="Register"/>
           <Scene key="main" component={MainContainer} title="Main"/>
-          <Scene key="shareForm" direction='vertical' component={ShareFormContainer} title="Share" initial={true}/>
+          <Scene key="shareForm" direction='vertical' component={ShareFormContainer} title="Share"/>
         </Scene>
       </RouterWithRedux>
     )
