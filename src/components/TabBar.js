@@ -46,7 +46,7 @@ const TabBar = React.createClass({
     const scrolledLocation = location.scrolledLocationNav;
     const locationData = this.props.location.data;
 
-    return <View style={[styles.tabs, this.props.style, ]}>
+    return <View style={scrolledLocation ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
       {this.props.tabs.map((tab, i) => {
         return(
           <View key={tab}>
@@ -55,7 +55,7 @@ const TabBar = React.createClass({
                 if (tab == 'location') {
                   return (
                     <View style={styles.locationTabContainer}>
-                      <Text style={styles.textTab}>
+                      <Text style={scrolledLocation ? styles.scrolledTextTab : styles.textTab}>
                         { (scrolledLocation && locationData) ? locationData.data.attributes.name : "current location" }
                       </Text>
                        {!scrolledLocation ?
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   tabs: {
     height: 65,
     flexDirection: 'row',
@@ -116,6 +117,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(9, 9, 12, .80)'
   },
 
+  scrolledLocationNav: {
+    height: 65,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#FAF8F7',
+    shadowOffset: {
+      width: 0.5,
+      height: 1
+    },
+    shadowColor: 'rgba(0, 0, 0, 0.15)',
+    shadowOpacity: 1
+  },
+
   locationTabContainer: {
     marginTop: 10,
     flexDirection: 'column',
@@ -125,6 +140,13 @@ const styles = StyleSheet.create({
 
   moreLocationIcon: {
     color: '#FAF8F7',
+  },
+
+  scrolledTextTab: {
+    fontSize: 18,
+    color: '#343442',
+    paddingBottom: 10,
+    fontFamily: 'MaisonNeueTRIAL-Bold'
   },
 
   textTab: {
