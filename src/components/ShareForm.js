@@ -8,8 +8,12 @@ import {
   TouchableHighlight,
   StyleSheet,
   Image,
+  Keyboard,
+  Dimensions,
   StatusBar
 } from 'react-native';
+
+import ShareOptions from '../components/ShareOptions';
 
 const dismissKeyboard = require('dismissKeyboard')
 
@@ -18,8 +22,36 @@ class ShareForm extends Component {
     super(props)
     this.state = {
       text: null,
-      disabled: true
+      disabled: true,
+      keyboardShown: false,
+      heightWithoutKeyboard: Dimensions.get('window').height,
+      heightWithKeyboard: null
     }
+  }
+
+  componentWillMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
+  }
+
+  _keyboardDidShow (e) {
+    let newSize = Dimensions.get('window').height - e.endCoordinates.height
+    this.setState({
+      keyboardShown: true,
+      heightWithKeyboard: newSize
+    })
+  }
+
+  _keyboardDidHide (e) {
+    this.setState({
+      keyboardShown: false,
+      heightWithKeyboard: null
+    })
   }
 
   _goBack() {
@@ -43,6 +75,7 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled;
+    console.log(this.state)
 
     return(
       <View style={styles.container}>
@@ -93,6 +126,11 @@ class ShareForm extends Component {
           placeholder="Drop some knowledge, share a review, or just post a funny comment…"
           onChangeText={(text) => this._onInputChange(text)}
         />
+
+        <ShareOptions
+          visible={this.state.keyboardShown}
+          heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
+        />
       </View>
     )
   }
@@ -138,7 +176,7 @@ const styles = StyleSheet.create({
     color: "#343442",
     fontSize: 12,
     fontFamily: 'MaisonNeueTRIAL-Bold',
-    marginLeft: 5
+    marginLeft: 8
   },
 
   enabledHeaderText: {
