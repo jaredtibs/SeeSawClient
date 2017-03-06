@@ -5,6 +5,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -41,59 +42,79 @@ const TabBar = React.createClass({
     return `rgb(${red}, ${green}, ${blue})`;
   },
 
+  renderStatusBar() {
+    const { location, activeTab } = this.props;
+    if (activeTab == 0 || activeTab == 2 || location.scrolledLocationNav) {
+      return(
+        <StatusBar
+          barStyle="default"
+        />
+      )
+    } else {
+      return(
+        <StatusBar
+          barStyle="light-content"
+        />
+      )
+    }
+  },
+
   render() {
     const { location, activeTab } = this.props
     const locationData = location.data;
     const lightTabBar = location.scrolledLocationNav || activeTab == 0 || activeTab == 2
 
-    return <View style={lightTabBar ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
-      {this.props.tabs.map((tab, i) => {
-        return(
-          <View key={tab}>
-            <TouchableOpacity onPress={() => this.props.goToPage(i)} style={styles.tab}>
-              {(() => {
-                if (tab == 'location') {
-                  return (
-                    <View style={styles.locationTabContainer}>
-                      <Text style={lightTabBar ? styles.scrolledTextTab : styles.textTab}>
-                        { (lightTabBar && locationData) ? locationData.data.attributes.name : "current location" }
-                      </Text>
-                       {!lightTabBar ?
-                        <Icon name='ios-arrow-down-outline'
-                              size={18}
-                              style={styles.moreLocationIcon}
-                        />
-                      : null}
-                    </View>
-                  )
-                } else if (tab == 'profile') {
-                  return(
-                    <Image
-                      name={tab}
-                      color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
-                      style={styles.avatar}
-                      source={require('../assets/images/me_avatar.jpg')}
-                    />
-                  )
-                } else {
-                  return(
-                    <View
-                      name={tab}
-                      style={styles.notifications}
-                      size={30}
-                      color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
-                      ref={(icon) => { this.tabIcons[i] = icon; }}
-                    >
-                      <Text style={styles.notificationCount}> 0 </Text>
-                    </View>
-                  )
-                }
-              })()}
-            </TouchableOpacity>
-          </View>
-        )
-      })}
-    </View>;
+    return(
+      <View style={lightTabBar ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
+        {this.renderStatusBar()}
+        {this.props.tabs.map((tab, i) => {
+          return(
+            <View key={tab}>
+              <TouchableOpacity onPress={() => this.props.goToPage(i)} style={styles.tab}>
+                {(() => {
+                  if (tab == 'location') {
+                    return (
+                      <View style={styles.locationTabContainer}>
+                        <Text style={lightTabBar ? styles.scrolledTextTab : styles.textTab}>
+                          { (lightTabBar && locationData) ? locationData.data.attributes.name : "current location" }
+                        </Text>
+                        {!lightTabBar ?
+                          <Icon name='ios-arrow-down-outline'
+                                size={18}
+                                style={styles.moreLocationIcon}
+                          />
+                        : null}
+                      </View>
+                    )
+                  } else if (tab == 'profile') {
+                    return(
+                      <Image
+                        name={tab}
+                        color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
+                        style={styles.avatar}
+                        source={require('../assets/images/me_avatar.jpg')}
+                      />
+                    )
+                  } else {
+                    return(
+                      <View
+                        name={tab}
+                        style={styles.notifications}
+                        size={30}
+                        color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
+                        ref={(icon) => { this.tabIcons[i] = icon; }}
+                      >
+                        <Text style={styles.notificationCount}> 0 </Text>
+                      </View>
+                    )
+                  }
+                })()}
+              </TouchableOpacity>
+            </View>
+          )
+        })}
+      </View>
+    )
   },
 });
 

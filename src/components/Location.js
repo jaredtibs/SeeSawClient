@@ -10,7 +10,6 @@ import {
   ListView,
   ScrollView,
   Image,
-  StatusBar,
   RefreshControl
 } from 'react-native';
 
@@ -100,9 +99,6 @@ class Location extends Component {
     //automaticallyAdjustContentInsets={false}
     return(
       <View style={styles.container}>
-       <StatusBar
-        barStyle="light-content"
-        />
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}
           windowHeight={280}
