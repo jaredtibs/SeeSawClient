@@ -6,8 +6,13 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Image,
+  Keyboard,
+  Dimensions
 } from 'react-native';
+
+import ShareOptions from '../components/ShareOptions';
 
 const dismissKeyboard = require('dismissKeyboard')
 
@@ -16,8 +21,36 @@ class ShareForm extends Component {
     super(props)
     this.state = {
       text: null,
-      disabled: true
+      disabled: true,
+      keyboardShown: false,
+      heightWithoutKeyboard: Dimensions.get('window').height,
+      heightWithKeyboard: null
     }
+  }
+
+  componentWillMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
+  }
+
+  _keyboardDidShow (e) {
+    let newSize = Dimensions.get('window').height - e.endCoordinates.height
+    this.setState({
+      keyboardShown: true,
+      heightWithKeyboard: newSize
+    })
+  }
+
+  _keyboardDidHide (e) {
+    this.setState({
+      keyboardShown: false,
+      heightWithKeyboard: null
+    })
   }
 
   _goBack() {
@@ -41,6 +74,7 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled;
+    console.log(this.state)
 
     return(
       <View style={styles.container}>
@@ -55,7 +89,7 @@ class ShareForm extends Component {
           </View>
 
           <View>
-            <Text style={styles.headerTextBold}> Share </Text>
+            <Text style={styles.headerTextBold}> New Post </Text>
           </View>
 
           <View>
@@ -64,8 +98,18 @@ class ShareForm extends Component {
               disabled={disabled}
               onPress={() => this._publishPost()}
             >
-              <Text style={(disabled === true) ? styles.disabledHeaderText : styles.enabledHeaderText}> Send </Text>
+              <Text style={(disabled === true) ? styles.disabledHeaderText : styles.enabledHeaderText}> Post </Text>
             </TouchableHighlight>
+          </View>
+        </View>
+
+        <View style={styles.avatarHeaderContainer}>
+          <View style={styles.avatarHeader}>
+            <Image
+              style={styles.avatar}
+              source={require('../assets/images/me_avatar.jpg')}
+            />
+            <Text style={styles.username}> jmtibs </Text>
           </View>
         </View>
 
@@ -75,8 +119,13 @@ class ShareForm extends Component {
           style={styles.input}
           multiline={true}
           maxLength={300}
-          placeholder=" what's the scoop?"
+          placeholder="Drop some knowledge, share a review, or just post a funny comment…"
           onChangeText={(text) => this._onInputChange(text)}
+        />
+
+        <ShareOptions
+          visible={this.state.keyboardShown}
+          heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
         />
       </View>
     )
@@ -86,39 +135,62 @@ class ShareForm extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F2F4'
+    backgroundColor: "#343442"
   },
 
   headerBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 20,
-    height: 35,
-    paddingTop: 5,
+    height: 65,
+    paddingTop: 8,
+  },
+
+  avatarHeaderContainer: {
+    height: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white'
+  },
+
+  avatarHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginTop: 20
+  },
+
+  avatar: {
+    width: 30,
+    height: 30,
+    borderColor: 'rgba(56, 55, 61, .20)',
     borderWidth: 1,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderBottomColor: 'rgba(0,0,0,0.05)',
+    borderRadius: 15,
+  },
+
+  username: {
+    color: "#343442",
+    fontSize: 12,
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    marginLeft: 8
   },
 
   enabledHeaderText: {
-    fontSize: 18,
-    color: '#302F30',
-    fontFamily: 'Calibre-Regular',
+    fontSize: 14,
+    color: 'white',
+    fontFamily: 'MaisonNeueTRIAL-Medium',
   },
 
   disabledHeaderText: {
-    fontSize: 18,
-    color: 'rgba(48, 47, 48, 0.3)',
-    fontFamily: 'Calibre-Regular',
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.4)',
+    fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
   headerTextBold: {
-    fontSize: 18,
-    color: '#302F30',
-    fontFamily: 'Calibre-Semibold',
+    fontSize: 16,
+    color: 'white',
+    fontFamily: 'MaisonNeueTRIAL-Bold'
   },
 
   cancelButton: {
@@ -131,11 +203,15 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    padding: 10,
     backgroundColor: 'white',
-    fontSize: 16,
-    fontFamily: 'Calibre-Regular',
-    color: "#848388"
+    fontSize: 15,
+    lineHeight: 11,
+    fontFamily: 'MaisonNeueTRIAL-Book',
+    color: "#CECED1",
+    paddingLeft: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingRight: 20
   }
 })
 

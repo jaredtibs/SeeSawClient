@@ -47,6 +47,7 @@
 	<string>SeeSaw needs to access your photos library in order for you to upload</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>MaisonNeueTRIAL-Book.otf</string>
 		<string>GT-Pressura-Mono-Trial-Bold.otf</string>
 		<string>MaisonNeueTRIAL-Bold.otf</string>
 		<string>MaisonNeueTRIAL-Demi.otf</string>
