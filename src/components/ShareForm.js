@@ -75,6 +75,7 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled;
+    console.log(this.props);
 
     return(
       <View style={styles.container}>
@@ -110,7 +111,10 @@ class ShareForm extends Component {
           <View style={styles.avatarHeader}>
             <Image
               style={styles.avatar}
-              source={require('../assets/images/me_avatar.jpg')}
+              source={
+                this.props.user.avatar != null ?
+                {uri: this.props.user.avatar} :
+                require('../assets/images/me_avatar.jpg')}
             />
             <Text style={styles.username}> jmtibs </Text>
           </View>

@@ -62,7 +62,8 @@ const TabBar = React.createClass({
   render() {
     const { location, activeTab } = this.props
     const locationData = location.data;
-    const lightTabBar = location.scrolledLocationNav || activeTab == 0 || activeTab == 2
+    const userAvatar = this.props.user.avatar
+    const lightTabBar = location.scrolledLocationNav || activeTab == 0 || activeTab == 2;
 
     return(
       <View style={lightTabBar ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
@@ -92,7 +93,10 @@ const TabBar = React.createClass({
                         name={tab}
                         color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
                         style={styles.avatar}
-                        source={require('../assets/images/me_avatar.jpg')}
+                        source={
+                          userAvatar != null ?
+                          {uri: userAvatar} :
+                          require('../assets/images/me_avatar.jpg')}
                       />
                     )
                   } else {
