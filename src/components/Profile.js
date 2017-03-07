@@ -52,6 +52,8 @@ class Profile extends Component {
   }
 
   render() {
+    const { user } = this.props;
+
     return(
       <View style={styles.container}>
         <View style={styles.avatarContainer}>
@@ -59,7 +61,7 @@ class Profile extends Component {
             style={styles.avatar}
             source={
               this.props.user.avatar != null ?
-              {uri: this.props.user.avatar} :
+              {uri: user.avatar} :
               require('../assets/images/me_avatar.jpg')}
           >
             { this.props.user.loading ? this.renderSpinner() : null }
@@ -70,7 +72,7 @@ class Profile extends Component {
               <Text style={styles.editAvatar}> Edit </Text>
             </TouchableOpacity>
           </Image>
-          <Text style={styles.username}> jmtibs </Text>
+          <Text style={styles.username}> {user.username} </Text>
         </View>
         <View style={styles.optionsContainer}>
           <TouchableOpacity

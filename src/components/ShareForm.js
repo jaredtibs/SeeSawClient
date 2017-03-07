@@ -75,7 +75,6 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled;
-    console.log(this.props);
 
     return(
       <View style={styles.container}>

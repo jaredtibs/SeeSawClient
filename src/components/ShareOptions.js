@@ -16,7 +16,6 @@ class ShareOptions extends Component {
 
   render() {
     const margin = this.props.heights[0] - this.props.heights[1]
-    console.log(this.props)
 
     if (this.props.visible) {
       return(

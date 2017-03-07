@@ -70,7 +70,7 @@ class Feed extends Component {
         </View>
         <View style={styles.cardContainer}>
           <View style={styles.cardHeader}>
-            <Text style={styles.username}> jmtibs </Text>
+            <Text style={styles.username}> {user.username} </Text>
             <Text style={permissions['voted-for'] ? styles.voteCountVoted : styles.voteCount}>
               {rowData.attributes['upvote-count']}
             </Text>
