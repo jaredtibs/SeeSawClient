@@ -94,11 +94,6 @@ class Location extends Component {
     //TODO swap with api value
     const locationCity = "Los Angeles, CA"
 
-    //on ScrollView
-    //bounces={false}
-    //not sure if this prop below is having any effect
-    //automaticallyAdjustContentInsets={false}
-
     return(
       <View style={styles.container}>
         <ParallaxView
