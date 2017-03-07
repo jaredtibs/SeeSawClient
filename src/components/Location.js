@@ -98,6 +98,8 @@ class Location extends Component {
     //bounces={false}
     //not sure if this prop below is having any effect
     //automaticallyAdjustContentInsets={false}
+
+    console.log(this.props.user)
     return(
       <View style={styles.container}>
         <ParallaxView

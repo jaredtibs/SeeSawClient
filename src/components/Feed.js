@@ -55,13 +55,17 @@ class Feed extends Component {
 
   renderRow(rowData) {
     const permissions = rowData.attributes.permissions
+    const user = rowData.attributes.user.data.attributes
 
     return(
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
-            source={require('../assets/images/me_avatar.jpg')}
+            source={
+              user.avatar.url != null ?
+              {uri: user.avatar.url} :
+              require('../assets/images/me_avatar.jpg')}
           />
         </View>
         <View style={styles.cardContainer}>
