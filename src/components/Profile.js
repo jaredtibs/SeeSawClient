@@ -52,6 +52,7 @@ class Profile extends Component {
   }
 
   render() {
+    console.log(this.props.user)
     return(
       <View style={styles.container}>
         <View style={styles.avatarContainer}>

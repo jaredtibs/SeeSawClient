@@ -75,12 +75,12 @@ class Location extends Component {
   }
 
   handleScroll(event: Object) {
-    let scrollPosition = event.nativeEvent.contentOffset.y
-    console.log(scrollPosition);
-    if (scrollPosition >= 198 && !this.state.scrolledDown) {
+    let scrollPosition = event.nativeEvent.contentOffset.y;
+
+    if (scrollPosition >= 188 && !this.state.scrolledDown) {
       this.setState({scrolledDown: true});
       this.props.scrolledDown();
-    } else if(this.state.scrolledDown && scrollPosition < 198){
+    } else if(this.state.scrolledDown && scrollPosition < 188){
       this.setState({scrolledDown: false});
       this.props.scrolledUp();
     }
