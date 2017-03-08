@@ -103,12 +103,16 @@ const TabBar = React.createClass({
                     return(
                       <View
                         name={tab}
-                        style={styles.notifications}
+                        style={lightTabBar ? styles.notificationsActive : styles.notifications}
                         size={30}
                         color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
                         ref={(icon) => { this.tabIcons[i] = icon; }}
                       >
-                        <Text style={styles.notificationCount}> 0 </Text>
+                        {
+                          lightTabBar ? 
+                          <Text style={styles.notificationCount}> 2 </Text>
+                          : <Icon name='ios-notifications-outline' size={18} style={styles.notificationIcon} />
+                        }
                       </View>
                     )
                   }
@@ -190,7 +194,17 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 30/2,
-    backgroundColor: 'rgba(179, 178, 182, 0.3)',
+    backgroundColor: '#09090C',
+    marginRight: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  notificationsActive: {
+    width: 30,
+    height: 30,
+    borderRadius: 30/2,
+    backgroundColor: '#F76148',
     marginRight: 15,
     justifyContent: 'center',
     alignItems: 'center'
@@ -198,7 +212,13 @@ const styles = StyleSheet.create({
 
   notificationCount: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 14,
+    fontFamily: 'GTPressuraMonoTrial-Bold',
+    paddingBottom: 1
+  },
+
+  notificationIcon: {
+    color: 'white'
   }
 
 });

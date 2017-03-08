@@ -115,7 +115,7 @@ class ShareForm extends Component {
                 {uri: this.props.user.avatar} :
                 require('../assets/images/me_avatar.jpg')}
             />
-            <Text style={styles.username}> jmtibs </Text>
+            <Text style={styles.username}> {this.props.user.username} </Text>
           </View>
         </View>
 

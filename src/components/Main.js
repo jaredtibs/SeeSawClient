@@ -41,15 +41,6 @@ class Main extends Component {
       const locations = await Engine.getCurrentLocations();
       console.log(locations);
 
-      //TODO temporary - remove
-      //this.props.fetchCurrentLocation({
-      //  place_id: "f94bb932-24c4-433c-b6c4-8e9f5e83cb5a",
-      //  name: "Apple HQ",
-      // category_ids: []
-      //});
-
-
-
       if (locations["places"] && locations["places"].length > 0) {
         const bestCandidate = locations["places"][0];
         this.props.fetchCurrentLocation(bestCandidate);
