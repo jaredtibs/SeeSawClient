@@ -11,7 +11,9 @@ import {
   StyleSheet
 } from 'react-native';
 
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FeedTabs from '../components/FeedTabs';
 
 class Feed extends Component {
   constructor(props) {
@@ -138,34 +140,24 @@ class Feed extends Component {
 
     return(
       <View style={styles.container}>
-        <View style={styles.feedButtonsContainer}>
-          <View style={styles.feedButtons}>
-            <TouchableHighlight
-              disabled={!hasPosts}
-              style={ (currentFeed == 'recent' && hasPosts) ? styles.buttonActiveContainer : styles.buttonContainer }
-              underlayColor='#F2F2F4'
-              onPress={() => this._toggleFeed('recent')}>
-              <Text style={ (currentFeed == 'recent' && hasPosts) ? styles.buttonActiveText : styles.buttonText}>
-                RECENT
-              </Text>
-            </TouchableHighlight>
-
-            <TouchableHighlight
-              disabled={!hasPosts}
-              style={ (currentFeed == 'popular' && hasPosts) ? styles.buttonActiveContainer : styles.buttonContainer }
-              underlayColor='#F2F2F4'
-              onPress={() => this._toggleFeed('popular')}>
-              <Text style={ (currentFeed == 'popular' && hasPosts) ? styles.buttonActiveText : styles.buttonText}>
-                POPULAR
-              </Text>
-            </TouchableHighlight>
-          </View>
+      <ScrollableTabView
+        initialPage={0}
+        renderTabBar={() => <FeedTabs />}
+      >
+        <View tabLabel="recent">
+          {isFetching ?
+            this.renderLoadingState() :
+            this.renderFeedContent()
+          }
         </View>
 
-        {isFetching ?
-          this.renderLoadingState() :
-          this.renderFeedContent()
-        }
+        <View tabLabel="popular">
+          {isFetching ?
+            this.renderLoadingState() :
+            this.renderFeedContent()
+          }
+        </View>
+        </ScrollableTabView>
       </View>
     )
   }

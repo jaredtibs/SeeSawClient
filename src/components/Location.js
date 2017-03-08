@@ -97,6 +97,7 @@ class Location extends Component {
     return(
       <View style={styles.container}>
         <ParallaxView
+          automaticallyAdjustContentInsets={false}
           backgroundSource={require('../assets/images/bungalow.jpg')}
           windowHeight={280}
           scrollEventThrottle={16}
