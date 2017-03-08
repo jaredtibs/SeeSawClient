@@ -63,6 +63,14 @@
 - (void)stop;
 - (void)startWithApiKey:(NSString *)key acceptedTosUrl:(NSString *)url acceptedTosDate:(NSDate *)date;
 - (void)logWithEvent:(NSString *)event;
+/*!
+* @brief logs event with arbitrary data
+* @param event The name of the logged event
+* @param dataDictionary The NSDictionary data to log. Values must be serializable to JSON.
+* @param error Pointer to an NSError object, if things go wrong.
+* @return YES if the logging of the event succeeded, NO if there was an error.
+*/
+- (BOOL)logWithEvent:(NSString *)event dataDictionary:(NSDictionary *)dataDictionary error:(NSError **)error;
 - (void)genPlaceCandidatesWithDelegate:(id<FactualDataRequestDelegate>)delegate;
 - (void)verifyLocation:(NSString *)placeId;
 - (void)registerCircumstanceNotifierWithId:(NSString *)identifier expr:(NSString *)expr when:(NSString *)when delegate:(id<FactualCircumstanceDelegate>)delegate;
@@ -72,5 +80,7 @@
 - (void)disableCircumstanceNotifierWithId:(NSString *)identifier;
 - (void)evaluateCircumstanceWithId:(NSString *)identifier error:(NSError **)error;
 - (void)evaluateAllCircumstances;
+- (void)setLocationOverride:(CLLocation *)loc;
+- (void)unsetLocationOverride;
 
 @end
