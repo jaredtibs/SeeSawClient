@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux';
 import store from 'react-native-simple-store';
 
-export function requestLogin (username, password) {
+export function requestLogin (loginValue, password) {
   return dispatch => {
     dispatch(loading());
     return fetch("http://localhost:3000/api/v1/sessions", {
@@ -11,7 +11,7 @@ export function requestLogin (username, password) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: username,
+        login: loginValue,
         password: password
       })
     })
