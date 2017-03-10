@@ -60,9 +60,9 @@ const TabBar = React.createClass({
   },
 
   render() {
-    const { location, activeTab } = this.props
+    const { location, activeTab } = this.props;
     const locationData = location.data;
-    const userAvatar = this.props.user.avatar
+    const userAvatar = this.props.user.avatar;
     const lightTabBar = location.scrolledLocationNav || activeTab == 0 || activeTab == 2;
 
     return(
