@@ -318,7 +318,7 @@ class Register extends Component {
                   } else {
                     return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                   }
-                } else if (!this.state.usernameValid && !this.state.focusedInput == 'username') {
+                } else if (!this.state.usernameValid) {
                   return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                 } else {
                   return null
