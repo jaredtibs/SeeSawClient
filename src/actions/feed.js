@@ -5,7 +5,7 @@ export function createPost (locationId, text) {
     dispatch(publishingPost());
     store.get('userToken')
     .then(token => {
-      let url = `http://localhost:3000/api/v1/locations/${locationId}/posts`;
+      let url = `https://see-saw-api.herokuapp.com/api/v1/locations/${locationId}/posts`;
       return fetch(url, {
         method: "POST",
         headers: {
@@ -42,7 +42,7 @@ export function fetchPosts (locationId, type) {
     store.get('userToken')
     .then(token => {
       dispatch(fetchingPosts());
-      let url = `http://localhost:3000/api/v1/locations/${locationId}/posts?sort=${type}`;
+      let url = `https://see-saw-api.herokuapp.com/api/v1/locations/${locationId}/posts?sort=${type}`;
       return fetch(url, {
         method: "GET",
         headers: {
@@ -81,7 +81,7 @@ export function castVote(postId, type) {
   return dispatch => {
     store.get('userToken')
     .then(token => {
-      let url = `http://localhost:3000/api/v1/posts/${postId}/${type}`;
+      let url = `https://see-saw-api.herokuapp.com/api/v1/posts/${postId}/${type}`;
       return fetch(url, {
         method: "POST",
         headers: {

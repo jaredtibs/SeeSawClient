@@ -5,7 +5,7 @@ export function fetchCurrentLocation (data) {
     store.get('userToken')
     .then(token => {
       dispatch(findingLocation());
-      return fetch("http://localhost:3000/api/v1/locations/current", {
+      return fetch("https://see-saw-api.herokuapp.com/api/v1/locations/current", {
         method: "POST",
         headers: {
           'Accept': 'application/json',
