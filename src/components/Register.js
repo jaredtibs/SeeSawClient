@@ -48,7 +48,24 @@ class Register extends Component {
   }
 
   handleFormChange(formData) {
-    this._validateInput(this.state.focusedInput)
+    //only validate if all other input is present, as user won't click out for blur validation in that case
+    switch(this.state.focusedInput) {
+      case 'password':
+        if (this.state.formData.email && this.state.formData.username) {
+          this._validateInput(this.state.focusedInput)
+        }
+        break;
+      case 'username':
+        if (this.state.formData.email && this.state.formData.password) {
+          this._validateInput(this.state.focusedInput)
+        }
+        break;
+      case 'email':
+        if (this.state.formData.username && this.state.formData.password) {
+          this._validateInput(this.state.focusedInput)
+        }
+        break;
+    }
 
     const {emailValid, usernameValid, passwordValid} = this.state;
     let validInputs = (emailValid && usernameValid && passwordValid)
@@ -224,6 +241,7 @@ class Register extends Component {
   }
 
   render() {
+
     return(
       <View style={styles.container}>
         <View style={styles.headerContainer}>
@@ -269,7 +287,7 @@ class Register extends Component {
               containerStyle={ 
                 this.state.focusedInput === 'email' ? formStyles.inputContainerActive : (this.state.emailValid ? formStyles.inputContainer : formStyles.inputContainerError)}
               iconRight={(() => {
-                if (this.state.formData.email) {
+                if (this.state.formData.email && !(this.state.focusedInput == 'email')) {
                   if (this.state.emailValid) {
                     return <Icon name='ios-checkmark' size={40} style={formStyles.validIcon}/>
                   } else {
@@ -294,13 +312,13 @@ class Register extends Component {
               containerStyle={formStyles.inputContainer}
               containerStyle={ this.state.focusedInput === 'username' ? formStyles.inputContainerActive : (this.state.usernameValid ? formStyles.inputContainer : formStyles.inputContainerError)}
               iconRight={(() => {
-                if (this.state.formData.username) {
+                if (this.state.formData.username && !(this.state.focusedInput == 'username')) {
                   if (this.state.usernameValid) {
                     return <Icon name='ios-checkmark' size={40} style={formStyles.validIcon}/>
                   } else {
                     return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                   }
-                } else if (!this.state.usernameValid) {
+                } else if (!this.state.usernameValid && !this.state.focusedInput == 'username') {
                   return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                 } else {
                   return null
