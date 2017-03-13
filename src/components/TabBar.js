@@ -8,6 +8,8 @@ import {
   StatusBar
 } from 'react-native';
 
+import EditLocationMenu from '../components/EditLocationMenu';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const TabBar = React.createClass({
@@ -80,10 +82,7 @@ const TabBar = React.createClass({
                           { (lightTabBar && locationData) ? locationData.data.attributes.name : "current location" }
                         </Text>
                         {!lightTabBar ?
-                          <Icon name='ios-arrow-down-outline'
-                                size={18}
-                                style={styles.moreLocationIcon}
-                          />
+                          <EditLocationMenu />
                         : null}
                       </View>
                     )
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
   },
 
   locationTabContainer: {
-    marginTop: 10,
+    marginTop: 15,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
