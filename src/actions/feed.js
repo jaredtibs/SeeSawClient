@@ -27,7 +27,7 @@ export function createPost (locationId, text) {
 export function postPublished(postData) {
   return {
     type: "POST_PUBLISHED",
-    data: postData.data
+    data: {post: postData.data, meta: postData.meta}
   }
 }
 
@@ -52,16 +52,19 @@ export function fetchPosts (locationId, type) {
         },
       })
       .then((response) => response.json())
-      .then((responseData) => dispatch(postsFetched(responseData.data, type)))
+      .then((responseData) => dispatch(postsFetched(responseData, type)))
       .catch(error => console.log(error))
     });
   }
 }
 
-export function postsFetched(posts, type) {
+export function postsFetched(responseData, type) {
+  const posts = responseData.data;
+  const meta = responseData.meta;
+
   return {
     type: "POSTS_FETCHED",
-    data: {posts: posts, type: type}
+    data: {posts: posts, type: type, meta: meta}
   }
 }
 

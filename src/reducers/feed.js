@@ -1,6 +1,8 @@
 const initialState = {
   posts: [],
   postCount: 0,
+  voteCount: 0,
+  photoCount: 0,
   postPublishing: false,
   isFetching: false,
   currentFeedType: 'recent'
@@ -34,7 +36,9 @@ export default function feed(state = initialState, action) {
         isFetching: false,
         posts: action.data['posts'],
         currentFeedType: action.data['type'],
-        postCount: action.data['posts'].length
+        postCount: action.data['meta']['post-count'],
+        voteCount: action.data['meta']['vote-count'],
+        photoCount: action.data['meta']['photo-count']
       }
     case 'POST_UPDATED':
       const updatedPosts = state.posts;

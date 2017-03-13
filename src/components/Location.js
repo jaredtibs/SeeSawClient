@@ -27,7 +27,11 @@ class Location extends Component {
   }
 
   renderStats(location) {
-    postCount = this.props.feed.postCount
+    const {
+      postCount,
+      voteCount,
+      photoCount
+    } = this.props.feed;
 
     return(
       <View style={styles.statsContainer}>
@@ -36,11 +40,11 @@ class Location extends Component {
           <Text style={styles.statText}> posts </Text>
         </View>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statValue}> {voteCount} </Text>
           <Text style={styles.statText}> votes </Text>
         </View>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statValue}> {photoCount} </Text>
           <Text style={styles.statText}> photos </Text>
         </View>
       </View>
