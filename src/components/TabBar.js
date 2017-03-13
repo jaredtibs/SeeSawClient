@@ -96,7 +96,7 @@ const TabBar = React.createClass({
                         source={
                           userAvatar != null ?
                           {uri: userAvatar} :
-                          require('../assets/images/me_avatar.jpg')}
+                          require('../assets/images/default_avatar.jpeg')}
                       />
                     )
                   } else {

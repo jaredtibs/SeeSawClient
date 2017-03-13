@@ -63,7 +63,7 @@ class Profile extends Component {
             source={
               this.props.user.avatar != null ?
               {uri: user.avatar} :
-              require('../assets/images/me_avatar.jpg')}
+              require('../assets/images/default_avatar.jpeg')}
           >
             { this.props.user.loading ? this.renderSpinner() : null }
             <TouchableOpacity

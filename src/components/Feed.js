@@ -65,7 +65,7 @@ class Feed extends Component {
             source={
               user.avatar.url != null ?
               {uri: user.avatar.url} :
-              require('../assets/images/me_avatar.jpg')}
+              require('../assets/images/default_avatar.jpeg')}
           />
         </View>
         <View style={styles.cardContainer}>
