@@ -59,6 +59,7 @@ export function fetchPosts (locationId, type) {
 }
 
 export function postsFetched(posts, type) {
+  console.log(posts);
   return {
     type: "POSTS_FETCHED",
     data: {posts: posts, type: type}
