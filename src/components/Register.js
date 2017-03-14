@@ -24,12 +24,15 @@ class Register extends Component {
       usernamePlaceholder: 'Username',
       passwordPlaceholder: 'Password',
       focusedInput: null,
-      emailValid: true,
+      emailValid: false,
       emailValidationError: "",
-      usernameValid: true,
+      emailInputReceived: false,
+      usernameValid: false,
       usernameValidationError: "",
-      passwordValid: true,
+      usernameInputReceived: false,
+      passwordValid: false,
       passwordValidationError: "",
+      passwordInputReceived: false,
       serverErrorReceived: false
     }
   }
@@ -48,7 +51,35 @@ class Register extends Component {
   }
 
   handleFormChange(formData) {
-    this._validateInput(this.state.focusedInput)
+    if (formData["email"] && !this.state.emailInputReceived) {
+      this.setState({emailInputReceived: true});
+    }
+
+    if (formData["username"] && !this.state.usernameInputReceived) {
+      this.setState({usernameInputReceived: true});
+    }
+
+    if (formData["password"] && !this.state.passwordInputReceived) {
+      this.setState({passwordInputReceived: true});
+    }
+
+    switch(this.state.focusedInput) {
+      case 'password':
+        if (this.state.formData.email && this.state.formData.username) {
+          this._validateInput(this.state.focusedInput)
+        }
+        break;
+      case 'username':
+        if (this.state.formData.email && this.state.formData.password) {
+          this._validateInput(this.state.focusedInput)
+        }
+        break;
+      case 'email':
+        if (this.state.formData.username && this.state.formData.password) {
+          this._validateInput(this.state.focusedInput)
+        }
+        break;
+    }
 
     const {emailValid, usernameValid, passwordValid} = this.state;
     let validInputs = (emailValid && usernameValid && passwordValid)
@@ -138,10 +169,46 @@ class Register extends Component {
     }
   }
 
+  _emailValid() {
+    if (this.state.emailInputReceived) {
+      if (this.state.emailValid) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  _usernameValid() {
+    if (this.state.usernameInputReceived) {
+      if (this.state.usernameValid) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  _passwordValid() {
+    if (this.state.passwordInputReceived) {
+      if (this.state.passwordValid) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
   _renderSeparator(ref) {
     switch(ref) {
       case 'email':
-        if (this.state.focusedInput === 'email' || (this.state.formData.email && this.state.emailValid)) {
+        if (this.state.focusedInput === 'email' || this._emailValid()) {
           return(
             <Separator
               label="Email"
@@ -160,7 +227,7 @@ class Register extends Component {
         }
         break;
       case 'username':
-        if (this.state.focusedInput === 'username' || (this.state.formData.username && this.state.usernameValid)) {
+        if (this.state.focusedInput === 'username' || this._usernameValid()) {
           return(
             <Separator
               label="Username"
@@ -179,7 +246,7 @@ class Register extends Component {
         }
         break;
       case 'password':
-        if (this.state.focusedInput === 'password' || (this.state.formData.password && this.state.passwordValid)) {
+        if (this.state.focusedInput === 'password' || this._passwordValid()) {
           return(
             <Separator
               label="Password"
@@ -266,16 +333,16 @@ class Register extends Component {
               placeholderTextColor='#320D3A'
               style={formStyles.input}
               containerStyle={formStyles.inputContainer}
-              containerStyle={ 
-                this.state.focusedInput === 'email' ? formStyles.inputContainerActive : (this.state.emailValid ? formStyles.inputContainer : formStyles.inputContainerError)}
+              containerStyle={
+                this.state.focusedInput === 'email' ? formStyles.inputContainerActive : (this._emailValid() ? formStyles.inputContainer : formStyles.inputContainerError)}
               iconRight={(() => {
-                if (this.state.formData.email) {
-                  if (this.state.emailValid) {
+                if (this.state.formData.email && !(this.state.focusedInput == 'email')) {
+                  if (this._emailValid()) {
                     return <Icon name='ios-checkmark' size={40} style={formStyles.validIcon}/>
                   } else {
                     return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                   }
-                } else if (!this.state.emailValid) {
+                } else if (!this._emailValid()) {
                   return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                 } else {
                   return null
@@ -292,15 +359,15 @@ class Register extends Component {
               placeholderTextColor='#320D3A'
               style={formStyles.input}
               containerStyle={formStyles.inputContainer}
-              containerStyle={ this.state.focusedInput === 'username' ? formStyles.inputContainerActive : (this.state.usernameValid ? formStyles.inputContainer : formStyles.inputContainerError)}
+              containerStyle={ this.state.focusedInput === 'username' ? formStyles.inputContainerActive : (this._usernameValid() ? formStyles.inputContainer : formStyles.inputContainerError)}
               iconRight={(() => {
-                if (this.state.formData.username) {
-                  if (this.state.usernameValid) {
+                if (this.state.formData.username && !(this.state.focusedInput == 'username')) {
+                  if (this._usernameValid()) {
                     return <Icon name='ios-checkmark' size={40} style={formStyles.validIcon}/>
                   } else {
                     return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                   }
-                } else if (!this.state.usernameValid) {
+                } else if (!this._usernameValid()) {
                   return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                 } else {
                   return null
@@ -319,16 +386,16 @@ class Register extends Component {
               placeholder={this.state.passwordPlaceholder}
               placeholderTextColor='#320D3A'
               style={formStyles.input}
-              containerStyle={ this.state.focusedInput === 'password' ? formStyles.inputContainerActive : (this.state.passwordValid ? formStyles.inputContainer : formStyles.inputContainerError)}
+              containerStyle={ this.state.focusedInput === 'password' ? formStyles.inputContainerActive : (this._passwordValid() ? formStyles.inputContainer : formStyles.inputContainerError)}
               validationFunction = {(value)=>{return true;}}
               iconRight={(() => {
-                if (this.state.formData.password) {
-                  if (this.state.passwordValid) {
+                if (this.state.formData.password && !(this.state.focusedInput == 'email')) {
+                  if (this._passwordValid()) {
                     return <Icon name='ios-checkmark' size={40} style={formStyles.validIcon}/>
                   } else {
                     return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                   }
-                } else if (!this.state.passwordValid) {
+                } else if (!this._passwordValid()) {
                   return <Icon name='ios-close' size={30} style={formStyles.errorIcon}/>
                 } else {
                   return null
