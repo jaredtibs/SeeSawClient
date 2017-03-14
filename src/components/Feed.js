@@ -63,10 +63,9 @@ class Feed extends Component {
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
           { anonymous ?
-            <Image
-              style={styles.avatar}
-              source={require('../assets/images/me_avatar.jpg')}
-            /> :
+            <View style={styles.anonymousAvatar}>
+            </View>
+              :
             <Image
               style={styles.avatar}
               source={
@@ -329,6 +328,18 @@ const styles = StyleSheet.create({
     paddingRight: 24,
     paddingBottom: 5,
     lineHeight: 22
+  },
+
+  anonymousAvatar: {
+    width: 30,
+    height: 30,
+    borderWidth: 2,
+    borderColor: '#331238',
+    borderRadius: 15,
+    marginRight: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   avatar: {
