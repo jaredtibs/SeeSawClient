@@ -6,6 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 
+import ModalDropdown from 'react-native-modal-dropdown';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class EditLocationMenu extends Component {
@@ -14,6 +15,15 @@ class EditLocationMenu extends Component {
   }
 
   _openDropdown() {
+    this.refs.dropdown.show();
+  }
+
+  renderRow(rowData) {
+    return(
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+        <Text> {rowData} </Text>
+      </View>
+    )
   }
 
   render() {
@@ -27,6 +37,13 @@ class EditLocationMenu extends Component {
                 style={styles.moreLocationIcon}
           />
         </TouchableOpacity>
+        <ModalDropdown
+          dropdownStyle={styles.dropdown}
+          ref="dropdown"
+          options={['option 1', 'option 2']}
+          defaultValue=""
+          renderRow={(rowData) => this.renderRow(rowData)}>
+        </ModalDropdown>
       </View>
     )
   }
@@ -45,10 +62,18 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
-  dropDownContainer: {
-    marginTop: 0,
+  dropdown: {
     backgroundColor: 'white',
-    width: 200
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 400
+  },
+
+  dropDownContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 400
   },
 
   moreLocationIcon: {
