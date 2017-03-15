@@ -24,6 +24,11 @@ const TabBar = React.createClass({
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue);
   },
 
+  //promising animation ease values:
+  // 'linear'
+  // 'ease-in-quint'
+  // 'ease-in-sine'
+  // 'ease-in-cubic'
   componentDidUpdate() {
     if (this.props.location.scrolledLocationNav) {
       this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 200, 'linear')
@@ -188,7 +193,7 @@ const styles = StyleSheet.create({
   },
 
   scrolledTextTab: {
-    fontSize: 10,
+    fontSize: 2,
     color: '#343442',
     marginBottom: -35,
     fontFamily: 'MaisonNeueTRIAL-Bold'
