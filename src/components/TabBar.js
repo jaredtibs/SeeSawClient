@@ -26,7 +26,7 @@ const TabBar = React.createClass({
 
   componentDidUpdate() {
     if (this.props.location.scrolledLocationNav) {
-      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18, color: 'red'})
+      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18})
     }
   },
 
@@ -179,10 +179,17 @@ const styles = StyleSheet.create({
     color: '#FAF8F7',
   },
 
-  scrolledTextTab: {
+  lightTextTab: {
     fontSize: 18,
     color: '#343442',
     paddingBottom: 10,
+    fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  scrolledTextTab: {
+    fontSize: 10,
+    color: '#343442',
+    marginBottom: -35,
     fontFamily: 'MaisonNeueTRIAL-Bold'
   },
 
