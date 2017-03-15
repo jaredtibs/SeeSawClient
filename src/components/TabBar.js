@@ -8,6 +8,7 @@ import {
   StatusBar
 } from 'react-native';
 
+import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const TabBar = React.createClass({
@@ -58,7 +59,7 @@ const TabBar = React.createClass({
       )
     }
   },
-
+  //(lightTabBar && locationData) ? locationData.data.attributes.name
   render() {
     const { location, activeTab } = this.props;
     const locationData = location.data;
@@ -76,9 +77,13 @@ const TabBar = React.createClass({
                   if (tab == 'location') {
                     return (
                       <View style={styles.locationTabContainer}>
-                        <Text style={lightTabBar ? styles.scrolledTextTab : styles.textTab}>
-                          { (lightTabBar && locationData) ? locationData.data.attributes.name : "current location" }
-                        </Text>
+                        { lightTabBar ?
+                          <Animatable.Text animation="slideInUp" style={styles.scrolledTextTab}>
+                            { locationData ? locationData.data.attributes.name : null }
+                          </Animatable.Text>
+                          :
+                          <Text style={styles.textTab}>current location</Text>
+                        }
                         {!lightTabBar ?
                           <Icon name='ios-arrow-down-outline'
                                 size={18}
