@@ -26,7 +26,7 @@ const TabBar = React.createClass({
 
   componentDidUpdate() {
     if (this.props.location.scrolledLocationNav) {
-      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18})
+      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 200, 'linear')
     }
   },
 
