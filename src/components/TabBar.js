@@ -24,6 +24,12 @@ const TabBar = React.createClass({
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue);
   },
 
+  componentDidUpdate() {
+    if (this.props.location.scrolledLocationNav) {
+      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18, color: 'red'})
+    }
+  },
+
   setAnimationValue({ value, }) {
     this.tabIcons.forEach((icon, i) => {
       const progress = Math.min(1, Math.abs(value - i))
@@ -59,7 +65,7 @@ const TabBar = React.createClass({
       )
     }
   },
-  //(lightTabBar && locationData) ? locationData.data.attributes.name
+
   render() {
     const { location, activeTab } = this.props;
     const locationData = location.data;
@@ -78,7 +84,7 @@ const TabBar = React.createClass({
                     return (
                       <View style={styles.locationTabContainer}>
                         { lightTabBar ?
-                          <Animatable.Text animation="slideInUp" style={styles.scrolledTextTab}>
+                          <Animatable.Text ref="locationHeader" style={styles.scrolledTextTab}>
                             { locationData ? locationData.data.attributes.name : null }
                           </Animatable.Text>
                           :
