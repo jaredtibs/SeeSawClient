@@ -70,7 +70,8 @@ const TabBar = React.createClass({
     const { location, activeTab } = this.props;
     const locationData = location.data;
     const userAvatar = this.props.user.avatar;
-    const lightTabBar = location.scrolledLocationNav || activeTab == 0 || activeTab == 2;
+    const scrolledTabBar = location.scrolledLocationNav && activeTab == 1;
+    const lightTabBar = activeTab == 0 || activeTab == 2 || scrolledTabBar;
 
     return(
       <View style={lightTabBar ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
@@ -84,7 +85,7 @@ const TabBar = React.createClass({
                     return (
                       <View style={styles.locationTabContainer}>
                         { lightTabBar ?
-                          <Animatable.Text ref="locationHeader" style={styles.scrolledTextTab}>
+                          <Animatable.Text ref="locationHeader" style={(activeTab == 0 || activeTab == 2) ? styles.lightTextTab : styles.scrolledTextTab}>
                             { locationData ? locationData.data.attributes.name : null }
                           </Animatable.Text>
                           :
