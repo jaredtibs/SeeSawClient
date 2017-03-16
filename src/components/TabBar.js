@@ -26,12 +26,11 @@ const TabBar = React.createClass({
 
   //promising animation ease values:
   // 'linear'
-  // 'ease-in-quint'
   // 'ease-in-sine'
   // 'ease-in-cubic'
   componentDidUpdate() {
     if (this.props.location.scrolledLocationNav) {
-      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 200, 'linear')
+      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 200, 'ease-in-sine')
     }
   },
 

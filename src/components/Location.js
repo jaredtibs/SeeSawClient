@@ -103,6 +103,7 @@ class Location extends Component {
           onScroll={this.handleScroll.bind(this)}
           refreshControl={
             <RefreshControl
+              tintColor="#ffffff"
               refreshing={isRefreshing}
               onRefresh={this._onRefresh.bind(this)}
             />
