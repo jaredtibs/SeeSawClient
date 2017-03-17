@@ -32,8 +32,6 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    this._requestPermission();
-
     Permissions.getPermissionStatus('location', 'always')
       .then(response => {
         if (response == "authorized") {
@@ -65,10 +63,9 @@ class Main extends Component {
   _alertForLocationPermission() {
     Alert.alert(
       'We need access to your location',
-      [
-        {text: 'Not now', onPress: () => console.log('permission denied'), style: 'cancel'},
-        this.state.locationPermission == 'undetermined'?
-          {text: 'OK', onPress: this._requestPermission.bind(this)}
+      [ {text: 'Not now', onPress: () => console.log('permission denied'), style: 'cancel'},
+        this.state.locationPermission == 'undetermined' ?
+        {text: 'OK', onPress: () => this._requestPermission.bind(this) }
           : {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
     )
