@@ -61,7 +61,7 @@ export function sessionFetched(data) {
 export function finishRegister(sessionData) {
   return dispatch => {
     dispatch(receiveSession(sessionData));
-    dispatch(pushToMain(false));
+    dispatch(pushToIntro(false));
   }
 }
 
@@ -86,6 +86,10 @@ export function handleError (errors) {
     type: "REGISTER_ERROR",
     errors: errors
   }
+}
+
+export function pushToIntro() {
+  Actions.locationIntro();
 }
 
 export function pushToMain(reset) {
