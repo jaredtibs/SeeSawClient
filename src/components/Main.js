@@ -35,25 +35,13 @@ class Main extends Component {
     Permissions.getPermissionStatus('location', 'always')
       .then(response => {
         if (response != "authorized") {
+          this.setState({locationPermission: response});
           this._alertForLocationPermission();
         } else {
           this._getUserLocation();
         }
     })
-
-    //TODO remove
-    //navigator.geolocation.getCurrentPosition(
-    // (position) => {
-    //  var initialPosition = JSON.stringify(position);
-    //  console.log(initialPosition);
-    //},
-    //(error) => alert(JSON.stringify(error)),
-    //{enableHighAccuracy: true, timeout: 20000, maximumAge: 0}
-    //);
   }
-
-  //TODO might want to move this to the Intro component, request there,
-  //then check when this component loads
 
   _requestPermission() {
     Permissions.requestPermission('location', 'always')
@@ -62,22 +50,6 @@ class Main extends Component {
     })
   }
 
-  /*
-  Alert.alert(
-    'Alert Title',
-    'My Alert Msg',
-    [
-      {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-      {text: 'OK', onPress: () => console.log('OK Pressed')},
-    ],
-    { cancelable: false }
-  )
-  */
-
-
-  //TODO might need to add the locationPermission state to the global store, set it on the intro and then reference it here
-  // OR, you can check for it every time this component mounts and before this function is called, so you always know...?
   _alertForLocationPermission() {
     Alert.alert(
       'Your location',
