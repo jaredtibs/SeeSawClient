@@ -7,7 +7,8 @@ import {
   ListView,
   ScrollView,
   Image,
-  NativeModules
+  NativeModules,
+  Alert
 } from 'react-native';
 
 import TabBar from '../components/TabBar';
@@ -16,24 +17,61 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import LocationContainer from '../containers/LocationContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 
+import Permissions from 'react-native-permissions';
+
 // Factual Engine **
 const Engine = NativeModules.Engine;
 
 class Main extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      locationPermission: ''
+    }
   }
 
   componentDidMount() {
-    this._getUserLocation();
-    navigator.geolocation.getCurrentPosition(
-     (position) => {
-       var initialPosition = JSON.stringify(position);
-       console.log(initialPosition);
-     },
-     (error) => alert(JSON.stringify(error)),
-     {enableHighAccuracy: true, timeout: 20000, maximumAge: 0}
-    );
+    this._requestPermission();
+
+    Permissions.getPermissionStatus('location', 'always')
+      .then(response => {
+        if (response == "authorized") {
+          this._alertForLocationPermission();
+        } else {
+          this._getUserLocation();
+        }
+    })
+
+    //TODO remove
+    //navigator.geolocation.getCurrentPosition(
+    // (position) => {
+    //  var initialPosition = JSON.stringify(position);
+    //  console.log(initialPosition);
+    //},
+    //(error) => alert(JSON.stringify(error)),
+    //{enableHighAccuracy: true, timeout: 20000, maximumAge: 0}
+    //);
+  }
+
+  _requestPermission() {
+    Permissions.requestPermission('location', 'always')
+      .then(response => {
+        this.setState({ locationPermission: response })
+    })
+  }
+
+
+  _alertForLocationPermission() {
+    Alert.alert(
+      'We need access to your location',
+      [
+        {text: 'Not now', onPress: () => console.log('permission denied'), style: 'cancel'},
+        this.state.locationPermission == 'undetermined'?
+          {text: 'OK', onPress: this._requestPermission.bind(this)}
+          : {text: 'Open Settings', onPress: Permissions.openSettings}
+      ]
+    )
   }
 
   async _getUserLocation() {
