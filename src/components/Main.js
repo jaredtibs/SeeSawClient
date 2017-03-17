@@ -34,7 +34,7 @@ class Main extends Component {
   componentDidMount() {
     Permissions.getPermissionStatus('location', 'always')
       .then(response => {
-        if (response == "authorized") {
+        if (response != "authorized") {
           this._alertForLocationPermission();
         } else {
           this._getUserLocation();
@@ -52,6 +52,9 @@ class Main extends Component {
     //);
   }
 
+  //TODO might want to move this to the Intro component, request there,
+  //then check when this component loads
+
   _requestPermission() {
     Permissions.requestPermission('location', 'always')
       .then(response => {
@@ -59,10 +62,26 @@ class Main extends Component {
     })
   }
 
+  /*
+  Alert.alert(
+    'Alert Title',
+    'My Alert Msg',
+    [
+      {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ],
+    { cancelable: false }
+  )
+  */
 
+
+  //TODO might need to add the locationPermission state to the global store, set it on the intro and then reference it here
+  // OR, you can check for it every time this component mounts and before this function is called, so you always know...?
   _alertForLocationPermission() {
     Alert.alert(
-      'We need access to your location',
+      'Your location',
+      'Can we have your location so we can make this app awesome?',
       [ {text: 'Not now', onPress: () => console.log('permission denied'), style: 'cancel'},
         this.state.locationPermission == 'undetermined' ?
         {text: 'OK', onPress: () => this._requestPermission.bind(this) }
