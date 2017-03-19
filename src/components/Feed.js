@@ -54,30 +54,41 @@ class Feed extends Component {
   }
 
   renderRow(rowData) {
-    const permissions = rowData.attributes.permissions
-    const user = rowData.attributes.user.data.attributes
+    const permissions = rowData.attributes.permissions;
+    const user = rowData.attributes.user.data.attributes;
+    const visibility = rowData.attributes.visibility;
+    const anonymous = (visibility == "anonymous");
 
     return(
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
-          <Image
-            style={styles.avatar}
-            source={
-              user.avatar.url != null ?
-              {uri: user.avatar.url} :
-              require('../assets/images/me_avatar.jpg')}
-          />
+          { anonymous ?
+            <View style={styles.anonymousAvatar}>
+            </View>
+              :
+            <Image
+              style={styles.avatar}
+              source={
+                user.avatar.url != null ?
+                {uri: user.avatar.url} :
+                require('../assets/images/default_avatar.jpeg')}
+            />
+          }
         </View>
         <View style={styles.cardContainer}>
           <View style={styles.cardHeader}>
-            <Text style={styles.username}> {user.username} </Text>
+            { anonymous ?
+              <Text style={styles.username}> anonymous </Text>
+              :
+              <Text style={styles.username}> {user.username} </Text>
+            }
             <Text style={permissions['voted-for'] ? styles.voteCountVoted : styles.voteCount}>
               {rowData.attributes['upvote-count']}
             </Text>
           </View>
 
-          <View style={styles.cardBody}>
-            <Text style={styles.postBody}> {rowData.attributes.body} </Text>
+          <View style={anonymous ? styles.anonymousCardBody : styles.cardBody}>
+            <Text style={anonymous ? styles.anonymousPostBody : styles.postBody}> {rowData.attributes.body} </Text>
           </View>
 
           <View style={styles.cardFooter}>
@@ -271,6 +282,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 5
   },
 
+  anonymousCardBody: {
+    width: 285,
+    minHeight: 85,
+    backgroundColor: '#343442',
+    borderRadius: 4,
+    flexWrap: 'wrap',
+    shadowOffset: {
+      width: 0.5,
+      height: 1
+    },
+    shadowColor: 'rgba(0, 0, 0, 0.17)',
+    shadowOpacity: 5
+  },
+
   cardFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between'
@@ -292,6 +317,29 @@ const styles = StyleSheet.create({
     paddingRight: 24,
     paddingBottom: 5,
     lineHeight: 22
+  },
+
+  anonymousPostBody: {
+    color: '#FBFAF8',
+    fontSize: 15,
+    fontFamily: 'MaisonNeueTRIAL-Medium',
+    paddingTop: 12,
+    paddingLeft: 8,
+    paddingRight: 24,
+    paddingBottom: 5,
+    lineHeight: 22
+  },
+
+  anonymousAvatar: {
+    width: 30,
+    height: 30,
+    borderWidth: 2,
+    borderColor: '#331238',
+    borderRadius: 15,
+    marginRight: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   avatar: {

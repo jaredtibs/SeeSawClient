@@ -8,6 +8,7 @@ import {
   StatusBar
 } from 'react-native';
 
+import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const TabBar = React.createClass({
@@ -21,6 +22,16 @@ const TabBar = React.createClass({
 
   componentDidMount() {
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue);
+  },
+
+  //promising animation ease values:
+  // 'linear'
+  // 'ease-in-sine'
+  // 'ease-in-cubic'
+  componentDidUpdate() {
+    if (this.props.location.scrolledLocationNav) {
+      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 200, 'ease-in-sine')
+    }
   },
 
   setAnimationValue({ value, }) {
@@ -63,7 +74,8 @@ const TabBar = React.createClass({
     const { location, activeTab } = this.props;
     const locationData = location.data;
     const userAvatar = this.props.user.avatar;
-    const lightTabBar = location.scrolledLocationNav || activeTab == 0 || activeTab == 2;
+    const scrolledTabBar = location.scrolledLocationNav && activeTab == 1;
+    const lightTabBar = activeTab == 0 || activeTab == 2 || scrolledTabBar;
 
     return(
       <View style={lightTabBar ? [styles.scrolledLocationNav, this.props.style, ] : [styles.tabs, this.props.style, ]}>
@@ -76,9 +88,13 @@ const TabBar = React.createClass({
                   if (tab == 'location') {
                     return (
                       <View style={styles.locationTabContainer}>
-                        <Text style={lightTabBar ? styles.scrolledTextTab : styles.textTab}>
-                          { (lightTabBar && locationData) ? locationData.data.attributes.name : "current location" }
-                        </Text>
+                        { lightTabBar ?
+                          <Animatable.Text ref="locationHeader" style={(activeTab == 0 || activeTab == 2) ? styles.lightTextTab : styles.scrolledTextTab}>
+                            { locationData ? locationData.data.attributes.name : null }
+                          </Animatable.Text>
+                          :
+                          <Text style={styles.textTab}>current location</Text>
+                        }
                         {!lightTabBar ?
                           <Icon name='ios-arrow-down-outline'
                                 size={18}
@@ -96,7 +112,7 @@ const TabBar = React.createClass({
                         source={
                           userAvatar != null ?
                           {uri: userAvatar} :
-                          require('../assets/images/me_avatar.jpg')}
+                          require('../assets/images/default_avatar.jpeg')}
                       />
                     )
                   } else {
@@ -168,10 +184,17 @@ const styles = StyleSheet.create({
     color: '#FAF8F7',
   },
 
-  scrolledTextTab: {
+  lightTextTab: {
     fontSize: 18,
     color: '#343442',
     paddingBottom: 10,
+    fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  scrolledTextTab: {
+    fontSize: 2,
+    color: '#343442',
+    marginBottom: -35,
     fontFamily: 'MaisonNeueTRIAL-Bold'
   },
 
