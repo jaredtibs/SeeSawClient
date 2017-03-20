@@ -126,6 +126,7 @@ class ShareForm extends Component {
           multiline={true}
           maxLength={300}
           placeholder="Drop some knowledge, share a review, or just post a funny comment…"
+          placeholderStyle={[styles.input, {color: "#CECED1"}]}
           onChangeText={(text) => this._onInputChange(text)}
         />
 
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 11,
     fontFamily: 'MaisonNeueTRIAL-Book',
-    color: "#CECED1",
+    color: '#343442',
     paddingLeft: 20,
     paddingTop: 10,
     paddingBottom: 10,
