@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 
 import FeedContainer from '../containers/FeedContainer';
-import ShareFormContainer from '../containers/ShareFormContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ParallaxView from 'react-native-parallax-view';
 
