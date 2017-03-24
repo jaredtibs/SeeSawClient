@@ -30,12 +30,12 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
+    //AppState.addEventListener('change', this._handleAppStateChange);
     this._getUserLocation();
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
+    //AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
   _handleAppStateChange (nextAppState) {
