@@ -273,6 +273,8 @@ const styles = StyleSheet.create({
     minHeight: 85,
     backgroundColor: 'white',
     borderRadius: 4,
+    borderWidth: 1,
+    borderColor: 'white',
     flexWrap: 'wrap',
     shadowOffset: {
       width: 0.5,
@@ -287,6 +289,8 @@ const styles = StyleSheet.create({
     minHeight: 85,
     backgroundColor: '#343442',
     borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#343442',
     flexWrap: 'wrap',
     shadowOffset: {
       width: 0.5,
@@ -309,6 +313,7 @@ const styles = StyleSheet.create({
   },
 
   postBody: {
+    flex: 1,
     color: '#343442',
     fontSize: 15,
     fontFamily: 'MaisonNeueTRIAL-Medium',
