@@ -17,7 +17,13 @@ export default function feed(state = initialState, action) {
       }
     case 'POST_PUBLISHED':
       let posts = state.posts;
-      posts.unshift(action.data);
+
+      if (state.currentFeedType === 'recent') {
+        posts.unshift(action.data);
+      } else {
+        posts.push(action.data);
+      }
+
       return Object.assign({}, state, {
         posts: posts,
         postPublishing: false,
