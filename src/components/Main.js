@@ -7,6 +7,7 @@ import {
   ListView,
   ScrollView,
   Image,
+  AppState,
   NativeModules
 } from 'react-native';
 
@@ -22,18 +23,26 @@ const Engine = NativeModules.Engine;
 class Main extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      appState: AppState.currentState
+    }
   }
 
   componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
     this._getUserLocation();
-    navigator.geolocation.getCurrentPosition(
-     (position) => {
-       var initialPosition = JSON.stringify(position);
-       console.log(initialPosition);
-     },
-     (error) => alert(JSON.stringify(error)),
-     {enableHighAccuracy: true, timeout: 20000, maximumAge: 0}
-    );
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange (nextAppState) {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      this._getUserLocation();
+    }
+    this.setState({appState: nextAppState});
   }
 
   async _getUserLocation() {
