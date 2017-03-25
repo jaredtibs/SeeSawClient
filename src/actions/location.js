@@ -5,6 +5,7 @@ export function fetchCurrentLocation (data) {
     store.get('userToken')
     .then(token => {
       dispatch(findingLocation());
+      console.log(data)
       return fetch("http://localhost:3000/api/v1/locations/current", {
         method: "POST",
         headers: {
@@ -15,7 +16,9 @@ export function fetchCurrentLocation (data) {
         body: JSON.stringify({
           place_id: data["place_id"],
           name: data["name"],
-          category_ids: data["place_category_ids"]
+          category_ids: data["category_ids"],
+          latitude: data["latitude"],
+          longitude: data["longitude"]
         })
       })
       .then((response) => response.json())
