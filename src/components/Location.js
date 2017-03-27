@@ -89,9 +89,7 @@ class Location extends Component {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
     const isRefreshing = isFetching && this.props.feed.posts.length > 0
-    const locationName = location.data.data.attributes.name;
-    //TODO swap with api value
-    const locationCity = "Los Angeles, CA"
+    const { name, city, region } = location.data.data.attributes;
 
     return(
       <View style={styles.container}>
@@ -109,8 +107,8 @@ class Location extends Component {
           }
           header={(
             <View style={styles.locationHeader}>
-              <Text style={styles.locationName}> {locationName} </Text>
-              <Text style={styles.locationCity}> {locationCity} </Text>
+              <Text style={styles.locationName}> {name} </Text>
+              <Text style={styles.locationCity}> {city}, {region} </Text>
             </View>
           )}>
             { !isFetching ? this.renderStats(location) : null}
