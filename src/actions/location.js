@@ -5,7 +5,6 @@ export function fetchCurrentLocation (data) {
     store.get('userToken')
     .then(token => {
       dispatch(findingLocation());
-      console.log(data)
       return fetch("http://localhost:3000/api/v1/locations/current", {
         method: "POST",
         headers: {
