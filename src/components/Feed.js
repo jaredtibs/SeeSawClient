@@ -143,6 +143,7 @@ class Feed extends Component {
   }
 
   render() {
+    console.log("in feed")
     const isFetching = this.props.feed.isFetching;
     let currentFeed = (this.state.selectedFeed ? this.state.selectedFeed : this.props.feed.currentFeedType);
     let hasPosts = this.props.feed.posts.length > 0

@@ -64,10 +64,6 @@ class Location extends Component {
     this.refs.textInput.setNativeProps({text: ''})
   }
 
-  _openInputForm() {
-    Actions.shareForm();
-  }
-
   _onRefresh() {
     const locationId = this.props.location.data.data.id;
     const currentFeedType = this.props.feed.currentFeedType;
@@ -174,8 +170,9 @@ const styles = StyleSheet.create({
 
   statValue: {
     fontSize: 18,
-    fontFamily: 'GTPressuraMonoTrial-Bold',
+    fontFamily: 'GTPressuraMonoTrial-Bold'
   }
+
 });
 
 export default Location;

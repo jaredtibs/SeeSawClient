@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import {Actions} from 'react-native-router-flux'
 
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Ionicons';
 const ImagePicker = require('react-native-image-picker');
 
 class ShareButton extends Component {
   constructor(props) {
     super(props)
+  }
+
+  _openInputForm() {
+    Actions.shareForm();
+  }
+
+  _openCamera() {
+    console.log("open camera")
   }
 
   render() {
