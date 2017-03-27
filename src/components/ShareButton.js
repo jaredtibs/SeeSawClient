@@ -26,36 +26,30 @@ class ShareButton extends Component {
 
   render() {
     return(
-      <View style={styles.container}>
-        <View style={styles.shareButton}>
-          <TouchableHighlight
-            onPress={() => this._openInputForm()}
-            underlayColor='#FFFFFF'
-            style={styles.textInputButton}>
+      <View style={styles.shareButton}>
+        <TouchableHighlight
+          onPress={() => this._openInputForm()}
+          underlayColor='#FFFFFF'
+          style={styles.textInputButton}>
 
-            <View style={styles.inputText}>
-              <Icon name='md-add' size={18} style={styles.plusIcon}></Icon>
-              <Text style={styles.placeholder}>
-                Share a thought...
-              </Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.cameraButton}
-            onPress={() => this._openCamera}>
-            <Icon name='ios-camera-outline' size={25} style={styles.cameraIcon}></Icon>
-          </TouchableHighlight>
-        </View>
+          <View style={styles.inputText}>
+            <Icon name='md-add' size={18} style={styles.plusIcon}></Icon>
+            <Text style={styles.placeholder}>
+              Share a thought...
+            </Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.cameraButton}
+          onPress={() => this._openCamera}>
+          <Icon name='ios-camera-outline' size={25} style={styles.cameraIcon}></Icon>
+        </TouchableHighlight>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-
   shareButton: {
     flex: 1,
     flexDirection: 'row',
