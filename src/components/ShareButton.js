@@ -11,6 +11,10 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 const ImagePicker = require('react-native-image-picker');
 
+var cameraOptions = {
+  cameraType: 'front'
+};
+
 class ShareButton extends Component {
   constructor(props) {
     super(props)
@@ -21,7 +25,24 @@ class ShareButton extends Component {
   }
 
   _openCamera() {
-    console.log("open camera")
+    ImagePicker.launchCamera(cameraOptions, (response)  => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let data = { file: response.data };
+        //this.props.publishPhotoPost(data)
+        console.log(data);
+      }
+    });
   }
 
   render() {
@@ -41,7 +62,8 @@ class ShareButton extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.cameraButton}
-          onPress={() => this._openCamera}>
+          onPress={() => this._openCamera()}
+          underlayColor='#FFFFFF'>
           <Icon name='ios-camera-outline' size={25} style={styles.cameraIcon}></Icon>
         </TouchableHighlight>
       </View>

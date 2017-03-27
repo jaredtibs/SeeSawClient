@@ -34,7 +34,7 @@ class Profile extends Component {
         console.log('User tapped custom button: ', response.customButton);
       }
       else {
-        let data = { file: response.data};
+        let data = { file: response.data };
         this.props.updateAvatar(data)
       }
     });
