@@ -13,6 +13,7 @@ import {
   RefreshControl
 } from 'react-native';
 
+import ShareButton from '../components/ShareButton';
 import FeedContainer from '../containers/FeedContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ParallaxView from 'react-native-parallax-view';
@@ -63,10 +64,6 @@ class Location extends Component {
     this.refs.textInput.setNativeProps({text: ''})
   }
 
-  _openInputForm() {
-    Actions.shareForm();
-  }
-
   _onRefresh() {
     const locationId = this.props.location.data.data.id;
     const currentFeedType = this.props.feed.currentFeedType;
@@ -115,24 +112,7 @@ class Location extends Component {
             { !isFetching ? this.renderFeed() : null}
         </ParallaxView>
 
-        <View style={styles.shareButton}>
-          <TouchableHighlight
-            onPress={() => this._openInputForm()}
-            underlayColor='#FFFFFF'
-            style={styles.textInputButton}>
-
-            <View style={styles.inputText}>
-              <Icon name='md-add' size={18} style={styles.plusIcon}></Icon>
-              <Text style={styles.placeholder}>
-                Share a thought...
-              </Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.cameraButton}>
-            <Icon name='ios-camera-outline' size={25} style={styles.cameraIcon}></Icon>
-          </TouchableHighlight>
-        </View>
+        <ShareButton />
       </View>
     )
   }
@@ -190,61 +170,7 @@ const styles = StyleSheet.create({
 
   statValue: {
     fontSize: 18,
-    fontFamily: 'GTPressuraMonoTrial-Bold',
-  },
-
-  shareButton: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 55,
-    backgroundColor: '#FFFFFF',
-    borderColor: 'rgba(56, 55, 61, 0.2)',
-    shadowOffset: {
-      width: 1,
-      height: 1
-    },
-    shadowColor: 'rgba(0,0,0,0.26)',
-    shadowOpacity: 0.5,
-    padding: 10
-  },
-
-  textInputButton: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start'
-  },
-
-  inputText: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
-  placeholder: {
-    fontSize: 14,
-    fontFamily: 'MaisonNeueTRIAL-Medium',
-    color: 'rgba(0,0,0,.30)',
-    paddingLeft: 15
-  },
-
-  plusIcon: {
-    color: '#343442',
-    paddingLeft: 10
-  },
-
-  cameraButton: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  cameraIcon: {
-    color: '#343442',
-    paddingRight: 5
+    fontFamily: 'GTPressuraMonoTrial-Bold'
   }
 
 });
