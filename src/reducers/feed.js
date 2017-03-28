@@ -1,9 +1,9 @@
 const initialState = {
   posts: [],
-  postCount: 0,
   postPublishing: false,
   isFetching: false,
-  currentFeedType: 'recent'
+  currentFeedType: 'recent',
+  postCount: 0
 };
 
 var update = require('react/lib/update')
@@ -26,8 +26,7 @@ export default function feed(state = initialState, action) {
 
       return Object.assign({}, state, {
         posts: posts,
-        postPublishing: false,
-        postCount: posts.length
+        postPublishing: false
       });
     case 'FETCHING_POSTS':
       return {
@@ -39,8 +38,7 @@ export default function feed(state = initialState, action) {
         ...state,
         isFetching: false,
         posts: action.data['posts'],
-        currentFeedType: action.data['type'],
-        postCount: action.data['posts'].length
+        currentFeedType: action.data['type']
       }
     case 'POST_UPDATED':
       const updatedPosts = state.posts;

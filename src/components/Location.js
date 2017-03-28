@@ -27,20 +27,23 @@ class Location extends Component {
   }
 
   renderStats(location) {
-    postCount = this.props.feed.postCount
+    const attributes = location.data.data.attributes;
+    const postCount = attributes['post-count']
+    const voteCount = attributes['vote-count']
+    const photoCount = attributes['photo-count']
 
     return(
       <View style={styles.statsContainer}>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> {postCount} </Text>
+          <Text style={styles.statValue}> {location.postCount} </Text>
           <Text style={styles.statText}> posts </Text>
         </View>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statValue}> {voteCount} </Text>
           <Text style={styles.statText}> votes </Text>
         </View>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> 00 </Text>
+          <Text style={styles.statValue}> {photoCount} </Text>
           <Text style={styles.statText}> photos </Text>
         </View>
       </View>
@@ -83,6 +86,7 @@ class Location extends Component {
   }
 
   render() {
+    console.log(this.props);
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
     const isRefreshing = isFetching && this.props.feed.posts.length > 0

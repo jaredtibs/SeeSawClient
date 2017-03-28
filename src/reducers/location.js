@@ -2,7 +2,8 @@ const initialState = {
   data: null,
   findingLocation: true,
   locationFound: false,
-  scrolledLocationNav: false
+  scrolledLocationNav: false,
+  postCount: 0
 };
 
 export default function location(state=initialState, action) {
@@ -19,6 +20,11 @@ export default function location(state=initialState, action) {
         data: action.data,
         findingLocation: false,
         locationFound: true
+      }
+    case 'POST_COUNT_INCREASED':
+      return {
+        ...state,
+        postCount: (state.postCount + 1)
       }
     case 'LOCATION_SCROLL_DOWN':
       return {

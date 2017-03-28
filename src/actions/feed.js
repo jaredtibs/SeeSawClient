@@ -1,8 +1,10 @@
 import store from 'react-native-simple-store';
+import { postCountChanged } from '../actions/location';
 
 export function createPost (locationId, text) {
   return dispatch => {
     dispatch(publishingPost());
+    dispatch(postCountChanged("create"))
     store.get('userToken')
     .then(token => {
       let url = `http://localhost:3000/api/v1/locations/${locationId}/posts`;
