@@ -40,26 +40,16 @@ export function findingLocation() {
 }
 
 export function postCountChanged(type) {
-  if (type == "create") {
-    return {
-      type: "POST_COUNT_INCREASED"
-    }
-  } else {
-    return {
-      type: "POST_COUNT_DECRESED"
-    }
+  return {
+    type: "POST_COUNT_CHANGED",
+    data: type
   }
 }
 
 export function voteCountChanged(type) {
-  if (type == "upvote") {
-    return {
-      type: "VOTE_COUNT_INCREASED"
-    }
-  } else {
-    return {
-      type: "VOTE_COUNT_DECREASED"
-    }
+  return {
+    type: "VOTE_COUNT_CHANGED",
+    data: type
   }
 }
 

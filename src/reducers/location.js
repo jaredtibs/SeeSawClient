@@ -3,7 +3,9 @@ const initialState = {
   findingLocation: true,
   locationFound: false,
   scrolledLocationNav: false,
-  postCount: 0
+  newPostCount: null,
+  newVoteCount: null,
+  newPhotoCount: null
 };
 
 export default function location(state=initialState, action) {
@@ -21,10 +23,23 @@ export default function location(state=initialState, action) {
         findingLocation: false,
         locationFound: true
       }
-    case 'POST_COUNT_INCREASED':
+    case 'POST_COUNT_CHANGED':
+      let prevPostCount = state.data.data.attributes['post-count']
       return {
         ...state,
-        postCount: (state.postCount + 1)
+        newPostCount: (prevPostCount + 1)
+      }
+    case 'VOTE_COUNT_CHANGED':
+      let prevVoteCount = state.data.data.attributes['vote-count']
+      return {
+        ...state,
+        newVoteCount: (prevVoteCount + 1)
+      }
+    case 'PHOTO_COUNT_CHANGED':
+      let prevPhotoCount = state.data.data.attributes['photo-count']
+      return {
+        ...state,
+        newPhotoCount: (prevPhotoCount + 1)
       }
     case 'LOCATION_SCROLL_DOWN':
       return {

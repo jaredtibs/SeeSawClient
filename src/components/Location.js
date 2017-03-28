@@ -35,15 +35,15 @@ class Location extends Component {
     return(
       <View style={styles.statsContainer}>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> {location.postCount} </Text>
+          <Text style={styles.statValue}> {location.newPostCount ? location.newPostCount : postCount} </Text>
           <Text style={styles.statText}> posts </Text>
         </View>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> {voteCount} </Text>
+          <Text style={styles.statValue}> {location.newVoteCount ? location.newVoteCount : voteCount} </Text>
           <Text style={styles.statText}> votes </Text>
         </View>
         <View style={styles.stat}>
-          <Text style={styles.statValue}> {photoCount} </Text>
+          <Text style={styles.statValue}> {location.newPhotoCount ? location.newPhotoCount : photoCount} </Text>
           <Text style={styles.statText}> photos </Text>
         </View>
       </View>
@@ -86,7 +86,6 @@ class Location extends Component {
   }
 
   render() {
-    console.log(this.props);
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
     const isRefreshing = isFetching && this.props.feed.posts.length > 0
