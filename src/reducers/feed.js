@@ -2,8 +2,7 @@ const initialState = {
   posts: [],
   postPublishing: false,
   isFetching: false,
-  currentFeedType: 'recent',
-  postCount: 0
+  currentFeedType: 'recent'
 };
 
 var update = require('react/lib/update')

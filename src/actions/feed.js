@@ -1,5 +1,5 @@
 import store from 'react-native-simple-store';
-import {postCountChanged, voteCountChanged} from '../actions/location.js'
+import {postCountChanged} from '../actions/location.js'
 
 export function createPost (locationId, text) {
   return dispatch => {
@@ -95,7 +95,9 @@ export function castVote(postId, type) {
         },
       })
       .then((response) => response.json())
-      .then((responseData) => dispatch(voteCasted(responseData.data)))
+      .then((responseData) => {
+        dispatch(voteCasted(responseData.data))
+      })
       .catch(error => console.log(error))
     });
   }

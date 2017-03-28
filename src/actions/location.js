@@ -46,13 +46,6 @@ export function postCountChanged(type) {
   }
 }
 
-export function voteCountChanged(type) {
-  return {
-    type: "VOTE_COUNT_CHANGED",
-    data: type
-  }
-}
-
 export function scrolledDown() {
   return {
     type: "LOCATION_SCROLL_DOWN"

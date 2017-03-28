@@ -29,12 +29,6 @@ export default function location(state=initialState, action) {
         ...state,
         newPostCount: (prevPostCount + 1)
       }
-    case 'VOTE_COUNT_CHANGED':
-      let prevVoteCount = state.data.data.attributes['vote-count']
-      return {
-        ...state,
-        newVoteCount: (prevVoteCount + 1)
-      }
     case 'PHOTO_COUNT_CHANGED':
       let prevPhotoCount = state.data.data.attributes['photo-count']
       return {
