@@ -24,7 +24,13 @@ export default function location(state=initialState, action) {
         locationFound: true
       }
     case 'POST_COUNT_CHANGED':
-      let prevPostCount = state.data.data.attributes['post-count']
+      let prevPostCount;
+      if (state.newPostCount != null) {
+        prevPostCount = state.newPostCount;
+      } else {
+        prevPostCount = state.data.data.attributes['post-count']
+      }
+
       return {
         ...state,
         newPostCount: (prevPostCount + 1)
