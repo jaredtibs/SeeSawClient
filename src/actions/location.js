@@ -39,6 +39,13 @@ export function findingLocation() {
   }
 }
 
+export function postCountChanged(type) {
+  return {
+    type: "POST_COUNT_CHANGED",
+    data: type
+  }
+}
+
 export function scrolledDown() {
   return {
     type: "LOCATION_SCROLL_DOWN"
