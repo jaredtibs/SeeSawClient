@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     color: 'rgba(52,52,66,.30)',
     fontSize: 14,
     fontFamily: 'GTPressuraMonoTrial-Bold',
-    marginRight: -20,
+    marginRight: -18,
     paddingBottom: 3
   },
 
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     color: 'rgb(52,52,66)',
     fontSize: 14,
     fontFamily: 'GTPressuraMonoTrial-Bold',
-    marginRight: -20,
+    marginRight: -18,
     paddingBottom: 3
   }
 });
