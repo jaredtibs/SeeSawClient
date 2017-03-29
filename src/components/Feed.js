@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import FeedCard from '../components/FeedCard';
 
 class Feed extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class Feed extends Component {
 
   renderRow(rowData) {
     return(
-      <FeedCard postData={rowData} castVote={this._vote}/>
+      <FeedCard postData={rowData} castVote={this._vote.bind(this)}/>
     )
   }
 
