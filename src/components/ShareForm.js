@@ -29,6 +29,12 @@ class ShareForm extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.feed.postPublishing === true && this.props.feed.postPublishing == false) {
+      this._goBack();
+    }
+  }
+
   componentWillMount () {
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
@@ -62,7 +68,6 @@ class ShareForm extends Component {
   _publishPost() {
     locationId = this.props.location.data.data.id;
     this.props.createPost(locationId, this.state.text);
-    this._goBack();
   }
 
   _onInputChange(text) {

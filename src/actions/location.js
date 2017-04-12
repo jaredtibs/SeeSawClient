@@ -15,7 +15,8 @@ export function fetchCurrentLocation (data) {
         body: JSON.stringify({
           place_id: data["place_id"],
           name: data["name"],
-          category_ids: data["place_category_ids"]
+          latitude: data["latitude"],
+          longitude: data["longitude"]
         })
       })
       .then((response) => response.json())
@@ -35,6 +36,13 @@ export function setLocation(locationData) {
 export function findingLocation() {
   return {
     type: "FINDING_LOCATION"
+  }
+}
+
+export function postCountChanged(type) {
+  return {
+    type: "POST_COUNT_CHANGED",
+    data: type
   }
 }
 
