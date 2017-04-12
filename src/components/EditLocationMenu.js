@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
 
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -20,10 +21,16 @@ class EditLocationMenu extends Component {
 
   renderRow(rowData) {
     return(
-      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-        <Text> {rowData} </Text>
+      <View style={styles.row}>
+        <Text style={styles.locationName}> {rowData} </Text>
       </View>
     )
+  }
+
+  _getSize() {
+    return {
+      width: Dimensions.get('window').width
+    }
   }
 
   render() {
@@ -38,7 +45,8 @@ class EditLocationMenu extends Component {
           />
         </TouchableOpacity>
         <ModalDropdown
-          dropdownStyle={styles.dropdown}
+          style={styles.dropdownContainer}
+          dropdownStyle={[styles.dropdown, this._getSize()]}
           ref="dropdown"
           options={['option 1', 'option 2']}
           defaultValue=""
@@ -51,34 +59,33 @@ class EditLocationMenu extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
-  button: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+  dropdownContainer: {
+    //flex: 1,
+    //alignItems: 'center',
+    //justifyContent: 'center'
   },
 
   dropdown: {
+    flex: 1,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 400
-  },
-
-  dropDownContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 400
   },
 
   moreLocationIcon: {
     color: '#FAF8F7',
   },
+
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
 });
 
 export default EditLocationMenu;

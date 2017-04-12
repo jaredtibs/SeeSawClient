@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
 
   locationTabContainer: {
     marginTop: 15,
-    flexDirection: 'column',
+    //flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
   },
 
   textTab: {
+    marginTop: 8,
     fontSize: 10,
     color: '#FAF8F7',
     fontFamily: 'MaisonNeueTRIAL-Bold'
