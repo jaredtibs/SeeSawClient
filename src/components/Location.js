@@ -13,6 +13,7 @@ import {
   RefreshControl
 } from 'react-native';
 
+import NewTabBar from '../components/NewTabBar';
 import ShareButton from '../components/ShareButton';
 import FeedContainer from '../containers/FeedContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -93,6 +94,7 @@ class Location extends Component {
 
     return(
       <View style={styles.container}>
+        <NewTabBar />
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}
           windowHeight={280}

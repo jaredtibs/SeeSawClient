@@ -77,7 +77,7 @@ class Main extends Component {
     const {dispatch, navigator} = this.props
 
     return (
-      <View tabLabel="location" style={styles.tabView}>
+      <View style={{flex: 1}}>
         <LocationContainer
           dispatch={dispatch}
           tabLabel="location"/>
@@ -98,25 +98,10 @@ class Main extends Component {
 
     return(
       <View style={styles.container}>
-        <ScrollableTabView
-          locked={true}
-          initialPage={1}
-          renderTabBar={() => <TabBar location={this.props.location} user={this.props.user} />}
-          tabBarPosition='overlayTop'>
-
-          <View tabLabel="profile" style={styles.tabView}>
-            {this.renderProfile()}
-          </View>
-
-          {fetchingLocation ?
-            this.renderLocationLoadingState() :
-            this.renderLocation()
-          }
-
-          <ScrollView tabLabel="ios-settings-outline" style={styles.tabView}>
-            {null}
-          </ScrollView>
-        </ScrollableTabView>
+        {fetchingLocation ?
+          this.renderLocationLoadingState() :
+          this.renderLocation()
+        }
       </View>
     )
   }
@@ -126,10 +111,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAF8F7',
-  },
-
-  tabView: {
-    flex: 1
   },
 
   locationLoadingState: {
