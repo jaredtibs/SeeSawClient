@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
+import {openEditLocationMenu} from '../actions/location';
 
 import EditLocationMenu from '../components/EditLocationMenu';
 
@@ -21,6 +22,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    openEditLocationMenu: () => {
+      dispatch(openEditLocationMenu())
+    }
   }
 };
 

@@ -39,6 +39,12 @@ export function findingLocation() {
   }
 }
 
+export function openEditLocationMenu() {
+  return {
+    type: "EDITING_LOCATION"
+  }
+}
+
 export function postCountChanged(type) {
   return {
     type: "POST_COUNT_CHANGED",
