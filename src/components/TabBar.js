@@ -96,10 +96,13 @@ const TabBar = React.createClass({
                           <Text style={styles.textTab}>current location</Text>
                         }
                         {!lightTabBar ?
-                          <Icon name='ios-arrow-down-outline'
-                                size={18}
-                                style={styles.moreLocationIcon}
-                          />
+                          <TouchableOpacity
+                            onPress={() => console.log("dispatch editing location action")}>
+                            <Icon name='ios-arrow-down-outline'
+                                  size={18}
+                                  style={styles.moreLocationIcon}
+                            />
+                          </TouchableOpacity>
                         : null}
                       </View>
                     )
