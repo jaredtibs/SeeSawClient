@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
 
-import ModalDropdown from 'react-native-modal-dropdown';
+const { width, height } = Dimensions.get('window');
 
 class EditLocationMenu extends Component {
   constructor(props) {
@@ -15,11 +16,9 @@ class EditLocationMenu extends Component {
 
   render() {
     return(
-      <ModalDropdown
-        ref="dropdown"
-        style={styles.dropdown}
-        options={this.props.options}>
-      </ModalDropdown>
+      <View style={styles.dropdown}>
+        <Text> change your location </Text>
+      </View>
     )
   }
 }
@@ -27,7 +26,11 @@ class EditLocationMenu extends Component {
 const styles = StyleSheet.create({
   dropdown: {
     flex: 1,
-    backgroundColor: 'white'
+    position: 'absolute',
+    backgroundColor: 'white',
+    top: 0,
+    left: 0,
+    width: width
   }
 });
 

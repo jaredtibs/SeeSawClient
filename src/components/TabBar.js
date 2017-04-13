@@ -97,7 +97,7 @@ const TabBar = React.createClass({
                         }
                         {!lightTabBar ?
                           <TouchableOpacity
-                            onPress={() => console.log("dispatch editing location action")}>
+                            onPress={() => this.props.editLocation()}>
                             <Icon name='ios-arrow-down-outline'
                                   size={18}
                                   style={styles.moreLocationIcon}

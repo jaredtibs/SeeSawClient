@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Main from '../components/Main';
-import {fetchCurrentLocation, findingLocation} from '../actions/location';
+import {
+  fetchCurrentLocation,
+  findingLocation,
+  openEditLocationMenu
+} from '../actions/location';
 
 class MainContainer extends Component {
   constructor(props) {
@@ -32,6 +36,10 @@ const mapDispatchToProps = (dispatch) => {
 
     findingLocation: () => {
       dispatch(findingLocation())
+    },
+
+    openEditLocationMenu: () => {
+      dispatch(openEditLocationMenu())
     }
   }
 };

@@ -13,7 +13,6 @@ import {
 
 import TabBar from '../components/TabBar';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-
 import LocationContainer from '../containers/LocationContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 
@@ -94,14 +93,14 @@ class Main extends Component {
   }
 
   render() {
-    const fetchingLocation = this.props.location.findingLocation
+    const fetchingLocation = this.props.location.findingLocation;
 
     return(
       <View style={styles.container}>
         <ScrollableTabView
           locked={true}
           initialPage={1}
-          renderTabBar={() => <TabBar location={this.props.location} user={this.props.user} />}
+          renderTabBar={() => <TabBar location={this.props.location} user={this.props.user} editLocation={this.props.openEditLocationMenu}/>}
           tabBarPosition='overlayTop'>
 
           <View tabLabel="profile" style={styles.tabView}>
