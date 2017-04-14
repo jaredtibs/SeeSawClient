@@ -30,7 +30,7 @@ const TabBar = React.createClass({
   // 'ease-in-cubic'
   componentDidUpdate() {
     if (this.props.location.scrolledLocationNav) {
-      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 200, 'ease-in-sine')
+      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 250, 'linear')
     }
   },
 
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
 
   scrolledTextTab: {
-    fontSize: 2,
+    fontSize: 0,
     color: '#343442',
     marginBottom: -35,
     fontFamily: 'MaisonNeueTRIAL-Bold'
