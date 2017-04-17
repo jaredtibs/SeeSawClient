@@ -47,9 +47,11 @@ class Settings extends Component {
           </View>
           <View style={styles.settingsButtonContainer}>
             <Text style={styles.settingsButtonText}> Option 1 </Text>
+            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
           </View>
           <View style={styles.settingsButtonContainer}>
             <Text style={styles.settingsButtonText}> Option 2</Text>
+            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
           </View>
         </View>
 
@@ -59,9 +61,11 @@ class Settings extends Component {
           </View>
           <View style={styles.settingsButtonContainer}>
             <Text style={styles.settingsButtonText}> Option 1 </Text>
+            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
           </View>
           <View style={styles.settingsButtonContainer}>
             <Text style={styles.settingsButtonText}> Option 2</Text>
+            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
           </View>
         </View>
 
@@ -71,9 +75,11 @@ class Settings extends Component {
           </View>
           <View style={styles.settingsButtonContainer}>
             <Text style={styles.settingsButtonText}> Option 1 </Text>
+            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
           </View>
           <View style={styles.settingsButtonContainer}>
             <Text style={styles.settingsButtonText}> Option 2</Text>
+            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
           </View>
         </View>
 
@@ -133,27 +139,34 @@ const styles = StyleSheet.create({
   },
 
   settingsSection: {
-    flex: 1
+    flex: 1,
+    borderTopWidth: 1,
+    borderColor: 'rgba(155,155,155, 0.30)'
   },
 
   settingsSectionHeader: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    paddingLeft: 25
   },
 
   settingsHeaderText: {
     fontSize: 12,
     fontFamily: 'MaisonNeueTRIAL-Bold',
-    color: '#9B9B9B'
+    color: '#9B9B9B',
+    marginBottom: 10
   },
 
   settingsButtonContainer: {
     flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: 'white',
-    height: 50
+    paddingLeft: 25,
+    paddingRight: 25
   },
 
   settingsButtonText: {
