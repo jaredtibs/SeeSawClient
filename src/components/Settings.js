@@ -24,7 +24,7 @@ class Settings extends Component {
     return(
       <View style={styles.container}>
         <View style={styles.headerBar}>
-          <View>
+          <View style={styles.buttonContainer}>
             <TouchableHighlight
               style={styles.backButton}
               onPress={() => this._goBack()}
@@ -33,11 +33,11 @@ class Settings extends Component {
             </TouchableHighlight>
           </View>
 
-          <View>
+          <View style={styles.headerTextContainer}>
             <Text style={styles.headerTextBold}> Settings </Text>
           </View>
 
-          <View></View>
+          <View style={styles.emptyContainer}></View>
         </View>
 
       </View>
@@ -53,30 +53,43 @@ const styles = StyleSheet.create({
 
   headerBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#343442',
     height: 65,
     paddingTop: 8,
   },
 
+  headerTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
   headerTextBold: {
-    marginRight: 30,
     fontSize: 16,
     color: 'white',
     fontFamily: 'MaisonNeueTRIAL-Demi'
   },
 
   backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    marginLeft: 10,
-    padding: 10
+    marginLeft: 16,
+    marginTop: 5
   },
 
   backIcon: {
-    marginTop: 5,
     fontSize: 20,
     color: 'white',
     fontFamily: 'MaisonNeueTRIAL-Medium'
