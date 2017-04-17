@@ -45,13 +45,15 @@ class Settings extends Component {
           <View style={styles.settingsSectionHeader}>
             <Text style={styles.settingsHeaderText}> Invite </Text>
           </View>
-          <View style={styles.settingsButtonContainer}>
-            <Text style={styles.settingsButtonText}> Option 1 </Text>
-            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
-          </View>
-          <View style={styles.settingsButtonContainer}>
-            <Text style={styles.settingsButtonText}> Option 2</Text>
-            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+          <View style={styles.settingsSectionButtons}>
+            <View style={styles.settingsButtonContainer}>
+              <Text style={styles.settingsButtonText}> Option 1 </Text>
+              <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+            </View>
+            <View style={styles.settingsButtonContainer}>
+              <Text style={styles.settingsButtonText}> Option 2</Text>
+              <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+            </View>
           </View>
         </View>
 
@@ -59,13 +61,15 @@ class Settings extends Component {
           <View style={styles.settingsSectionHeader}>
             <Text style={styles.settingsHeaderText}> My Account </Text>
           </View>
-          <View style={styles.settingsButtonContainer}>
-            <Text style={styles.settingsButtonText}> Option 1 </Text>
-            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
-          </View>
-          <View style={styles.settingsButtonContainer}>
-            <Text style={styles.settingsButtonText}> Option 2</Text>
-            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+          <View style={styles.settingsSectionButtons}>
+            <View style={styles.settingsButtonContainer}>
+              <Text style={styles.settingsButtonText}> Option 1 </Text>
+              <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+            </View>
+            <View style={styles.settingsButtonContainer}>
+              <Text style={styles.settingsButtonText}> Option 2</Text>
+              <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+            </View>
           </View>
         </View>
 
@@ -73,13 +77,15 @@ class Settings extends Component {
           <View style={styles.settingsSectionHeader}>
             <Text style={styles.settingsHeaderText}> Settings </Text>
           </View>
-          <View style={styles.settingsButtonContainer}>
-            <Text style={styles.settingsButtonText}> Option 1 </Text>
-            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
-          </View>
-          <View style={styles.settingsButtonContainer}>
-            <Text style={styles.settingsButtonText}> Option 2</Text>
-            <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+          <View style={styles.settingsSectionButtons}>
+            <View style={styles.settingsButtonContainer}>
+              <Text style={styles.settingsButtonText}> Option 1 </Text>
+              <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+            </View>
+            <View style={styles.settingsButtonContainer}>
+              <Text style={styles.settingsButtonText}> Option 2</Text>
+              <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
+            </View>
           </View>
         </View>
 
@@ -140,7 +146,11 @@ const styles = StyleSheet.create({
 
   settingsSection: {
     flex: 1,
-    borderTopWidth: 1,
+  },
+
+  settingsSectionButtons: {
+    flex: 1,
+    borderWidth: 1,
     borderColor: 'rgba(155,155,155, 0.30)'
   },
 
