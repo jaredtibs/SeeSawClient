@@ -144,18 +144,14 @@ const styles = StyleSheet.create({
     fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
-  settingsSection: {
-    flex: 1,
-  },
-
   settingsSectionButtons: {
-    flex: 1,
+    height: 100,
     borderWidth: 1,
     borderColor: 'rgba(155,155,155, 0.30)'
   },
 
   settingsSectionHeader: {
-    flex: 1,
+    height: 50,
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-start',
