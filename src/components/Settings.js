@@ -92,6 +92,10 @@ class Settings extends Component {
           </View>
         </View>
 
+        <View style={styles.logoutContainer}>
+          <Text style={styles.logoutText}> Logout </Text>
+        </View>
+
       </View>
     )
   }
@@ -187,6 +191,22 @@ const styles = StyleSheet.create({
   hr: {
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(155,155,155, 0.30)'
+  },
+
+  logoutContainer: {
+    height: 50,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    marginTop: 50,
+    borderWidth: 1,
+    borderColor: 'rgba(155,155,155, 0.30)'
+  },
+
+  logoutText: {
+    fontSize: 16,
+    color: '#343442',
+    fontFamily: 'MaisonNeueTRIAL-Demi',
+    paddingLeft: 25
   }
 
 })
