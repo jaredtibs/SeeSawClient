@@ -50,6 +50,7 @@ class Settings extends Component {
               <Text style={styles.settingsButtonText}> Option 1 </Text>
               <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
             </View>
+            <View style={styles.hr}/>
             <View style={styles.settingsButtonContainer}>
               <Text style={styles.settingsButtonText}> Option 2</Text>
               <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
@@ -66,6 +67,7 @@ class Settings extends Component {
               <Text style={styles.settingsButtonText}> Option 1 </Text>
               <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
             </View>
+            <View style={styles.hr}/>
             <View style={styles.settingsButtonContainer}>
               <Text style={styles.settingsButtonText}> Option 2</Text>
               <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
@@ -82,6 +84,7 @@ class Settings extends Component {
               <Text style={styles.settingsButtonText}> Option 1 </Text>
               <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
             </View>
+            <View style={styles.hr}/>
             <View style={styles.settingsButtonContainer}>
               <Text style={styles.settingsButtonText}> Option 2</Text>
               <Icon name='ios-arrow-forward' style={styles.forwardIcon} size={18}></Icon>
@@ -179,6 +182,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Medium',
     color: '#343442'
+  },
+
+  hr: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(155,155,155, 0.30)'
   }
 
 })
