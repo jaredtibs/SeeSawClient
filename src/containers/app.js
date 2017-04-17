@@ -11,6 +11,7 @@ import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
 import MainContainer from './MainContainer';
 import ShareFormContainer from './ShareFormContainer';
+import SettingsContainer from './SettingsContainer';
 
 class App extends Component {
   constructor(props) {
@@ -21,13 +22,14 @@ class App extends Component {
     return (
       <RouterWithRedux>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="launch" component={LaunchContainer} title="Launch" initial={true}/>
+          <Scene key="launch" component={LaunchContainer} title="Launch" />
           <Scene key="landing" component={Landing} title="Landing"/>
           <Scene key="locationIntro" component={LocationIntro} title="LocationIntro"/>
           <Scene key="login" component={LoginContainer} title="Login"/>
           <Scene key="register" component={RegisterContainer} title="Register"/>
           <Scene key="main" component={MainContainer} title="Main"/>
           <Scene key="shareForm" direction='vertical' component={ShareFormContainer} title="Share"/>
+          <Scene key="settings"  direction='vertical' component={SettingsContainer} title="Settings" initial={true}/>
         </Scene>
       </RouterWithRedux>
     )
