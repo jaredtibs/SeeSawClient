@@ -45,11 +45,23 @@ class Settings extends Component {
           <View style={styles.settingsSectionHeader}>
             <Text style={styles.settingsHeaderText}> Invite </Text>
           </View>
+          <View style={styles.settingsButtonContainer}>
+            <Text style={styles.settingsButtonText}> Option 1 </Text>
+          </View>
+          <View style={styles.settingsButtonContainer}>
+            <Text style={styles.settingsButtonText}> Option 2</Text>
+          </View>
         </View>
 
         <View style={styles.settingsSection}>
           <View style={styles.settingsSectionHeader}>
             <Text style={styles.settingsHeaderText}> My Account </Text>
+          </View>
+          <View style={styles.settingsButtonContainer}>
+            <Text style={styles.settingsButtonText}> Option 1 </Text>
+          </View>
+          <View style={styles.settingsButtonContainer}>
+            <Text style={styles.settingsButtonText}> Option 2</Text>
           </View>
         </View>
 
@@ -57,7 +69,14 @@ class Settings extends Component {
           <View style={styles.settingsSectionHeader}>
             <Text style={styles.settingsHeaderText}> Settings </Text>
           </View>
+          <View style={styles.settingsButtonContainer}>
+            <Text style={styles.settingsButtonText}> Option 1 </Text>
+          </View>
+          <View style={styles.settingsButtonContainer}>
+            <Text style={styles.settingsButtonText}> Option 2</Text>
+          </View>
         </View>
+
       </View>
     )
   }
@@ -128,6 +147,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'MaisonNeueTRIAL-Bold',
     color: '#9B9B9B'
+  },
+
+  settingsButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    height: 50
+  },
+
+  settingsButtonText: {
+    fontSize: 14,
+    fontFamily: 'MaisonNeueTRIAL-Medium',
+    color: '#343442'
   }
 
 })
