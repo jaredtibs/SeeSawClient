@@ -6,6 +6,7 @@ import {
   ListView,
   Text,
   TouchableHighlight,
+  StatusBar,
   StyleSheet
 } from 'react-native';
 
@@ -23,6 +24,7 @@ class Settings extends Component {
   render() {
     return(
       <View style={styles.container}>
+        <StatusBar barStyle="light-content"/>
         <View style={styles.headerBar}>
           <View style={styles.buttonContainer}>
             <TouchableHighlight
