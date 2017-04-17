@@ -28,6 +28,7 @@ class Settings extends Component {
             <TouchableHighlight
               style={styles.backButton}
               onPress={() => this._goBack()}
+              underlayColor='#343442'
             >
               <Icon name='ios-arrow-back' style={styles.backIcon} size={18}></Icon>
             </TouchableHighlight>
@@ -40,6 +41,23 @@ class Settings extends Component {
           <View style={styles.emptyContainer}></View>
         </View>
 
+        <View style={styles.settingsSection}>
+          <View style={styles.settingsSectionHeader}>
+            <Text style={styles.settingsHeaderText}> Invite </Text>
+          </View>
+        </View>
+
+        <View style={styles.settingsSection}>
+          <View style={styles.settingsSectionHeader}>
+            <Text style={styles.settingsHeaderText}> My Account </Text>
+          </View>
+        </View>
+
+        <View style={styles.settingsSection}>
+          <View style={styles.settingsSectionHeader}>
+            <Text style={styles.settingsHeaderText}> Settings </Text>
+          </View>
+        </View>
       </View>
     )
   }
@@ -93,6 +111,23 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     fontFamily: 'MaisonNeueTRIAL-Medium'
+  },
+
+  settingsSection: {
+    flex: 1
+  },
+
+  settingsSectionHeader: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  settingsHeaderText: {
+    fontSize: 12,
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    color: '#9B9B9B'
   }
 
 })
