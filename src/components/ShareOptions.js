@@ -22,7 +22,7 @@ class ShareOptions extends Component {
         <View style={[styles.container, {marginBottom: margin}]}>
           <View style={styles.options}>
             <View style={{flexDirection: 'row'}}>
-              <Text style={styles.optionsText}> Share with: </Text>
+              <Text style={styles.optionsText}> Post To: </Text>
               <Text style={styles.visibilityText}> Everyone </Text>
             </View>
 
