@@ -78,14 +78,16 @@ class ShareForm extends Component {
     }
   }
 
+  _openUserSearch() {
+    Actions.shareSearch();
+  }
+
   render() {
     let disabled = this.state.disabled;
 
     return(
       <View style={styles.container}>
-        <StatusBar
-          barStyle="light-content"
-        />
+        <StatusBar />
         <View style={styles.headerBar}>
           <View>
             <TouchableHighlight
@@ -138,6 +140,8 @@ class ShareForm extends Component {
         <ShareOptions
           visible={this.state.keyboardShown}
           heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
+          openUserSearch={this._openUserSearch}
+
         />
       </View>
     )
@@ -147,13 +151,13 @@ class ShareForm extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#343442"
   },
 
   headerBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: '#F1F1F1',
     height: 65,
     paddingTop: 8,
   },
@@ -189,20 +193,21 @@ const styles = StyleSheet.create({
 
   enabledHeaderText: {
     fontSize: 14,
-    color: 'white',
-    fontFamily: 'MaisonNeueTRIAL-Medium',
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
   disabledHeaderText: {
     fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.4)',
+    color: 'rgba(48, 48, 53, 0.4)',
     fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
   headerTextBold: {
     fontSize: 16,
-    color: 'white',
-    fontFamily: 'MaisonNeueTRIAL-Bold'
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    marginRight: 10
   },
 
   cancelButton: {
@@ -227,4 +232,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ShareForm
+export default ShareForm;
