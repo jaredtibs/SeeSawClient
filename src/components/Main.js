@@ -16,6 +16,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import LocationContainer from '../containers/LocationContainer';
 import ProfileContainer from '../containers/ProfileContainer';
+import NotificationsContainer from '../containers/NotificationsContainer';
 
 // Factual Engine **
 const Engine = NativeModules.Engine;
@@ -64,17 +65,23 @@ class Main extends Component {
   }
 
   renderProfile() {
-    const {dispatch, navigator} = this.props
+    const {dispatch} = this.props
 
     return (
-      <ProfileContainer
-        dispatch={dispatch}
-        navigator={navigator} />
+      <ProfileContainer dispatch={dispatch} />
+    )
+  }
+
+  renderNotifications() {
+    const {dispatch } = this.props
+
+    return (
+      <NotificationsContainer dispatch={dispatch}/>
     )
   }
 
   renderLocation () {
-    const {dispatch, navigator} = this.props
+    const {dispatch } = this.props
 
     return (
       <View tabLabel="location" style={styles.tabView}>
@@ -113,8 +120,8 @@ class Main extends Component {
             this.renderLocation()
           }
 
-          <ScrollView tabLabel="ios-settings-outline" style={styles.tabView}>
-            {null}
+          <ScrollView tabLabel="notifications" style={styles.tabView}>
+            {this.renderNotifications()}
           </ScrollView>
         </ScrollableTabView>
       </View>
