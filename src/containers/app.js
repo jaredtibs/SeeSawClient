@@ -30,7 +30,7 @@ class App extends Component {
           <Scene key="register" component={RegisterContainer} title="Register"/>
           <Scene key="main" component={MainContainer} title="Main"/>
           <Scene key="shareForm" direction='vertical' component={ShareFormContainer} title="Share"/>
-          <Scene key="shareSearch" direction='vertical' component={ShareSearch} title="Share Search"/>
+          <Scene key="shareSearch" direction='vertical' component={ShareSearch} title="Share Search" initial={true}/>
           <Scene key="settings"  direction='vertical' component={SettingsContainer} title="Settings"/>
         </Scene>
       </RouterWithRedux>

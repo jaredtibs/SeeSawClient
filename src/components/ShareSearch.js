@@ -7,7 +7,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-import {InstantSearch} from 'react-instantsearch/dom';
+import {InstantSearch} from 'react-instantsearch';
 
 class ShareSearch extends Component {
   constructor(props) {
