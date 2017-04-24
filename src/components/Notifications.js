@@ -38,6 +38,8 @@ class Notifications extends Component {
 
     return (
       <View style={styles.container}>
+        <View style={styles.subheaderBar}>
+        </View>
         {notifications.length > 0 ?
           <ListView
             enableEmptySections={true}
@@ -56,7 +58,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 100
   },
 
   emptyNotifications: {
@@ -72,13 +75,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgba(52,52,66,.50)',
     lineHeight: 20,
-    marginTop: 80
   },
 
   notificationsList: {
     flex: 1,
-    paddingTop: 10,
-    paddingBottom: 60
   },
 
   row: {

@@ -120,9 +120,9 @@ class Main extends Component {
             this.renderLocation()
           }
 
-          <ScrollView tabLabel="notifications" style={styles.tabView}>
+          <View tabLabel="ios-notifications-outline" style={styles.tabView}>
             {this.renderNotifications()}
-          </ScrollView>
+          </View>
         </ScrollableTabView>
       </View>
     )
