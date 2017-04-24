@@ -87,7 +87,7 @@ class ShareForm extends Component {
 
     return(
       <View style={styles.container}>
-        <StatusBar />
+        <StatusBar barStyle='dark-content' />
         <View style={styles.headerBar}>
           <View>
             <TouchableHighlight

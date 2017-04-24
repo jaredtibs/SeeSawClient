@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Actions} from 'react-native-router-flux'
 
 import {
   View,
@@ -10,6 +11,10 @@ import {
 class ShareSearch extends Component {
   constructor(props) {
     super(props)
+  }
+
+  _goBack() {
+    Actions.pop();
   }
 
   render() {
