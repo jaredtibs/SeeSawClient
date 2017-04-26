@@ -61,7 +61,7 @@ class CustomTabBar extends Component {
         <View>
           <TouchableOpacity
             style={styles.tab}
-            onPress={() => this.props.changeTabScene('location')}>
+            onPress={() => console.log('editing location')}>
             <View style={styles.locationTabContainer}>
               { scrolledTabBar ?
                 <Animatable.Text ref="locationHeader" style={styles.scrolledTextTab}>

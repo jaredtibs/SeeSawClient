@@ -10,9 +10,9 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-const ImagePicker = require('react-native-image-picker');
-
 import HeaderBar from '../components/HeaderBar';
+
+const ImagePicker = require('react-native-image-picker');
 
 var avatarOptions = {
   title: '',

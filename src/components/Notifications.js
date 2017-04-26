@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Actions} from 'react-native-router-flux'
 
 import {
   View,
@@ -6,6 +7,8 @@ import {
   StyleSheet,
   ListView
 } from 'react-native';
+
+import HeaderBar from '../components/HeaderBar';
 
 class Notifications extends Component {
   constructor(props) {
@@ -62,9 +65,6 @@ class Notifications extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 100
   },
 
   emptyNotifications: {
