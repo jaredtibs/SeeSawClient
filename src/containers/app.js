@@ -13,6 +13,7 @@ import MainContainer from './MainContainer';
 import ShareFormContainer from './ShareFormContainer';
 import ShareSearch from '../components/ShareSearch';
 import SettingsContainer from './SettingsContainer';
+import ProfileContainer from './ProfileContainer';
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
           <Scene key="login" component={LoginContainer} title="Login"/>
           <Scene key="register" component={RegisterContainer} title="Register"/>
           <Scene key="main" component={MainContainer} title="Main"/>
+          <Scene key="profile" component={ProfileContainer} title="Profile"/>
           <Scene key="shareForm" direction='vertical' component={ShareFormContainer} title="Share"/>
           <Scene key="shareSearch" direction='vertical' component={ShareSearch} title="Share Search"/>
           <Scene key="settings"  direction='vertical' component={SettingsContainer} title="Settings"/>

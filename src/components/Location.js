@@ -95,7 +95,7 @@ class Location extends Component {
       <View style={styles.container}>
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}
-          windowHeight={280}
+          windowHeight={225}
           scrollEventThrottle={16}
           onScroll={this.handleScroll.bind(this)}
           refreshControl={
