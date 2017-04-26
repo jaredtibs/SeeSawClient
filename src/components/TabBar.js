@@ -1,3 +1,4 @@
+// CURRENTLY UNUSED - DELETE BEFORE LAUNCH
 import React from 'react';
 import {
   StyleSheet,
@@ -125,9 +126,9 @@ const TabBar = React.createClass({
                         ref={(icon) => { this.tabIcons[i] = icon; }}
                       >
                         {
-                          lightTabBar ? 
+                          lightTabBar ?
                           <Text style={styles.notificationCount}> 2 </Text>
-                          : <Icon name='ios-notifications-outline' size={18} style={styles.notificationIcon} />
+                          : <Icon name="ios-notifications-outline" size={18} style={styles.notificationIcon} />
                         }
                       </View>
                     )
