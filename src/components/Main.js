@@ -14,8 +14,6 @@ import {
 
 import TopNavBar from '../components/TopNavBar';
 import LocationContainer from '../containers/LocationContainer';
-import ProfileContainer from '../containers/ProfileContainer';
-import NotificationsContainer from '../containers/NotificationsContainer';
 
 // Factual Engine **
 const Engine = NativeModules.Engine;
