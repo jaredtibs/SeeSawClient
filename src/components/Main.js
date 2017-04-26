@@ -11,9 +11,8 @@ import {
   NativeModules
 } from 'react-native';
 
-import TabBar from '../components/TabBar';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-
+//import TabBar from '../components/TabBar';
+import CustomTabBar from '../components/CustomTabBar';
 import LocationContainer from '../containers/LocationContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 
@@ -64,30 +63,24 @@ class Main extends Component {
   }
 
   renderProfile() {
-    const {dispatch, navigator} = this.props
+    const { dispatch } = this.props;
 
     return (
-      <ProfileContainer
-        dispatch={dispatch}
-        navigator={navigator} />
+      <ProfileContainer dispatch={dispatch} />
     )
   }
 
   renderLocation () {
-    const {dispatch, navigator} = this.props
+    const {dispatch } = this.props;
 
     return (
-      <View tabLabel="location" style={styles.tabView}>
-        <LocationContainer
-          dispatch={dispatch}
-          tabLabel="location"/>
-      </View>
+      <LocationContainer dispatch={dispatch} />
     )
   }
 
   renderLocationLoadingState() {
     return(
-      <View style={styles.locationLoadingState} tabLabel="location">
+      <View style={styles.locationLoadingState}>
         <Text style={styles.loadingText}> Finding your location... </Text>
       </View>
     )
@@ -97,6 +90,7 @@ class Main extends Component {
     const fetchingLocation = this.props.location.findingLocation
 
     return(
+      /*
       <View style={styles.container}>
         <ScrollableTabView
           locked={true}
@@ -118,6 +112,16 @@ class Main extends Component {
           </ScrollView>
         </ScrollableTabView>
       </View>
+      */
+      <View style={styles.container}>
+        <CustomTabBar location={this.props.location} user={this.props.user} />
+        <ScrollView>
+          {fetchingLocation ?
+            this.renderLocationLoadingState() :
+            this.renderLocation()
+          }
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -126,10 +130,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAF8F7',
-  },
-
-  tabView: {
-    flex: 1
   },
 
   locationLoadingState: {

@@ -5,7 +5,6 @@ import {
 
 class Launch extends Component {
   render() {
-    console.log(this.props)
     setTimeout(() => {
       this.props.checkUserSession();
     }, 50);
