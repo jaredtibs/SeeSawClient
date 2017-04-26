@@ -12,7 +12,7 @@ import {
   NativeModules
 } from 'react-native';
 
-import CustomTabBar from '../components/CustomTabBar';
+import TopNavBar from '../components/TopNavBar';
 import LocationContainer from '../containers/LocationContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import NotificationsContainer from '../containers/NotificationsContainer';
@@ -94,7 +94,7 @@ class Main extends Component {
 
     return(
       <View style={styles.container}>
-        <CustomTabBar
+        <TopNavBar
           location={this.props.location}
           user={this.props.user}
           changeTabScene={this._changeTabScene}

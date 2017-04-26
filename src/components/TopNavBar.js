@@ -12,7 +12,7 @@ import {
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-class CustomTabBar extends Component {
+class TopNavBar extends Component {
   constructor(props) {
     super(props)
   }
@@ -193,4 +193,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default CustomTabBar;
+export default TopNavBar;

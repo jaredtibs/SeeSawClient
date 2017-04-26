@@ -1,3 +1,4 @@
+// CURRENTLY UNUSED - DELETE BEFORE LAUNCH
 import React from 'react';
 import {
   StyleSheet,
