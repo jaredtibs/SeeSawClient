@@ -39,6 +39,7 @@ class Notifications extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.subheaderBar}>
+          <Text> Activity </Text>
         </View>
         {notifications.length > 0 ?
           <ListView
@@ -79,6 +80,11 @@ const styles = StyleSheet.create({
 
   notificationsList: {
     flex: 1,
+  },
+
+  subheaderBar: {
+    flexDirection: 'row',
+    height: 100
   },
 
   row: {
