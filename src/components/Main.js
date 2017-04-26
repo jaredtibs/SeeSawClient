@@ -74,7 +74,9 @@ class Main extends Component {
     const {dispatch } = this.props;
 
     return (
-      <LocationContainer dispatch={dispatch} />
+      <View style={{flex: 1}}>
+        <LocationContainer dispatch={dispatch} />
+      </View>
     )
   }
 
@@ -115,7 +117,7 @@ class Main extends Component {
       */
       <View style={styles.container}>
         <CustomTabBar location={this.props.location} user={this.props.user} />
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.mainScrollView}>
           {fetchingLocation ?
             this.renderLocationLoadingState() :
             this.renderLocation()
@@ -130,6 +132,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAF8F7',
+  },
+
+  mainScrollView: {
+    flex: 1,
   },
 
   locationLoadingState: {
