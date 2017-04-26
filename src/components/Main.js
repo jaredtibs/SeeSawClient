@@ -11,7 +11,6 @@ import {
   NativeModules
 } from 'react-native';
 
-//import TabBar from '../components/TabBar';
 import CustomTabBar from '../components/CustomTabBar';
 import LocationContainer from '../containers/LocationContainer';
 import ProfileContainer from '../containers/ProfileContainer';
@@ -92,29 +91,6 @@ class Main extends Component {
     const fetchingLocation = this.props.location.findingLocation
 
     return(
-      /*
-      <View style={styles.container}>
-        <ScrollableTabView
-          locked={true}
-          initialPage={1}
-          renderTabBar={() => <TabBar location={this.props.location} user={this.props.user} />}
-          tabBarPosition='overlayTop'>
-
-          <View tabLabel="profile" style={styles.tabView}>
-            {this.renderProfile()}
-          </View>
-
-          {fetchingLocation ?
-            this.renderLocationLoadingState() :
-            this.renderLocation()
-          }
-
-          <ScrollView tabLabel="ios-settings-outline" style={styles.tabView}>
-            {null}
-          </ScrollView>
-        </ScrollableTabView>
-      </View>
-      */
       <View style={styles.container}>
         <CustomTabBar location={this.props.location} user={this.props.user} />
         <ScrollView contentContainerStyle={styles.mainScrollView}>

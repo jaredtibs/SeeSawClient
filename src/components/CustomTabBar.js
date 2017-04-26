@@ -24,7 +24,7 @@ class CustomTabBar extends Component {
   // 'ease-in-cubic'
   componentDidUpdate() {
     if (this.props.location.scrolledLocationNav) {
-      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 250, 'linear')
+      this.refs.locationHeader.transitionTo({marginBottom:0, fontSize: 18}, 250, 'linear')
     }
   }
 
@@ -42,48 +42,54 @@ class CustomTabBar extends Component {
     const scrolledTabBar = location.scrolledLocationNav;
 
     return(
-      <View style={styles.tabs}>
+      <View style={scrolledTabBar ? styles.scrolledTabs : styles.tabs}>
         {this.renderStatusBar()}
 
-        <TouchableOpacity style={styles.tab}>
-          <Image
-            style={styles.avatar}
-            source={
-              userAvatar != null ?
-              {uri: userAvatar} :
-              require('../assets/images/default_avatar.jpeg')}
-          />
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.tab}>
+            <Image
+              style={styles.avatar}
+              source={
+                userAvatar != null ?
+                {uri: userAvatar} :
+                require('../assets/images/default_avatar.jpeg')}
+            />
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity style={styles.tab}>
-          <View style={styles.locationTabContainer}>
-            { scrolledTabBar ?
-              <Animatable.Text ref="locationHeader" style={styles.scrolledTextTab}>
-                { locationData ? locationData.data.attributes.name : null }
-              </Animatable.Text>
-              :
-              <Text style={styles.textTab}>current location</Text>
-            }
-            { !scrolledTabBar ?
-              <Icon name='ios-arrow-down-outline'
-                size={18}
-                style={styles.moreLocationIcon}
-              />
-              :
-              null
-            }
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.tab}>
-          <View style={styles.notifications}>
-             {
-              scrolledTabBar ?
-              <Text style={styles.notificationCount}> 2 </Text>
-              : <Icon name='ios-notifications-outline' size={18} style={styles.notificationIcon} />
+        <View>
+          <TouchableOpacity style={styles.tab}>
+            <View style={styles.locationTabContainer}>
+              { scrolledTabBar ?
+                <Animatable.Text ref="locationHeader" style={styles.scrolledTextTab}>
+                  { locationData ? locationData.data.attributes.name : null }
+                </Animatable.Text>
+                :
+                <Text style={styles.textTab}>Current location</Text>
               }
-          </View>
-        </TouchableOpacity>
+              { !scrolledTabBar ?
+                <Icon name='ios-arrow-down-outline'
+                  size={18}
+                  style={styles.moreLocationIcon}
+                />
+                :
+                null
+              }
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <TouchableOpacity style={styles.tab}>
+            <View style={styles.notifications}>
+              {
+                scrolledTabBar ?
+                <Text style={styles.notificationCount}> 2 </Text>
+                : <Icon name='ios-notifications-outline' size={18} style={styles.notificationIcon} />
+                }
+            </View>
+          </TouchableOpacity>
+        </View>
 
       </View>
     )
@@ -103,22 +109,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: 10,
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
+    backgroundColor: '#F1F1F1'
+  },
+
+  scrolledTabs: {
+    height: 65,
+    paddingTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: '#F1F1F1'
   },
 
   locationTabContainer: {
-    marginTop: 10,
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
 
   moreLocationIcon: {
-    color: '#FAF8F7',
+    marginTop: 3,
+    color: '#303035'
   },
 
   scrolledTextTab: {
@@ -129,9 +140,10 @@ const styles = StyleSheet.create({
   },
 
   textTab: {
-    fontSize: 10,
-    color: '#FAF8F7',
-    fontFamily: 'MaisonNeueTRIAL-Bold'
+    fontSize: 12,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    marginRight: 5
   },
 
   avatar: {
@@ -147,10 +159,10 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 30/2,
-    backgroundColor: '#09090C',
-    marginRight: 15,
+    backgroundColor: 'rgba(47, 47, 48, .10)',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginRight: 15
   },
 
   notificationsActive: {
@@ -171,7 +183,7 @@ const styles = StyleSheet.create({
   },
 
   notificationIcon: {
-    color: 'white'
+    color: '#303035',
   }
 
 })
