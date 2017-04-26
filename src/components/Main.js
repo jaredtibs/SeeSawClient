@@ -15,6 +15,7 @@ import {
 import CustomTabBar from '../components/CustomTabBar';
 import LocationContainer from '../containers/LocationContainer';
 import ProfileContainer from '../containers/ProfileContainer';
+import NotificationsContainer from '../containers/NotificationsContainer';
 
 // Factual Engine **
 const Engine = NativeModules.Engine;
@@ -61,7 +62,7 @@ class Main extends Component {
       console.error(e);
     }
   }
-
+  
   _changeTabScene(name) {
     if (name == 'profile') {
       Actions.profile();
