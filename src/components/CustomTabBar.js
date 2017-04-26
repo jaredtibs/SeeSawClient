@@ -68,7 +68,7 @@ class CustomTabBar extends Component {
                   { locationData ? locationData.data.attributes.name : null }
                 </Animatable.Text>
                 :
-                <Text style={styles.textTab}>Current location</Text>
+                <Text style={styles.textTab}>current location</Text>
               }
               { !scrolledTabBar ?
                 <Icon name='ios-arrow-down-outline'

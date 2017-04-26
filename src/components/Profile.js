@@ -12,6 +12,8 @@ import {
 
 const ImagePicker = require('react-native-image-picker');
 
+import HeaderBar from '../components/HeaderBar';
+
 var avatarOptions = {
   title: '',
   allowsEditing: true,
@@ -99,15 +101,12 @@ class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
   avatarContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50
   },
 
   optionsContainer: {
