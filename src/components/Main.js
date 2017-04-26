@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Actions} from 'react-native-router-flux'
 
 import {
   View,
@@ -61,12 +62,12 @@ class Main extends Component {
     }
   }
 
-  renderProfile() {
-    const { dispatch } = this.props;
-
-    return (
-      <ProfileContainer dispatch={dispatch} />
-    )
+  _changeTabScene(name) {
+    if (name == 'profile') {
+      Actions.profile();
+    } else {
+      Actions.notifications();
+    }
   }
 
   renderLocation () {
@@ -92,7 +93,11 @@ class Main extends Component {
 
     return(
       <View style={styles.container}>
-        <CustomTabBar location={this.props.location} user={this.props.user} />
+        <CustomTabBar
+          location={this.props.location}
+          user={this.props.user}
+          changeTabScene={this._changeTabScene}
+        />
         <ScrollView contentContainerStyle={styles.mainScrollView}>
           {fetchingLocation ?
             this.renderLocationLoadingState() :

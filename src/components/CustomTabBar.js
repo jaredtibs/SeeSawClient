@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Actions} from 'react-native-router-flux'
 
 import {
   StyleSheet,
@@ -46,7 +45,9 @@ class CustomTabBar extends Component {
         {this.renderStatusBar()}
 
         <View>
-          <TouchableOpacity style={styles.tab}>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => this.props.changeTabScene('profile')}>
             <Image
               style={styles.avatar}
               source={
@@ -58,7 +59,9 @@ class CustomTabBar extends Component {
         </View>
 
         <View>
-          <TouchableOpacity style={styles.tab}>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => this.props.changeTabScene('location')}>
             <View style={styles.locationTabContainer}>
               { scrolledTabBar ?
                 <Animatable.Text ref="locationHeader" style={styles.scrolledTextTab}>
@@ -80,7 +83,9 @@ class CustomTabBar extends Component {
         </View>
 
         <View>
-          <TouchableOpacity style={styles.tab}>
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => this.props.changeTabScene('location')}>
             <View style={styles.notifications}>
               {
                 scrolledTabBar ?
