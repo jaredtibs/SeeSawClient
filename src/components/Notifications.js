@@ -38,6 +38,10 @@ class Notifications extends Component {
 
     return (
       <View style={styles.container}>
+        <HeaderBar
+          goBack={() => Actions.pop()}
+          header="Notifications"
+        />
         <View style={styles.subheaderBar}>
           <Text> Activity </Text>
         </View>

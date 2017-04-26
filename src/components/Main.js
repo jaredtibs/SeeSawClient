@@ -62,7 +62,7 @@ class Main extends Component {
       console.error(e);
     }
   }
-  
+
   _changeTabScene(name) {
     if (name == 'profile') {
       Actions.profile();

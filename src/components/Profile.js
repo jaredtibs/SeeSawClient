@@ -61,6 +61,10 @@ class Profile extends Component {
 
     return(
       <View style={styles.container}>
+        <HeaderBar
+          goBack={() => Actions.pop()}
+          header="Profile"
+        />
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
