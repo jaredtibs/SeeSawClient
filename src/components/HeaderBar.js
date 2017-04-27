@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
   },
 
   backButton: {
-    marginLeft: 15,
-    marginTop: 8,
     justifyContent: 'center',
   },
 
-  backIcon: {
+  back: {
+    paddingLeft: 15,
+    paddingTop: 8,
     color: '#2F2F30'
   }
 });
