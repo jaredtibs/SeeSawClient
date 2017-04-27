@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   subHeaderBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 40,
+    height: 45,
     backgroundColor: '#F1F1F1',
     borderTopColor: '#E1E1E1',
     borderTopWidth: 1,
