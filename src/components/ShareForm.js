@@ -93,6 +93,7 @@ class ShareForm extends Component {
             <TouchableHighlight
               style={styles.cancelButton}
               onPress={() => this._goBack()}
+              underlayColor='#F1F1F1'
             >
               <Text style={styles.enabledHeaderText}> Cancel </Text>
             </TouchableHighlight>
@@ -107,6 +108,7 @@ class ShareForm extends Component {
               style={styles.submitButton}
               disabled={disabled}
               onPress={() => this._publishPost()}
+              underlayColor='#F1F1F1'
             >
               <Text style={(disabled === true) ? styles.disabledHeaderText : styles.enabledHeaderText}> Post </Text>
             </TouchableHighlight>
@@ -204,18 +206,19 @@ const styles = StyleSheet.create({
   },
 
   headerTextBold: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Bold',
-    marginRight: 10
   },
 
   cancelButton: {
-    marginLeft: 10,
+    paddingLeft: 10,
+    padding: 10,
   },
 
   submitButton: {
-    marginRight: 10
+    paddingRight: 15,
+    padding: 10,
   },
 
   input: {
