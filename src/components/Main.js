@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import TopNavBar from '../components/TopNavBar';
+import ShareButton from '../components/ShareButton';
 import LocationContainer from '../containers/LocationContainer';
 
 // Factual Engine **
@@ -103,6 +104,7 @@ class Main extends Component {
             this.renderLocation()
           }
         </ScrollView>
+        <ShareButton />
       </View>
     )
   }
