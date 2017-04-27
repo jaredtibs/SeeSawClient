@@ -10,7 +10,8 @@ import {
   ListView,
   ScrollView,
   Image,
-  RefreshControl
+  RefreshControl,
+  Dimensions
 } from 'react-native';
 
 import ShareButton from '../components/ShareButton';
@@ -18,36 +19,14 @@ import FeedContainer from '../containers/FeedContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ParallaxView from 'react-native-parallax-view';
 
+const width = Dimensions.get('window').width;
+
 class Location extends Component {
   constructor(props) {
     super(props)
     this.state = {
       scrolledDown: false
     }
-  }
-
-  renderStats(location) {
-    const attributes = location.data.data.attributes;
-    const postCount = attributes['post-count']
-    const voteCount = attributes['vote-count']
-    const photoCount = attributes['photo-count']
-
-    return(
-      <View style={styles.statsContainer}>
-        <View style={styles.stat}>
-          <Text style={styles.statValue}> {location.newPostCount ? location.newPostCount : postCount} </Text>
-          <Text style={styles.statText}> posts </Text>
-        </View>
-        <View style={styles.stat}>
-          <Text style={styles.statValue}> {location.newVoteCount ? location.newVoteCount : voteCount} </Text>
-          <Text style={styles.statText}> votes </Text>
-        </View>
-        <View style={styles.stat}>
-          <Text style={styles.statValue}> {location.newPhotoCount ? location.newPhotoCount : photoCount} </Text>
-          <Text style={styles.statText}> photos </Text>
-        </View>
-      </View>
-    )
   }
 
   renderFeed() {
@@ -91,11 +70,16 @@ class Location extends Component {
     const isRefreshing = isFetching && this.props.feed.posts.length > 0
     const { name, city, region } = location.data.data.attributes;
 
+    const attributes = location.data.data.attributes;
+    const postCount = attributes['post-count']
+    const voteCount = attributes['vote-count']
+    const photoCount = attributes['photo-count']
+
     return(
       <View style={styles.container}>
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}
-          windowHeight={280}
+          windowHeight={225}
           scrollEventThrottle={16}
           onScroll={this.handleScroll.bind(this)}
           refreshControl={
@@ -106,12 +90,23 @@ class Location extends Component {
             />
           }
           header={(
-            <View style={styles.locationHeader}>
-              <Text style={styles.locationName}> {name} </Text>
-              <Text style={styles.locationCity}> {city}, {region} </Text>
+            <View style={styles.headerContainer}>
+              <View style={styles.locationHeader}>
+                <Text style={styles.locationName}> {name} </Text>
+              </View>
+              <View style={styles.locationSubHeader}>
+                <View style={styles.cityContainer}>
+                  <Text style={styles.locationCity}> {city}, {region} </Text>
+                </View>
+                <View style={styles.statsContainer}>
+                  <Icon name='ios-chatbubbles-outline' size={16} style={styles.statIcon}></Icon>
+                  <Text style={styles.statValue}> {location.newPostCount ? location.newPostCount : postCount} </Text>
+                  <Icon name='ios-image-outline' size={16} style={styles.statIcon}></Icon>
+                  <Text style={styles.statValue}> {location.newPhotoCount ? location.newPhotoCount : photoCount} </Text>
+                </View>
+              </View>
             </View>
           )}>
-            { !isFetching ? this.renderStats(location) : null}
             { !isFetching ? this.renderFeed() : null}
         </ParallaxView>
 
@@ -126,12 +121,37 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  locationHeader: {
+  headerContainer: {
     flex: 1,
     justifyContent: 'flex-end',
+    alignSelf: 'center'
+  },
+
+  locationHeader: {
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
-    marginBottom: 20
+    marginBottom: 15
+  },
+
+  locationSubHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 40,
+    width: width,
+    backgroundColor: 'rgba(38, 38, 43, .60)',
+  },
+
+  cityContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+
+  statsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: 15
   },
 
   locationName: {
@@ -143,37 +163,23 @@ const styles = StyleSheet.create({
 
   locationCity: {
     fontFamily: 'MaisonNeueTRIAL-Demi',
-    color: 'rgba(255,255,255,.80)',
-    fontSize: 14,
+    color: 'rgba(255,255,255,.60)',
+    fontSize: 12,
     textAlign: 'center',
-    marginTop: 8
+    marginLeft: 10
   },
 
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 72,
-    backgroundColor: '#FAF8F7',
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(52,52,66,.10)'
-  },
-
-  stat: {
-    padding: 30
-  },
-
-  statText: {
-    fontSize: 10,
-    fontFamily: 'MaisonNeueTRIAL-Bold',
-    color: 'rgba(52,52,66,.50)',
-    marginTop: 3,
-    textAlign: 'center'
-  },
-
+  //TODO change with GTPressuerMonoTrial-Regular
   statValue: {
-    fontSize: 18,
-    fontFamily: 'GTPressuraMonoTrial-Bold'
+    fontSize: 12,
+    fontFamily: 'MaisonNeueTRIAL-Demi',
+    color: 'white',
+    marginRight: 10,
+  },
+
+  statIcon: {
+    color: '#F1F1F1',
+    marginRight: 3
   }
 
 });

@@ -19,18 +19,20 @@ class ShareOptions extends Component {
 
     if (this.props.visible) {
       return(
-        <View style={[styles.container, {marginBottom: margin}]}>
-          <View style={styles.options}>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={styles.optionsText}> Post To: </Text>
-              <Text style={styles.visibilityText}> Everyone </Text>
-            </View>
+        <TouchableOpacity onPress={() => this.props.openUserSearch() }>
+          <View style={[styles.container, {marginBottom: margin}]}>
+            <View style={styles.options}>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.optionsText}> To: </Text>
+                <Text style={styles.visibilityText}> Everyone </Text>
+              </View>
 
-            <View>
-              <Icon name='ios-person-add-outline' style={styles.addOption} size={28}></Icon>
+              <View>
+                <Icon name='ios-person-add-outline' style={styles.addOption} size={28}></Icon>
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       )
     } else {
       return null;

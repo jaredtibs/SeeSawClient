@@ -10,6 +10,8 @@ import {
   ActivityIndicator
 } from 'react-native';
 
+import HeaderBar from '../components/HeaderBar';
+
 const ImagePicker = require('react-native-image-picker');
 
 var avatarOptions = {
@@ -61,6 +63,10 @@ class Profile extends Component {
 
     return(
       <View style={styles.container}>
+        <HeaderBar
+          goBack={() => Actions.pop()}
+          header="Profile"
+        />
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
@@ -95,15 +101,12 @@ class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
   avatarContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50
   },
 
   optionsContainer: {

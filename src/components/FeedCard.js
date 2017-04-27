@@ -150,23 +150,23 @@ const styles = StyleSheet.create({
   postBody: {
     flex: 1,
     color: '#343442',
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Medium',
     paddingTop: 12,
     paddingLeft: 8,
     paddingRight: 24,
-    paddingBottom: 5,
+    paddingBottom: 8,
     lineHeight: 22
   },
 
   anonymousPostBody: {
     color: '#FBFAF8',
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Medium',
     paddingTop: 12,
     paddingLeft: 8,
     paddingRight: 24,
-    paddingBottom: 5,
+    paddingBottom: 8,
     lineHeight: 22
   },
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Actions} from 'react-native-router-flux'
 
 import {
   View,
@@ -11,11 +12,8 @@ import {
   NativeModules
 } from 'react-native';
 
-import TabBar from '../components/TabBar';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-
+import TopNavBar from '../components/TopNavBar';
 import LocationContainer from '../containers/LocationContainer';
-import ProfileContainer from '../containers/ProfileContainer';
 
 // Factual Engine **
 const Engine = NativeModules.Engine;
@@ -63,31 +61,27 @@ class Main extends Component {
     }
   }
 
-  renderProfile() {
-    const {dispatch, navigator} = this.props
-
-    return (
-      <ProfileContainer
-        dispatch={dispatch}
-        navigator={navigator} />
-    )
+  _changeTabScene(name) {
+    if (name == 'profile') {
+      Actions.profile();
+    } else {
+      Actions.notifications();
+    }
   }
 
   renderLocation () {
-    const {dispatch, navigator} = this.props
+    const {dispatch } = this.props;
 
     return (
-      <View tabLabel="location" style={styles.tabView}>
-        <LocationContainer
-          dispatch={dispatch}
-          tabLabel="location"/>
+      <View style={{flex: 1}}>
+        <LocationContainer dispatch={dispatch} />
       </View>
     )
   }
 
   renderLocationLoadingState() {
     return(
-      <View style={styles.locationLoadingState} tabLabel="location">
+      <View style={styles.locationLoadingState}>
         <Text style={styles.loadingText}> Finding your location... </Text>
       </View>
     )
@@ -98,25 +92,17 @@ class Main extends Component {
 
     return(
       <View style={styles.container}>
-        <ScrollableTabView
-          locked={true}
-          initialPage={1}
-          renderTabBar={() => <TabBar location={this.props.location} user={this.props.user} />}
-          tabBarPosition='overlayTop'>
-
-          <View tabLabel="profile" style={styles.tabView}>
-            {this.renderProfile()}
-          </View>
-
+        <TopNavBar
+          location={this.props.location}
+          user={this.props.user}
+          changeTabScene={this._changeTabScene}
+        />
+        <ScrollView contentContainerStyle={styles.mainScrollView}>
           {fetchingLocation ?
             this.renderLocationLoadingState() :
             this.renderLocation()
           }
-
-          <ScrollView tabLabel="ios-settings-outline" style={styles.tabView}>
-            {null}
-          </ScrollView>
-        </ScrollableTabView>
+        </ScrollView>
       </View>
     )
   }
@@ -128,8 +114,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAF8F7',
   },
 
-  tabView: {
-    flex: 1
+  mainScrollView: {
+    flex: 1,
   },
 
   locationLoadingState: {
