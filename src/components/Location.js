@@ -14,7 +14,6 @@ import {
   Dimensions
 } from 'react-native';
 
-import ShareButton from '../components/ShareButton';
 import FeedContainer from '../containers/FeedContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ParallaxView from 'react-native-parallax-view';
@@ -109,8 +108,6 @@ class Location extends Component {
           )}>
             { !isFetching ? this.renderFeed() : null}
         </ParallaxView>
-
-        <ShareButton />
       </View>
     )
   }
