@@ -43,7 +43,7 @@ class HeaderBar extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    height: 65
   },
 
   headerContainer: {

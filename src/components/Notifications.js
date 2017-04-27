@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import HeaderBar from '../components/HeaderBar';
+import Notification from '../components/Notification';
 
 class Notifications extends Component {
   constructor(props) {
@@ -17,9 +18,7 @@ class Notifications extends Component {
 
   renderRow(rowData) {
     return(
-      <View style={styles.row}>
-        <Text> {rowData} </Text>
-      </View>
+      <Notification notification={rowData} />
     )
   }
 
@@ -45,14 +44,14 @@ class Notifications extends Component {
           goBack={() => Actions.pop()}
           header="Notifications"
         />
-        <View style={styles.subheaderBar}>
-          <Text> Activity </Text>
+        <View style={styles.subHeaderBar}>
+          <Text style={styles.subHeaderText}> Activity </Text>
         </View>
         {notifications.length > 0 ?
           <ListView
             enableEmptySections={true}
             dataSource={dataSource}
-            style={styles.notificationsList}
+            contentContainerStyle={styles.notificationsList}
             renderRow={(rowData) => this.renderRow(rowData)}>
           </ListView>
           : this.renderEmptyState()}
@@ -65,6 +64,24 @@ class Notifications extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  subHeaderBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 40,
+    backgroundColor: '#F1F1F1',
+    borderTopColor: '#E1E1E1',
+    borderTopWidth: 1,
+    borderBottomColor: '#E1E1E1',
+    borderBottomWidth: 1
+  },
+
+  subHeaderText: {
+    fontSize: 12,
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    color: '#2F2F30',
+    marginLeft: 10
   },
 
   emptyNotifications: {
@@ -84,17 +101,9 @@ const styles = StyleSheet.create({
 
   notificationsList: {
     flex: 1,
+    alignItems: 'center',
   },
 
-  subheaderBar: {
-    flexDirection: 'row',
-    height: 100
-  },
-
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-  }
 })
 
 export default Notifications;
