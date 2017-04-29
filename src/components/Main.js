@@ -49,6 +49,10 @@ class Main extends Component {
       const locations = await Engine.getCurrentLocations();
       console.log(locations);
 
+      //TODO here you need to check to see not only if there are locations
+      //but if there is one with a low threshold met, if so, send that candidate,
+      // otherwise send the phones lat and long to server so a raw location
+      // can be created instead
       if (locations["places"] && locations["places"].length > 0) {
         const bestCandidate = locations["places"][0];
         this.props.fetchCurrentLocation(bestCandidate);
