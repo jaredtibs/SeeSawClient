@@ -46,16 +46,20 @@ class Main extends Component {
 
   async _getUserLocation() {
     try {
-      const locations = await Engine.getCurrentLocations();
-      console.log(locations);
+      const locationData = await Engine.getCurrentLocations();
+      console.log(locationData);
 
-      //TODO here you need to check to see not only if there are locations
-      //but if there is one with a low threshold met, if so, send that candidate,
-      // otherwise send the phones lat and long to server so a raw location
-      // can be created instead
-      if (locations["places"] && locations["places"].length > 0) {
-        const bestCandidate = locations["places"][0];
-        this.props.fetchCurrentLocation(bestCandidate);
+      if (locationData["places"] && locationData["places"].length > 0) {
+        const currentLocation = locationData["places"].find(this._currentLocation);
+        if (currentLocation) {
+          this.props.fetchCurrentLocation(currentLocation);
+        } else {
+          // fetch raw location
+          this.props.fetchCurrentLocation({
+            latitude: locationData["latitude"],
+            longitude: locationData["longitude"]
+          })
+        }
       } else {
         this._getUserLocation();
         //this.props.findingLocation();
@@ -64,6 +68,10 @@ class Main extends Component {
     } catch(e) {
       console.error(e);
     }
+  }
+
+  _currentLocation(location) {
+    return location.threshold_met === 'low'
   }
 
   _changeTabScene(name) {
