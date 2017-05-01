@@ -11,6 +11,7 @@ import {
 
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
+import DropdownMenu from '../components/DropdownMenu';
 
 const TabBar = React.createClass({
   tabIcons: [],
@@ -71,6 +72,10 @@ const TabBar = React.createClass({
     }
   },
 
+  _openDropdown() {
+    <DropdownMenu options={['option 1', 'option 2']} />
+  },
+
   render() {
     const { location, activeTab } = this.props;
     const locationData = location.data;
@@ -97,10 +102,13 @@ const TabBar = React.createClass({
                           <Text style={styles.textTab}>current location</Text>
                         }
                         {!lightTabBar ?
-                          <Icon name='ios-arrow-down-outline'
-                                size={18}
-                                style={styles.moreLocationIcon}
-                          />
+                          <TouchableOpacity
+                            onPress={() => this._openDropdown()}>
+                            <Icon name='ios-arrow-down-outline'
+                                  size={18}
+                                  style={styles.moreLocationIcon}
+                            />
+                          </TouchableOpacity>
                         : null}
                       </View>
                     )
