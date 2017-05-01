@@ -95,8 +95,7 @@ class Feed extends Component {
 
     return(
       <View style={styles.container}>
-        <ScrollableTabView
-          renderTabBar={() => <DefaultTabBar />}>
+        <ScrollableTabView>
           <View tabLabel="Recent">
             {isFetching ?
               this.renderLoadingState() :
