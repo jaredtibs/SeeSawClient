@@ -110,12 +110,16 @@ class Main extends Component {
           user={this.props.user}
           changeTabScene={this._changeTabScene}
         />
-        <ScrollView contentContainerStyle={styles.mainScrollView}>
+        <ScrollView
+          contentContainerStyle={styles.mainScrollView}
+          scrollsToTop={true}
+        >
           {fetchingLocation ?
             this.renderLocationLoadingState() :
             this.renderLocation()
           }
         </ScrollView>
+
         <ShareButton />
       </View>
     )
