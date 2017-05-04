@@ -17,6 +17,7 @@ import {
 import FeedContainer from '../containers/FeedContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ParallaxView from 'react-native-parallax-view';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 const width = Dimensions.get('window').width;
 
@@ -106,7 +107,19 @@ class Location extends Component {
               </View>
             </View>
           )}>
-            { !isFetching ? this.renderFeed() : null}
+          <View style={{flex: 1}}>
+            <ScrollableTabView>
+              <View tabLabel="Recent">
+                { !isFetching ? this.renderFeed() : null}
+              </View>
+              <View tabLabel="Popular">
+                { !isFetching ? this.renderFeed() : null}
+              </View>
+              <View tabLabel="Direct">
+                { !isFetching ? this.renderFeed() : null}
+              </View>
+            </ScrollableTabView>
+          </View>
         </ParallaxView>
       </View>
     )
