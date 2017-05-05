@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  backIcon: {
+  back: {
     color: '#2F2F30'
   }
 });
