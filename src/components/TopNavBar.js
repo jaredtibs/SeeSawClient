@@ -61,7 +61,7 @@ class TopNavBar extends Component {
         <View>
           <TouchableOpacity
             style={styles.tab}
-            onPress={() => console.log('editing location')}>
+            onPress={() => {!scrolledTabBar ? this.props.editLocation() : null }}>
             <View style={styles.locationTabContainer}>
               { scrolledTabBar ?
                 <Animatable.Text ref="locationHeader" style={styles.scrolledTextTab}>
@@ -71,10 +71,13 @@ class TopNavBar extends Component {
                 <Text style={styles.textTab}>current location</Text>
               }
               { !scrolledTabBar ?
-                <Icon name='ios-arrow-down-outline'
-                  size={18}
-                  style={styles.moreLocationIcon}
-                />
+                <TouchableOpacity
+                  onPress={() => this.props.editLocation()}>
+                  <Icon name='ios-arrow-down-outline'
+                    size={18}
+                    style={styles.moreLocationIcon}
+                  />
+                </TouchableOpacity>
                 :
                 null
               }
