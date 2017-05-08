@@ -22,6 +22,8 @@ class ShareForm extends Component {
     super(props)
     this.state = {
       text: null,
+      visibility: 1,
+      anonymous: false,
       disabled: true,
       keyboardShown: false,
       heightWithoutKeyboard: Dimensions.get('window').height,
@@ -67,7 +69,7 @@ class ShareForm extends Component {
 
   _publishPost() {
     locationId = this.props.location.data.data.id;
-    this.props.createPost(locationId, this.state.text);
+    this.props.createPost(locationId, this.state.text, this.state.visibility);
   }
 
   _onInputChange(text) {
@@ -116,6 +118,7 @@ class ShareForm extends Component {
         </View>
 
         <View style={styles.avatarHeaderContainer}>
+
           <View style={styles.avatarHeader}>
             <Image
               style={styles.avatar}
@@ -124,8 +127,18 @@ class ShareForm extends Component {
                 {uri: this.props.user.avatar} :
                 require('../assets/images/default_avatar.jpeg')}
             />
-            <Text style={styles.username}> {this.props.user.username} </Text>
+            <Text style={styles.username}> {!this.state.anonymous ? this.props.user.username : "anonymous"} </Text>
           </View>
+
+          <View style={styles.anonymousButtonContainer}>
+            <TouchableHighlight
+              style={styles.anonymousButton}
+              onPress={() => this.setState({visibility: 3, anonymous: true})}
+              underlayColor='white'>
+              <Text style={styles.anonymousText}> Hide me </Text>
+            </TouchableHighlight>
+          </View>
+
         </View>
 
         <TextInput
@@ -168,10 +181,12 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: 'white'
   },
 
   avatarHeader: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 20,
@@ -191,6 +206,26 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'MaisonNeueTRIAL-Bold',
     marginLeft: 8
+  },
+
+  anonymousButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+
+  anonymousButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 20,
+    marginTop: 20
+  },
+
+  anonymousText: {
+    color: 'rgba(52, 52, 66, .40)',
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    fontSize: 12,
   },
 
   enabledHeaderText: {
