@@ -116,6 +116,7 @@ class ShareForm extends Component {
         </View>
 
         <View style={styles.avatarHeaderContainer}>
+
           <View style={styles.avatarHeader}>
             <Image
               style={styles.avatar}
@@ -126,6 +127,16 @@ class ShareForm extends Component {
             />
             <Text style={styles.username}> {this.props.user.username} </Text>
           </View>
+
+          <View style={styles.anonymousButtonContainer}>
+            <TouchableHighlight
+              style={styles.anonymousButton}
+              onPress={() => console.log("going anon!")}
+              underlayColor='white'>
+              <Text style={styles.anonymousText}> Hide me </Text>
+            </TouchableHighlight>
+          </View>
+
         </View>
 
         <TextInput
@@ -168,10 +179,12 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: 'white'
   },
 
   avatarHeader: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 20,
@@ -191,6 +204,27 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'MaisonNeueTRIAL-Bold',
     marginLeft: 8
+  },
+
+  anonymousButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+
+  anonymousButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 20,
+    marginTop: 20,
+    padding: 10
+  },
+
+  anonymousText: {
+    color: 'rgba(52, 52, 66, .40)',
+    fontFamily: 'MaisonNeueTRIAL-Bold',
+    fontSize: 12,
   },
 
   enabledHeaderText: {
