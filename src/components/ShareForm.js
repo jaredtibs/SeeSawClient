@@ -84,6 +84,14 @@ class ShareForm extends Component {
     Actions.shareSearch();
   }
 
+  _toggleAnonymity() {
+    if (this.state.anonymous === false) {
+      this.setState({visibility: 3, anonymous: true})
+    } else {
+      this.setState({visibility: 1, anonymous: false})
+    }
+  }
+
   render() {
     let disabled = this.state.disabled;
 
@@ -138,9 +146,9 @@ class ShareForm extends Component {
           <View style={styles.anonymousButtonContainer}>
             <TouchableHighlight
               style={styles.anonymousButton}
-              onPress={() => this.setState({visibility: 3, anonymous: true})}
+              onPress={() => this._toggleAnonymity() }
               underlayColor='white'>
-              <Text style={styles.anonymousText}> Hide me </Text>
+              <Text style={styles.anonymousText}> {!this.state.anonymous ? "Hide me" : "Show me" } </Text>
             </TouchableHighlight>
           </View>
 
