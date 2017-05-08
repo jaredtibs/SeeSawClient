@@ -15,7 +15,6 @@ import {
 } from 'react-native';
 
 import FeedContainer from '../containers/FeedContainer';
-import EditLocationContainer from '../containers/EditLocationContainer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ParallaxView from 'react-native-parallax-view';
 
@@ -64,11 +63,6 @@ class Location extends Component {
     }
   }
 
-  renderEditLocationMenu() {
-    return(
-      <EditLocationContainer />
-    )
-  }
 
   render() {
     const location = this.props.location
@@ -83,11 +77,6 @@ class Location extends Component {
 
     return(
       <View style={styles.container}>
-
-        {location.editingLocation ?
-          this.renderEditLocationMenu() :
-          null
-        }
 
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}

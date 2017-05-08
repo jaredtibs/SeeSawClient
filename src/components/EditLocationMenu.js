@@ -7,6 +7,13 @@ import {
   Dimensions
 } from 'react-native';
 
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+
 const { width, height } = Dimensions.get('window');
 
 class EditLocationMenu extends Component {
@@ -16,8 +23,17 @@ class EditLocationMenu extends Component {
 
   render() {
     return(
-      <View style={styles.dropdown}>
-        <Text> change your location </Text>
+      <View>
+        <Menu opened={this.props.editingLocation} >
+          <MenuTrigger text='Change your location' />
+          <MenuOptions>
+            <MenuOption value={1} text='One' />
+            <MenuOption value={2}>
+              <Text style={{color: 'red'}}>Two</Text>
+            </MenuOption>
+            <MenuOption value={3} disabled={true} text='Three' />
+          </MenuOptions>
+        </Menu>
       </View>
     )
   }
@@ -26,11 +42,6 @@ class EditLocationMenu extends Component {
 const styles = StyleSheet.create({
   dropdown: {
     flex: 1,
-    position: 'absolute',
-    backgroundColor: 'white',
-    top: 0,
-    left: 0,
-    width: width
   }
 });
 
