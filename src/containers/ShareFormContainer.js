@@ -23,8 +23,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createPost: (locationId, text) => {
-      dispatch(createPost(locationId, text))
+    createPost: (locationId, text, visibility) => {
+      dispatch(createPost(locationId, text, visibility))
     }
   }
 };

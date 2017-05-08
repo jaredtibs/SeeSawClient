@@ -22,6 +22,8 @@ class ShareForm extends Component {
     super(props)
     this.state = {
       text: null,
+      visibility: 1,
+      anonymous: false,
       disabled: true,
       keyboardShown: false,
       heightWithoutKeyboard: Dimensions.get('window').height,
@@ -67,7 +69,7 @@ class ShareForm extends Component {
 
   _publishPost() {
     locationId = this.props.location.data.data.id;
-    this.props.createPost(locationId, this.state.text);
+    this.props.createPost(locationId, this.state.text, this.state.visibility);
   }
 
   _onInputChange(text) {
@@ -125,13 +127,13 @@ class ShareForm extends Component {
                 {uri: this.props.user.avatar} :
                 require('../assets/images/default_avatar.jpeg')}
             />
-            <Text style={styles.username}> {this.props.user.username} </Text>
+            <Text style={styles.username}> {!this.state.anonymous ? this.props.user.username : "anonymous"} </Text>
           </View>
 
           <View style={styles.anonymousButtonContainer}>
             <TouchableHighlight
               style={styles.anonymousButton}
-              onPress={() => console.log("going anon!")}
+              onPress={() => this.setState({visibility: 3, anonymous: true})}
               underlayColor='white'>
               <Text style={styles.anonymousText}> Hide me </Text>
             </TouchableHighlight>
@@ -217,8 +219,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 20,
-    marginTop: 20,
-    padding: 10
+    marginTop: 20
   },
 
   anonymousText: {
