@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Actions} from 'react-native-router-flux'
 
 import {
   View,
@@ -8,6 +9,8 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from 'react-native';
+
+import HeaderBar from '../components/HeaderBar';
 
 const ImagePicker = require('react-native-image-picker');
 
@@ -40,6 +43,10 @@ class Profile extends Component {
     });
   }
 
+  _openSettings() {
+    Actions.settings();
+  }
+
   renderSpinner() {
     return(
       <ActivityIndicator
@@ -56,6 +63,10 @@ class Profile extends Component {
 
     return(
       <View style={styles.container}>
+        <HeaderBar
+          goBack={() => Actions.pop()}
+          header="Profile"
+        />
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
@@ -75,10 +86,11 @@ class Profile extends Component {
           <Text style={styles.username}> {user.username} </Text>
         </View>
         <View style={styles.optionsContainer}>
-          <TouchableOpacity
-            onPress={() => this.props.logout()}
-          >
+          <TouchableOpacity onPress={() => this.props.logout()}>
             <Text> Logout </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this._openSettings()}>
+            <Text> Settings </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -89,15 +101,12 @@ class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
   avatarContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50
   },
 
   optionsContainer: {

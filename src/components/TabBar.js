@@ -1,3 +1,4 @@
+// CURRENTLY UNUSED - DELETE BEFORE LAUNCH
 import React from 'react';
 import {
   StyleSheet,
@@ -30,7 +31,7 @@ const TabBar = React.createClass({
   // 'ease-in-cubic'
   componentDidUpdate() {
     if (this.props.location.scrolledLocationNav) {
-      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 200, 'ease-in-sine')
+      this.refs.locationHeader.transitionTo({marginBottom:0, paddingBottom: 10, fontSize: 18}, 250, 'linear')
     }
   },
 
@@ -128,9 +129,9 @@ const TabBar = React.createClass({
                         ref={(icon) => { this.tabIcons[i] = icon; }}
                       >
                         {
-                          lightTabBar ? 
+                          lightTabBar ?
                           <Text style={styles.notificationCount}> 2 </Text>
-                          : <Icon name='ios-notifications-outline' size={18} style={styles.notificationIcon} />
+                          : <Icon name="ios-notifications-outline" size={18} style={styles.notificationIcon} />
                         }
                       </View>
                     )
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
   },
 
   scrolledTextTab: {
-    fontSize: 2,
+    fontSize: 0,
     color: '#343442',
     marginBottom: -35,
     fontFamily: 'MaisonNeueTRIAL-Bold'

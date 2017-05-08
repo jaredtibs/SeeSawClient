@@ -78,19 +78,22 @@ class ShareForm extends Component {
     }
   }
 
+  _openUserSearch() {
+    Actions.shareSearch();
+  }
+
   render() {
     let disabled = this.state.disabled;
 
     return(
       <View style={styles.container}>
-        <StatusBar
-          barStyle="light-content"
-        />
+        <StatusBar barStyle='dark-content' />
         <View style={styles.headerBar}>
           <View>
             <TouchableHighlight
               style={styles.cancelButton}
               onPress={() => this._goBack()}
+              underlayColor='#F1F1F1'
             >
               <Text style={styles.enabledHeaderText}> Cancel </Text>
             </TouchableHighlight>
@@ -105,6 +108,7 @@ class ShareForm extends Component {
               style={styles.submitButton}
               disabled={disabled}
               onPress={() => this._publishPost()}
+              underlayColor='#F1F1F1'
             >
               <Text style={(disabled === true) ? styles.disabledHeaderText : styles.enabledHeaderText}> Post </Text>
             </TouchableHighlight>
@@ -138,6 +142,8 @@ class ShareForm extends Component {
         <ShareOptions
           visible={this.state.keyboardShown}
           heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
+          openUserSearch={this._openUserSearch}
+
         />
       </View>
     )
@@ -147,13 +153,13 @@ class ShareForm extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#343442"
   },
 
   headerBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: '#F1F1F1',
     height: 65,
     paddingTop: 8,
   },
@@ -189,28 +195,30 @@ const styles = StyleSheet.create({
 
   enabledHeaderText: {
     fontSize: 14,
-    color: 'white',
-    fontFamily: 'MaisonNeueTRIAL-Medium',
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
   disabledHeaderText: {
     fontSize: 14,
-    color: 'rgba(255, 255, 255, 0.4)',
+    color: 'rgba(48, 48, 53, 0.4)',
     fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
   headerTextBold: {
-    fontSize: 16,
-    color: 'white',
-    fontFamily: 'MaisonNeueTRIAL-Bold'
+    fontSize: 14,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Bold',
   },
 
   cancelButton: {
-    marginLeft: 10,
+    paddingLeft: 10,
+    padding: 10,
   },
 
   submitButton: {
-    marginRight: 10
+    paddingRight: 15,
+    padding: 10,
   },
 
   input: {
@@ -227,4 +235,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ShareForm
+export default ShareForm;
