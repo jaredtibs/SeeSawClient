@@ -118,15 +118,20 @@ class ShareForm extends Component {
         </View>
 
         <View style={styles.avatarHeaderContainer}>
-
           <View style={styles.avatarHeader}>
-            <Image
-              style={styles.avatar}
-              source={
-                this.props.user.avatar != null ?
-                {uri: this.props.user.avatar} :
-                require('../assets/images/default_avatar.jpeg')}
-            />
+            { this.state.anonymous ?
+              <Image
+                style={styles.avatar}
+                source={require('../assets/images/anonymous_avatar.png')} />
+              :
+              <Image
+                style={styles.avatar}
+                source={
+                  this.props.user.avatar != null ?
+                  {uri: this.props.user.avatar} :
+                  require('../assets/images/default_avatar.jpeg')}
+              />
+            }
             <Text style={styles.username}> {!this.state.anonymous ? this.props.user.username : "anonymous"} </Text>
           </View>
 
