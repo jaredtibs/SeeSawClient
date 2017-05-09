@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
+import {fetchNotifications} from '../actions/notifications';
 
 import Notifications from '../components/Notifications';
 
@@ -14,7 +15,19 @@ class NotificationsContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state;
+  const { user, notifications } = state;
+  return {
+    user,
+    notifications
+  };
 };
 
-export default connect(mapStateToProps)(NotificationsContainer)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchNotifications: () => {
+      dispatch(fetchNotifications())
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationsContainer);

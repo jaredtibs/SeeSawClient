@@ -16,6 +16,10 @@ class Notifications extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.fetchNotifications();
+  }
+
   renderRow(rowData) {
     return(
       <Notification notification={rowData} />
@@ -26,15 +30,15 @@ class Notifications extends Component {
     return(
       <View style={styles.emptyNotifications}>
         <Text style={styles.emptyText}>
-          No notifications to display
+          You don't have any notifications at the moment.{"\n"}
+          Check back later.
         </Text>
       </View>
     )
   }
 
   render() {
-    //const { notifications } = this.props;
-    const notifications = ["so and so liked your post", "jane doe liked your post", "you have three unread posts at this location", "bruce wayne upvoted your post"]
+    const { notifications } = this.props.notifications;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     let dataSource = ds.cloneWithRows(notifications);
 
@@ -87,8 +91,8 @@ const styles = StyleSheet.create({
   emptyNotifications: {
     flex: 1,
     height: 250,
-    justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 100
   },
 
   emptyText: {
