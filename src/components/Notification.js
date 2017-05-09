@@ -14,17 +14,25 @@ class Notification extends Component {
   }
 
   render() {
+    const notification = this.props.notification.attributes;
+    const user = notification.user.data.attributes;
+    const initiator = notification.initiator.data.attributes
+
     return(
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
-            source={require('../assets/images/default_avatar.jpeg')}
+            source={
+              initiator.avatar.url != null ?
+              {uri: initiator.avatar.url} :
+              require('../assets/images/default_avatar.jpeg')
+            }
           />
         </View>
         <View style={styles.notificationContainer}>
-          <Text style={styles.username}> jmtibs </Text>
-          <Text style={styles.notification}> {this.props.notification} </Text>
+          <Text style={styles.username}>{initiator.username}</Text>
+          <Text style={styles.notification}>{notification.body}</Text>
         </View>
       </View>
     )

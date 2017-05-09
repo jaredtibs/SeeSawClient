@@ -137,7 +137,8 @@ class ShareForm extends Component {
                 source={
                   this.props.user.avatar != null ?
                   {uri: this.props.user.avatar} :
-                  require('../assets/images/default_avatar.jpeg')}
+                  require('../assets/images/default_avatar.jpeg')
+                }
               />
             }
             <Text style={styles.username}> {!this.state.anonymous ? this.props.user.username : "anonymous"} </Text>
