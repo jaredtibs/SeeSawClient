@@ -1,7 +1,7 @@
 import store from 'react-native-simple-store';
 import {postCountChanged} from '../actions/location.js'
 
-export function createPost (locationId, text) {
+export function createPost (locationId, text, visibility) {
   return dispatch => {
     dispatch(publishingPost());
     store.get('userToken')
@@ -16,6 +16,7 @@ export function createPost (locationId, text) {
         },
         body: JSON.stringify({
           body: text,
+          visibility: visibility
         })
       })
       .then((response) => response.json())

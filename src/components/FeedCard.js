@@ -26,8 +26,10 @@ class FeedCard extends Component {
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
           { anonymous ?
-            <View style={styles.anonymousAvatar}>
-            </View>
+            <Image
+              style={styles.avatar}
+              source={require('../assets/images/anonymous_avatar.png')}
+            />
               :
             <Image
               style={styles.avatar}
