@@ -21,14 +21,17 @@ class Notification extends Component {
     return(
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
-          <Image
-            style={styles.avatar}
-            source={
-              initiator.avatar.url != null ?
-              {uri: initiator.avatar.url} :
-              require('../assets/images/default_avatar.jpeg')
-            }
-          />
+          <View style={{flex:1, flexDirection: 'row'}}>
+            <View style={styles.unreadIndicator}></View>
+            <Image
+              style={styles.avatar}
+              source={
+                initiator.avatar.url != null ?
+                {uri: initiator.avatar.url} :
+                require('../assets/images/default_avatar.jpeg')
+              }
+            />
+          </View>
         </View>
         <View style={styles.notificationContainer}>
           <Text style={styles.username}>{initiator.username}</Text>
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
   },
 
   avatarContainer: {
+    flexDirection: 'row',
     width: 45,
     marginLeft: 10
   },
@@ -77,6 +81,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#2F2F30',
     fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  unreadIndicator: {
+    marginTop: 10,
+    marginRight: -5,
+    zIndex: 1,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#FC5947'
   }
 
 });
