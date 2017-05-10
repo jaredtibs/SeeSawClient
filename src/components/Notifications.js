@@ -5,7 +5,8 @@ import {
   View,
   Text,
   StyleSheet,
-  ListView
+  ListView,
+  InteractionManager
 } from 'react-native';
 
 import HeaderBar from '../components/HeaderBar';
@@ -18,6 +19,10 @@ class Notifications extends Component {
 
   componentDidMount() {
     this.props.fetchNotifications();
+
+    InteractionManager.runAfterInteractions(() => {
+      this.props.markNotificationsAsRead();
+    });
   }
 
   renderRow(rowData) {

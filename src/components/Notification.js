@@ -22,7 +22,11 @@ class Notification extends Component {
       <View style={styles.row}>
         <View style={styles.avatarContainer}>
           <View style={{flex:1, flexDirection: 'row'}}>
-            <View style={styles.unreadIndicator}></View>
+            { notification.checked === false ?
+              <View style={styles.unreadIndicator}></View>
+              :
+              <View style={styles.emptyIndicator}></View>
+            }
             <Image
               style={styles.avatar}
               source={
@@ -81,6 +85,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#2F2F30',
     fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  emptyIndicator: {
+    marginTop: 10,
+    marginRight: -5,
+    width: 10,
+    height: 10
   },
 
   unreadIndicator: {

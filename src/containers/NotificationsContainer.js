@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
-import {fetchNotifications} from '../actions/notifications';
+import {fetchNotifications, markNotificationsAsRead} from '../actions/notifications';
 
 import Notifications from '../components/Notifications';
 
@@ -26,6 +26,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchNotifications: () => {
       dispatch(fetchNotifications())
+    },
+
+    markNotificationsAsRead: () => {
+      dispatch(markNotificationsAsRead())
     }
   }
 };
