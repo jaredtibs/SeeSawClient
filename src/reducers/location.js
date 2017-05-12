@@ -2,6 +2,7 @@ const initialState = {
   data: null,
   findingLocation: true,
   locationFound: false,
+  editingLocation: false,
   scrolledLocationNav: false,
   newPostCount: null,
   newVoteCount: null,
@@ -22,6 +23,11 @@ export default function location(state=initialState, action) {
         data: action.data,
         findingLocation: false,
         locationFound: true
+      }
+    case 'EDITING_LOCATION':
+      return {
+        ...state,
+        editingLocation: true
       }
     case 'POST_COUNT_CHANGED':
       let prevPostCount;

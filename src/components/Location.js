@@ -63,6 +63,7 @@ class Location extends Component {
     }
   }
 
+
   render() {
     const location = this.props.location
     const isFetching = this.props.location.findingLocation
@@ -76,6 +77,7 @@ class Location extends Component {
 
     return(
       <View style={styles.container}>
+
         <ParallaxView
           backgroundSource={require('../assets/images/bungalow.jpg')}
           windowHeight={225}

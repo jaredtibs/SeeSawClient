@@ -12,9 +12,11 @@ import {
   NativeModules
 } from 'react-native';
 
+
 import TopNavBar from '../components/TopNavBar';
 import ShareButton from '../components/ShareButton';
 import LocationContainer from '../containers/LocationContainer';
+import EditLocationContainer from '../containers/EditLocationContainer';
 
 // Factual Engine **
 const Engine = NativeModules.Engine;
@@ -100,8 +102,15 @@ class Main extends Component {
     )
   }
 
+  renderEditLocationMenu() {
+    return(
+      <EditLocationContainer />
+    )
+  }
+
   render() {
-    const fetchingLocation = this.props.location.findingLocation
+    const fetchingLocation = this.props.location.findingLocation;
+    console.log(this.props);
 
     return(
       <View style={styles.container}>
@@ -109,7 +118,14 @@ class Main extends Component {
           location={this.props.location}
           user={this.props.user}
           changeTabScene={this._changeTabScene}
+          editLocation={this.props.openEditLocationMenu}
         />
+
+        { this.props.location.editingLocation ?
+          this.renderEditLocationMenu()
+          : null
+        }
+
         <ScrollView
           contentContainerStyle={styles.mainScrollView}
           scrollsToTop={true}
