@@ -24,7 +24,8 @@ class Main extends Component {
     super(props)
 
     this.state = {
-      appState: AppState.currentState
+      appState: AppState.currentState,
+      otherLocations: []
     }
   }
 
@@ -51,14 +52,25 @@ class Main extends Component {
 
       if (locationData["places"] && locationData["places"].length > 0) {
         const currentLocation = locationData["places"].find(this._currentLocation);
+
         if (currentLocation) {
           this.props.fetchCurrentLocation(currentLocation);
+
+          // set other locations to top 5 minus currentLocation
+          this.setState({
+            otherLocations: this._processOtherLocations(locationData['places'], currentLocation)
+          });
         } else {
           // fetch raw location
           this.props.fetchCurrentLocation({
             latitude: locationData["latitude"],
             longitude: locationData["longitude"]
-          })
+          });
+
+          // set other locations to top 5
+          this.setState({
+            otherLocations: this._processOtherLocations(locationData['places'])
+          });
         }
       } else {
         this._getUserLocation();
@@ -72,6 +84,13 @@ class Main extends Component {
 
   _currentLocation(location) {
     return location.threshold_met === 'low'
+  }
+
+  //TODO remove comment
+  // place id, name, lat, long needed in array
+  _processOtherLocations(locations, currentLocation=null) {
+    
+  
   }
 
   _changeTabScene(name) {

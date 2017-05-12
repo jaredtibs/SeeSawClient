@@ -11,6 +11,7 @@ import {
 
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ModalPicker from 'react-native-modal-picker';
 
 class TopNavBar extends Component {
   constructor(props) {
@@ -35,10 +36,32 @@ class TopNavBar extends Component {
   }
 
   render() {
-    const { location, user } = this.props;
+    const { location, user, otherLocations } = this.props;
     const locationData = location.data;
     const userAvatar = user.avatar;
     const scrolledTabBar = location.scrolledLocationNav;
+
+    //TODO move to main
+      /* 
+    let index = 0;
+    const data = [
+        { key: index++, section: true, label: 'Fruits' },
+        { key: index++, label: 'Red Apples' },
+        { key: index++, label: 'Cherries' },
+        { key: index++, label: 'Cranberries' },
+        { key: index++, label: 'Pink Grapefruit' },
+        { key: index++, label: 'Raspberries' },
+        { key: index++, section: true, label: 'Vegetables' },
+        { key: index++, label: 'Beets' },
+        { key: index++, label: 'Red Peppers' },
+        { key: index++, label: 'Radishes' },
+        { key: index++, label: 'Radicchio' },
+        { key: index++, label: 'Red Onions' },
+        { key: index++, label: 'Red Potatoes' },
+        { key: index++, label: 'Rhubarb' },
+        { key: index++, label: 'Tomatoes' }
+    ];
+    */
 
     return(
       <View style={scrolledTabBar ? styles.scrolledTabs : styles.tabs}>
@@ -68,13 +91,21 @@ class TopNavBar extends Component {
                   { locationData ? locationData.data.attributes.name : null }
                 </Animatable.Text>
                 :
-                <Text style={styles.textTab}>current location</Text>
+                <ModalPicker
+                  data={data}
+                  onChange={(option)=>{ console.log(option)}}>
+                  <Text style={styles.textTab}>current location</Text>
+                </ModalPicker>
               }
               { !scrolledTabBar ?
-                <Icon name='ios-arrow-down-outline'
-                  size={18}
-                  style={styles.moreLocationIcon}
-                />
+                <ModalPicker
+                  data={data}
+                  onChange={(option)=>{ console.log(option)}}>
+                  <Icon name='ios-arrow-down-outline'
+                    size={18}
+                    style={styles.moreLocationIcon}
+                  />
+                </ModalPicker>
                 :
                 null
               }
