@@ -101,28 +101,7 @@ class Main extends Component {
       )
     });
 
-    console.log(otherLocations);
-    /*
-    place id, name, lat, long needed in array
-    let index = 0;
-    const data = [
-        { key: index++, section: true, label: 'Fruits' },
-        { key: index++, label: 'Red Apples' },
-        { key: index++, label: 'Cherries' },
-        { key: index++, label: 'Cranberries' },
-        { key: index++, label: 'Pink Grapefruit' },
-        { key: index++, label: 'Raspberries' },
-        { key: index++, section: true, label: 'Vegetables' },
-        { key: index++, label: 'Beets' },
-        { key: index++, label: 'Red Peppers' },
-        { key: index++, label: 'Radishes' },
-        { key: index++, label: 'Radicchio' },
-        { key: index++, label: 'Red Onions' },
-        { key: index++, label: 'Red Potatoes' },
-        { key: index++, label: 'Rhubarb' },
-        { key: index++, label: 'Tomatoes' }
-    ];
-    */
+    return otherLocations;
   }
 
   _changeTabScene(name) {
@@ -153,6 +132,8 @@ class Main extends Component {
 
   render() {
     const fetchingLocation = this.props.location.findingLocation
+
+    console.log(this.state.otherLocations);
 
     return(
       <View style={styles.container}>
