@@ -56,10 +56,12 @@ class Main extends Component {
         if (currentLocation) {
           this.props.fetchCurrentLocation(currentLocation);
 
-          // set other locations to top 5 minus currentLocation
-          this.setState({
-            otherLocations: this._processOtherLocations(locationData['places'], currentLocation)
-          });
+          // set other locations to top 5 - currentLocation
+          let otherLocations = locationData['places'].filter((l) => {
+            return l["place_id"] != currentLocation["place_id"]
+          }).slice(0, 5);
+
+          this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         } else {
           // fetch raw location
           this.props.fetchCurrentLocation({
@@ -68,9 +70,8 @@ class Main extends Component {
           });
 
           // set other locations to top 5
-          this.setState({
-            otherLocations: this._processOtherLocations(locationData['places'])
-          });
+          let otherLocations = locationData['places'].slice(0, 5)
+          this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         }
       } else {
         this._getUserLocation();
@@ -86,11 +87,42 @@ class Main extends Component {
     return location.threshold_met === 'low'
   }
 
-  //TODO remove comment
-  // place id, name, lat, long needed in array
-  _processOtherLocations(locations, currentLocation=null) {
-    
-  
+  _processOtherLocations(locations) {
+    let index = 0;
+    const otherLocations = locations.map((location) => {
+      return(
+        {
+          key: index++,
+          label: location['name'],
+          placeId: location['place_id'],
+          latitude: location['latitude'],
+          longitude: location['longitude']
+        }
+      )
+    });
+
+    console.log(otherLocations);
+    /*
+    place id, name, lat, long needed in array
+    let index = 0;
+    const data = [
+        { key: index++, section: true, label: 'Fruits' },
+        { key: index++, label: 'Red Apples' },
+        { key: index++, label: 'Cherries' },
+        { key: index++, label: 'Cranberries' },
+        { key: index++, label: 'Pink Grapefruit' },
+        { key: index++, label: 'Raspberries' },
+        { key: index++, section: true, label: 'Vegetables' },
+        { key: index++, label: 'Beets' },
+        { key: index++, label: 'Red Peppers' },
+        { key: index++, label: 'Radishes' },
+        { key: index++, label: 'Radicchio' },
+        { key: index++, label: 'Red Onions' },
+        { key: index++, label: 'Red Potatoes' },
+        { key: index++, label: 'Rhubarb' },
+        { key: index++, label: 'Tomatoes' }
+    ];
+    */
   }
 
   _changeTabScene(name) {
@@ -127,6 +159,7 @@ class Main extends Component {
         <TopNavBar
           location={this.props.location}
           user={this.props.user}
+          otherLocations={this.state.otherLocations}
           changeTabScene={this._changeTabScene}
         />
         <ScrollView
