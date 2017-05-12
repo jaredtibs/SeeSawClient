@@ -90,15 +90,25 @@ class Main extends Component {
   _processOtherLocations(locations) {
     let index = 0;
     const otherLocations = locations.map((location) => {
-      return(
-        {
-          key: index++,
-          label: location['name'],
-          placeId: location['place_id'],
-          latitude: location['latitude'],
-          longitude: location['longitude']
-        }
-      )
+      if (index === 0) {
+        return(
+          {
+            key: index++,
+            label: "Change your Location",
+            section: true
+          }
+        )
+      } else {
+        return(
+          {
+            key: index++,
+            label: location['name'],
+            placeId: location['place_id'],
+            latitude: location['latitude'],
+            longitude: location['longitude']
+          }
+        )
+      }
     });
 
     return otherLocations;
