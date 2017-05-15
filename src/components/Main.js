@@ -103,7 +103,8 @@ class Main extends Component {
           {
             key: index++,
             label: location['name'],
-            placeId: location['place_id'],
+            name: location['name'],
+            place_id: location['place_id'],
             latitude: location['latitude'],
             longitude: location['longitude']
           }
@@ -112,6 +113,10 @@ class Main extends Component {
     });
 
     return otherLocations;
+  }
+
+  _changeLocation(data) {
+    this.props.changeCurrentLocation(data);
   }
 
   _changeTabScene(name) {
@@ -123,7 +128,7 @@ class Main extends Component {
   }
 
   renderLocation () {
-    const {dispatch } = this.props;
+    const { dispatch } = this.props;
 
     return (
       <View style={{flex: 1}}>
@@ -135,15 +140,19 @@ class Main extends Component {
   renderLocationLoadingState() {
     return(
       <View style={styles.locationLoadingState}>
-        <Text style={styles.loadingText}> Finding your location... </Text>
+        <Text style={styles.loadingText}>
+          { this.props.location.updatingLocation ?
+            "Updating your location..."
+            :
+            "Finding your location..."
+          }
+        </Text>
       </View>
     )
   }
 
   render() {
-    const fetchingLocation = this.props.location.findingLocation
-
-    console.log(this.state.otherLocations);
+    const { findingLocation, updatingLocation } = this.props.location;
 
     return(
       <View style={styles.container}>
@@ -151,13 +160,14 @@ class Main extends Component {
           location={this.props.location}
           user={this.props.user}
           otherLocations={this.state.otherLocations}
-          changeTabScene={this._changeTabScene}
+          changeTabScene={this._changeTabScene.bind(this)}
+          changeLocation={this._changeLocation.bind(this)}
         />
         <ScrollView
           contentContainerStyle={styles.mainScrollView}
           scrollsToTop={true}
         >
-          {fetchingLocation ?
+          {(findingLocation || updatingLocation) ?
             this.renderLocationLoadingState() :
             this.renderLocation()
           }

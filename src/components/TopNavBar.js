@@ -71,7 +71,7 @@ class TopNavBar extends Component {
                 :
                 <ModalPicker
                   data={otherLocations}
-                  onChange={(option)=>{ this.props.changeLocation() }}
+                  onChange={(option)=>{ this.props.changeLocation(option) }}
                   sectionTextStyle={styles.editLocationHeader}
                   optionStyle={{padding: 10}}
                   optionTextStyle={styles.editLocationOption}
@@ -82,7 +82,7 @@ class TopNavBar extends Component {
               { !scrolledTabBar ?
                 <ModalPicker
                   data={otherLocations}
-                  onChange={(option)=>{ this.props.changeLocation() }}
+                  onChange={(option)=>{ this.props.changeLocation(option) }}
                   sectionTextStyle={styles.editLocationHeader}
                   optionTextStyle={styles.editLocationOption}
                   cancelTextStyle={styles.editLocationCancel}>
