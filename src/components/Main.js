@@ -24,7 +24,8 @@ class Main extends Component {
     super(props)
 
     this.state = {
-      appState: AppState.currentState
+      appState: AppState.currentState,
+      otherLocations: []
     }
   }
 
@@ -51,14 +52,26 @@ class Main extends Component {
 
       if (locationData["places"] && locationData["places"].length > 0) {
         const currentLocation = locationData["places"].find(this._currentLocation);
+
         if (currentLocation) {
           this.props.fetchCurrentLocation(currentLocation);
+
+          // set other locations to top 5 - currentLocation
+          let otherLocations = locationData['places'].filter((l) => {
+            return l["place_id"] != currentLocation["place_id"]
+          }).slice(0, 5);
+
+          this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         } else {
           // fetch raw location
           this.props.fetchCurrentLocation({
             latitude: locationData["latitude"],
             longitude: locationData["longitude"]
-          })
+          });
+
+          // set other locations to top 5
+          let otherLocations = locationData['places'].slice(0, 5)
+          this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         }
       } else {
         this._getUserLocation();
@@ -74,6 +87,38 @@ class Main extends Component {
     return location.threshold_met === 'low'
   }
 
+  _processOtherLocations(locations) {
+    let index = 0;
+    const otherLocations = locations.map((location) => {
+      if (index === 0) {
+        return(
+          {
+            key: index++,
+            label: "Nearby locations",
+            section: true
+          }
+        )
+      } else {
+        return(
+          {
+            key: index++,
+            label: location['name'],
+            name: location['name'],
+            place_id: location['place_id'],
+            latitude: location['latitude'],
+            longitude: location['longitude']
+          }
+        )
+      }
+    });
+
+    return otherLocations;
+  }
+
+  _changeLocation(data) {
+    this.props.changeCurrentLocation(data);
+  }
+
   _changeTabScene(name) {
     if (name == 'profile') {
       Actions.profile();
@@ -83,7 +128,7 @@ class Main extends Component {
   }
 
   renderLocation () {
-    const {dispatch } = this.props;
+    const { dispatch } = this.props;
 
     return (
       <View style={{flex: 1}}>
@@ -95,26 +140,35 @@ class Main extends Component {
   renderLocationLoadingState() {
     return(
       <View style={styles.locationLoadingState}>
-        <Text style={styles.loadingText}> Finding your location... </Text>
+        <Text style={styles.loadingText}>
+          { this.props.location.updatingLocation ?
+            "Updating your location..."
+            :
+            "Finding your location..."
+          }
+        </Text>
       </View>
     )
   }
 
   render() {
-    const fetchingLocation = this.props.location.findingLocation
+    const { findingLocation, updatingLocation } = this.props.location;
 
     return(
       <View style={styles.container}>
         <TopNavBar
           location={this.props.location}
           user={this.props.user}
-          changeTabScene={this._changeTabScene}
+          otherLocations={this.state.otherLocations}
+          notificationCount={this.props.notifications.unreadCount}
+          changeTabScene={this._changeTabScene.bind(this)}
+          changeLocation={this._changeLocation.bind(this)}
         />
         <ScrollView
           contentContainerStyle={styles.mainScrollView}
           scrollsToTop={true}
         >
-          {fetchingLocation ?
+          {(findingLocation || updatingLocation) ?
             this.renderLocationLoadingState() :
             this.renderLocation()
           }
