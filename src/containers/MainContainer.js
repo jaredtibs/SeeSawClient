@@ -20,11 +20,12 @@ class MainContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { user, location, feed } = state;
+  const { user, location, feed, notifications } = state;
   return {
     user,
     location,
-    feed
+    feed,
+    notifications
   }
 }
 

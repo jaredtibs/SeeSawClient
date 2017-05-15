@@ -36,7 +36,7 @@ class TopNavBar extends Component {
   }
 
   render() {
-    const { location, user, otherLocations } = this.props;
+    const { location, user, otherLocations, notificationCount } = this.props;
     const locationData = location.data;
     const userAvatar = user.avatar;
     const scrolledTabBar = location.scrolledLocationNav;
@@ -105,7 +105,7 @@ class TopNavBar extends Component {
             <View style={styles.notifications}>
               {
                 scrolledTabBar ?
-                <Text style={styles.notificationCount}> 2 </Text>
+                <Text style={styles.notificationCount}> { notificationCount } </Text>
                 : <Icon name='ios-notifications-outline' size={18} style={styles.notificationIcon} />
                 }
             </View>

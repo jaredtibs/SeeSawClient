@@ -1,6 +1,6 @@
 const initialState = {
   notifications: [],
-  unread: 0
+  unreadCount: 0
 }
 
 export default function notifications(state = initialState, action) {

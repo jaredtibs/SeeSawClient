@@ -94,7 +94,7 @@ class Main extends Component {
         return(
           {
             key: index++,
-            label: "Change your Location",
+            label: "Nearby locations",
             section: true
           }
         )
@@ -160,6 +160,7 @@ class Main extends Component {
           location={this.props.location}
           user={this.props.user}
           otherLocations={this.state.otherLocations}
+          notificationCount={this.props.notifications.unreadCount}
           changeTabScene={this._changeTabScene.bind(this)}
           changeLocation={this._changeLocation.bind(this)}
         />
