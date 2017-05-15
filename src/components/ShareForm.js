@@ -93,7 +93,7 @@ class ShareForm extends Component {
   }
 
   render() {
-    let disabled = this.state.disabled;
+    let disabled = this.state.disabled || this.props.feed.postPublishing;
 
     return(
       <View style={styles.container}>
