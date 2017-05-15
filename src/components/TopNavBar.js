@@ -71,14 +71,21 @@ class TopNavBar extends Component {
                 :
                 <ModalPicker
                   data={otherLocations}
-                  onChange={(option)=>{ console.log(option)}}>
+                  onChange={(option)=>{ this.props.changeLocation() }}
+                  sectionTextStyle={styles.editLocationHeader}
+                  optionStyle={{padding: 10}}
+                  optionTextStyle={styles.editLocationOption}
+                  cancelTextStyle={styles.editLocationCancel}>
                   <Text style={styles.textTab}>current location</Text>
                 </ModalPicker>
               }
               { !scrolledTabBar ?
                 <ModalPicker
                   data={otherLocations}
-                  onChange={(option)=>{ console.log(option)}}>
+                  onChange={(option)=>{ this.props.changeLocation() }}
+                  sectionTextStyle={styles.editLocationHeader}
+                  optionTextStyle={styles.editLocationOption}
+                  cancelTextStyle={styles.editLocationCancel}>
                   <Icon name='ios-arrow-down-outline'
                     size={18}
                     style={styles.moreLocationIcon}
@@ -198,6 +205,24 @@ const styles = StyleSheet.create({
 
   notificationIcon: {
     color: '#303035',
+  },
+
+  editLocationHeader: {
+    fontSize: 16,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  editLocationOption: {
+    fontSize: 14,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Demi'
+  },
+
+  editLocationCancel: {
+    fontSize: 16,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Bold'
   }
 
 })
