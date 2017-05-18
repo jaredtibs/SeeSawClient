@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
 
   headerTextBold: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Bold',
   },

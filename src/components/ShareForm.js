@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F1F1F1',
     height: 65,
-    paddingTop: 8,
+    paddingTop: 10,
   },
 
   avatarHeaderContainer: {
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
 
   username: {
     color: "#343442",
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: 'MaisonNeueTRIAL-Bold',
     marginLeft: 8
   },
@@ -239,23 +239,23 @@ const styles = StyleSheet.create({
   anonymousText: {
     color: 'rgba(52, 52, 66, .40)',
     fontFamily: 'MaisonNeueTRIAL-Bold',
-    fontSize: 12,
+    fontSize: 14,
   },
 
   enabledHeaderText: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
   disabledHeaderText: {
-    fontSize: 14,
+    fontSize: 16,
     color: 'rgba(48, 48, 53, 0.4)',
     fontFamily: 'MaisonNeueTRIAL-Medium'
   },
 
   headerTextBold: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Bold',
   },

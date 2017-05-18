@@ -58,14 +58,14 @@ const styles = StyleSheet.create({
 
   optionsText: {
     color: '#9B9B9B',
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: 'MaisonNeueTRIAL-Medium',
     marginLeft: 19
   },
 
   visibilityText: {
     color: '#9B9B9B',
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'MaisonNeueTRIAL-Bold',
   },
 
