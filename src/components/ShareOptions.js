@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 
   visibilityText: {
     color: '#9B9B9B',
-    fontSize: 16,
+    fontSize: 15,
     fontFamily: 'MaisonNeueTRIAL-Bold',
   },
 

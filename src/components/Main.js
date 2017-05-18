@@ -204,8 +204,9 @@ const styles = StyleSheet.create({
   },
 
   loadingText: {
+    fontSize: 14,
     color: '#848388',
-    fontFamily: 'Calibre-Regular'
+    fontFamily: 'MaisonNeueTRIAL-Demi'
   }
 })
 

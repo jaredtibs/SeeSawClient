@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
 
   textTab: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Bold',
     marginRight: 5
@@ -208,19 +208,19 @@ const styles = StyleSheet.create({
   },
 
   editLocationHeader: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Bold'
   },
 
   editLocationOption: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Demi'
   },
 
   editLocationCancel: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#303035',
     fontFamily: 'MaisonNeueTRIAL-Bold'
   }

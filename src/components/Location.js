@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   locationCity: {
     fontFamily: 'MaisonNeueTRIAL-Demi',
     color: 'rgba(255,255,255,.60)',
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center',
     marginLeft: 10
   },

@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
 
   placeholder: {
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'MaisonNeueTRIAL-Medium',
     color: 'rgba(0,0,0,.30)',
     paddingLeft: 15

@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
 
   username: {
     color: "#343442",
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Bold',
     marginLeft: 8
   },
