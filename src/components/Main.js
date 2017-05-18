@@ -61,6 +61,8 @@ class Main extends Component {
             return l["place_id"] != currentLocation["place_id"]
           }).slice(0, 5);
 
+          console.log(otherLocations);
+
           this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         } else {
           // fetch raw location
@@ -116,6 +118,11 @@ class Main extends Component {
   }
 
   _changeLocation(data) {
+    //need to replace the location chosen (data) with the current location
+    //this.setState({otherLocations: })
+    //let otherLocations = this.state.otherLocations;
+    //var chosenIndex = otherLocations.findIndex(item => item['place_id'] == data['place_id']);
+    //this.setState({otherLocations: otherLocations})
     this.props.changeCurrentLocation(data);
   }
 
