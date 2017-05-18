@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Main from '../components/Main';
-import {fetchCurrentLocation, findingLocation} from '../actions/location';
+import {
+  fetchCurrentLocation,
+  changeCurrentLocation,
+  findingLocation
+} from '../actions/location';
 
 class MainContainer extends Component {
   constructor(props) {
@@ -16,18 +20,23 @@ class MainContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { user, location, feed } = state;
+  const { user, location, feed, notifications } = state;
   return {
     user,
     location,
-    feed
+    feed,
+    notifications
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCurrentLocation: (placeId) => {
-      dispatch(fetchCurrentLocation(placeId))
+    fetchCurrentLocation: (data) => {
+      dispatch(fetchCurrentLocation(data))
+    },
+
+    changeCurrentLocation: (data) => {
+      dispatch(changeCurrentLocation(data))
     },
 
     findingLocation: () => {

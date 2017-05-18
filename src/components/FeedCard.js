@@ -53,7 +53,7 @@ class FeedCard extends Component {
           </View>
 
           <View style={anonymous ? styles.anonymousCardBody : styles.cardBody}>
-            <Text style={anonymous ? styles.anonymousPostBody : styles.postBody}> {post.attributes.body} </Text>
+            <Text style={anonymous ? styles.anonymousPostBody : styles.postBody}>{post.attributes.body}</Text>
           </View>
 
           <View style={styles.cardFooter}>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 
   cardBody: {
     width: 285,
-    minHeight: 85,
+    minHeight: 50,
     backgroundColor: 'white',
     borderRadius: 4,
     borderWidth: 1,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
 
   anonymousCardBody: {
     width: 285,
-    minHeight: 85,
+    minHeight: 50,
     backgroundColor: '#343442',
     borderRadius: 4,
     borderWidth: 1,
@@ -154,8 +154,8 @@ const styles = StyleSheet.create({
     color: '#343442',
     fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Medium',
-    paddingTop: 12,
-    paddingLeft: 8,
+    paddingTop: 8,
+    paddingLeft: 12,
     paddingRight: 24,
     paddingBottom: 8,
     lineHeight: 22
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
     color: '#FBFAF8',
     fontSize: 14,
     fontFamily: 'MaisonNeueTRIAL-Medium',
-    paddingTop: 12,
-    paddingLeft: 8,
+    paddingTop: 8,
+    paddingLeft: 12,
     paddingRight: 24,
     paddingBottom: 8,
     lineHeight: 22
