@@ -168,7 +168,8 @@ class ShareForm extends Component {
           multiline={true}
           maxLength={300}
           placeholder="Drop some knowledge, share a review, or just post a funny comment…"
-          placeholderStyle={[styles.input, {color: "#CECED1"}]}
+          placeholderStyle={styles.input}
+          placeholderTextColor="#CECED1"
           onChangeText={(text) => this._onInputChange(text)}
         />
 

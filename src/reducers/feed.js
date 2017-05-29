@@ -5,7 +5,7 @@ const initialState = {
   currentFeedType: 'recent'
 };
 
-var update = require('react/lib/update')
+//var update = require('react-dom/lib/update')
 
 export default function feed(state = initialState, action) {
   switch(action.type) {

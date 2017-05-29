@@ -8,7 +8,16 @@ import {
   StyleSheet
 } from 'react-native';
 
-import {InstantSearch} from 'react-instantsearch';
+//import { InstantSearch } from 'react-instantsearch/dom';
+/*
+
+<InstantSearch
+  appId="latency"
+  apiKey="3d9875e51fbd20c7754e65422f7ce5e1"
+  indexName="bestbuy"
+>
+</InstantSearch>
+*/
 
 class ShareSearch extends Component {
   constructor(props) {
@@ -31,12 +40,6 @@ class ShareSearch extends Component {
           </TouchableOpacity>
         </View>
 
-        <InstantSearch
-          appId="latency"
-          apiKey="3d9875e51fbd20c7754e65422f7ce5e1"
-          indexName="bestbuy"
-        >
-        </InstantSearch>
       </View>
     )
   }
