@@ -8,6 +8,17 @@ import {
   StyleSheet
 } from 'react-native';
 
+//import { InstantSearch } from 'react-instantsearch/dom';
+/*
+
+<InstantSearch
+  appId="latency"
+  apiKey="3d9875e51fbd20c7754e65422f7ce5e1"
+  indexName="bestbuy"
+>
+</InstantSearch>
+*/
+
 class ShareSearch extends Component {
   constructor(props) {
     super(props)
@@ -28,6 +39,7 @@ class ShareSearch extends Component {
             <Text style={styles.cancelText}> Cancel </Text>
           </TouchableOpacity>
         </View>
+
       </View>
     )
   }
