@@ -11,6 +11,7 @@ import {
 
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ModalPicker from 'react-native-modal-picker';
 
 class TopNavBar extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class TopNavBar extends Component {
   }
 
   render() {
-    const { location, user } = this.props;
+    const { location, user, otherLocations, notificationCount } = this.props;
     const locationData = location.data;
     const userAvatar = user.avatar;
     const scrolledTabBar = location.scrolledLocationNav;
@@ -68,13 +69,28 @@ class TopNavBar extends Component {
                   { locationData ? locationData.data.attributes.name : null }
                 </Animatable.Text>
                 :
-                <Text style={styles.textTab}>current location</Text>
+                <ModalPicker
+                  data={otherLocations}
+                  onChange={(option)=>{ this.props.changeLocation(option) }}
+                  sectionTextStyle={styles.editLocationHeader}
+                  optionStyle={{padding: 10}}
+                  optionTextStyle={styles.editLocationOption}
+                  cancelTextStyle={styles.editLocationCancel}>
+                  <Text style={styles.textTab}>current location</Text>
+                </ModalPicker>
               }
               { !scrolledTabBar ?
-                <Icon name='ios-arrow-down-outline'
-                  size={18}
-                  style={styles.moreLocationIcon}
-                />
+                <ModalPicker
+                  data={otherLocations}
+                  onChange={(option)=>{ this.props.changeLocation(option) }}
+                  sectionTextStyle={styles.editLocationHeader}
+                  optionTextStyle={styles.editLocationOption}
+                  cancelTextStyle={styles.editLocationCancel}>
+                  <Icon name='ios-arrow-down-outline'
+                    size={18}
+                    style={styles.moreLocationIcon}
+                  />
+                </ModalPicker>
                 :
                 null
               }
@@ -89,7 +105,7 @@ class TopNavBar extends Component {
             <View style={styles.notifications}>
               {
                 scrolledTabBar ?
-                <Text style={styles.notificationCount}> 2 </Text>
+                <Text style={styles.notificationCount}> { notificationCount } </Text>
                 : <Icon name='ios-notifications-outline' size={18} style={styles.notificationIcon} />
                 }
             </View>
@@ -189,6 +205,24 @@ const styles = StyleSheet.create({
 
   notificationIcon: {
     color: '#303035',
+  },
+
+  editLocationHeader: {
+    fontSize: 16,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  editLocationOption: {
+    fontSize: 14,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Demi'
+  },
+
+  editLocationCancel: {
+    fontSize: 16,
+    color: '#303035',
+    fontFamily: 'MaisonNeueTRIAL-Bold'
   }
 
 })

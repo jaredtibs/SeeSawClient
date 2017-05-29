@@ -16,7 +16,7 @@ class ShareSearch extends Component {
   }
 
   _goBack() {
-    Actions.pop();
+    Actions.pop({refresh: {keyboardShown: true}});
   }
 
   render() {

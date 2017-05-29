@@ -24,20 +24,21 @@ class Main extends Component {
     super(props)
 
     this.state = {
-      appState: AppState.currentState
+      appState: AppState.currentState,
+      otherLocations: []
     }
   }
 
   componentDidMount() {
-    //AppState.addEventListener('change', this._handleAppStateChange);
+    AppState.addEventListener('change', this._handleAppStateChange);
     this._getUserLocation();
   }
 
   componentWillUnmount() {
-    //AppState.removeEventListener('change', this._handleAppStateChange);
+    AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
-  _handleAppStateChange (nextAppState) {
+  _handleAppStateChange = (nextAppState) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
       this._getUserLocation();
     }
@@ -51,14 +52,26 @@ class Main extends Component {
 
       if (locationData["places"] && locationData["places"].length > 0) {
         const currentLocation = locationData["places"].find(this._currentLocation);
+
         if (currentLocation) {
           this.props.fetchCurrentLocation(currentLocation);
+
+          // set other locations to top 5 - currentLocation
+          let otherLocations = locationData['places'].filter((l) => {
+            return l["place_id"] != currentLocation["place_id"]
+          }).slice(0, 5);
+
+          this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         } else {
           // fetch raw location
           this.props.fetchCurrentLocation({
             latitude: locationData["latitude"],
             longitude: locationData["longitude"]
-          })
+          });
+
+          // set other locations to top 5
+          let otherLocations = locationData['places'].slice(0, 5)
+          this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         }
       } else {
         this._getUserLocation();
@@ -74,6 +87,58 @@ class Main extends Component {
     return location.threshold_met === 'low'
   }
 
+  // specific formatter for modal library
+  _processOtherLocations(locations) {
+    let index = 0;
+    const otherLocations = locations.map((location) => {
+      if (index === 0) {
+        return(
+          {
+            key: index++,
+            label: "Nearby locations",
+            section: true
+          }
+        )
+      } else {
+        return(
+          {
+            key: index++,
+            label: location['name'],
+            name: location['name'],
+            place_id: location['place_id'],
+            latitude: location['latitude'],
+            longitude: location['longitude']
+          }
+        )
+      }
+    });
+
+    return otherLocations;
+  }
+
+  // specific formatter for modal library
+  _processApiLocation(index, data) {
+    return(
+      {
+        key: index,
+        label: data['name'],
+        name: data['name'],
+        place_id: data['place-id'],
+        latitude: data['latitude'],
+        longitude: data['longitude']
+      }
+    )
+  }
+
+  _changeLocation(data) {
+    let otherLocations = this.state.otherLocations;
+    let chosenIndex = otherLocations.findIndex(item => item['place_id'] == data['place_id']);
+    let currentLocationData = this.props.location.data.data.attributes;
+    otherLocations[chosenIndex] = this._processApiLocation(chosenIndex, currentLocationData);
+    this.setState({otherLocations: otherLocations});
+    this.props.changeCurrentLocation(data);
+  }
+
   _changeTabScene(name) {
     if (name == 'profile') {
       Actions.profile();
@@ -83,7 +148,7 @@ class Main extends Component {
   }
 
   renderLocation () {
-    const {dispatch } = this.props;
+    const { dispatch } = this.props;
 
     return (
       <View style={{flex: 1}}>
@@ -95,27 +160,40 @@ class Main extends Component {
   renderLocationLoadingState() {
     return(
       <View style={styles.locationLoadingState}>
-        <Text style={styles.loadingText}> Finding your location... </Text>
+        <Text style={styles.loadingText}>
+          { this.props.location.updatingLocation ?
+            "Updating your location..."
+            :
+            "Finding your location..."
+          }
+        </Text>
       </View>
     )
   }
 
   render() {
-    const fetchingLocation = this.props.location.findingLocation
+    const { findingLocation, updatingLocation } = this.props.location;
 
     return(
       <View style={styles.container}>
         <TopNavBar
           location={this.props.location}
           user={this.props.user}
-          changeTabScene={this._changeTabScene}
+          otherLocations={this.state.otherLocations}
+          notificationCount={this.props.notifications.unreadCount}
+          changeTabScene={this._changeTabScene.bind(this)}
+          changeLocation={this._changeLocation.bind(this)}
         />
-        <ScrollView contentContainerStyle={styles.mainScrollView}>
-          {fetchingLocation ?
+        <ScrollView
+          contentContainerStyle={styles.mainScrollView}
+          scrollsToTop={true}
+        >
+          {(findingLocation || updatingLocation) ?
             this.renderLocationLoadingState() :
             this.renderLocation()
           }
         </ScrollView>
+
         <ShareButton />
       </View>
     )

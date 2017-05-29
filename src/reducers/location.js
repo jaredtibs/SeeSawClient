@@ -1,6 +1,7 @@
 const initialState = {
   data: null,
   findingLocation: true,
+  updatingLocation: false,
   locationFound: false,
   scrolledLocationNav: false,
   newPostCount: null,
@@ -16,11 +17,17 @@ export default function location(state=initialState, action) {
         findingLocation: true,
         locationFound: false
       }
+    case 'UPDATING_LOCATION':
+      return {
+        ...state,
+        updatingLocation: true
+      }
     case 'LOCATION_FOUND':
       return {
         ...state,
         data: action.data,
         findingLocation: false,
+        updatingLocation: false,
         locationFound: true
       }
     case 'POST_COUNT_CHANGED':
