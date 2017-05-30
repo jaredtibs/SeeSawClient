@@ -31,6 +31,10 @@ class ShareForm extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.fetchSuggestedUsers();
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.feed.postPublishing === true && this.props.feed.postPublishing == false) {
       this._goBack();
@@ -87,7 +91,7 @@ class ShareForm extends Component {
   }
 
   _openUserSearch() {
-    Actions.shareSearch();
+    Actions.shareSearch({suggestedUsers: this.props.share.suggestedUsers});
   }
 
   _toggleAnonymity() {
@@ -176,7 +180,7 @@ class ShareForm extends Component {
         <ShareOptions
           visible={this.state.keyboardShown}
           heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
-          openUserSearch={this._openUserSearch}
+          openUserSearch={this._openUserSearch.bind(this)}
 
         />
       </View>
