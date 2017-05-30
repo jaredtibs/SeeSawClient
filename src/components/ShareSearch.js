@@ -75,18 +75,24 @@ class ShareSearch extends Component {
             style={styles.input}
             autoFocus={true}
             ref="searchInput"
-            returnKeyType='Search'
+            returnKeyType='search'
             placeholder="Search"
             placeholderTextStyle={styles.searchPlaceHolderStyle}
             onChangeText={(text) => console.log(text)}
           />
         </View>
 
-        <ListView
-          enableEmptySections={true}
-          dataSource={dataSource}
-          style={styles.userList}
-          renderRow={(rowData) => this.renderRow(rowData)}/>
+        <View style={styles.subHeaderContainer}>
+          <Text style={styles.subHeaderText}> Suggested </Text>
+        </View>
+
+        <View style={{flex: 1}}>
+          <ListView
+            enableEmptySections={true}
+            dataSource={dataSource}
+            style={styles.userList}
+            renderRow={(rowData) => this.renderRow(rowData)}/>
+        </View>
 
       </View>
     )
@@ -126,9 +132,22 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    marginLeft: 5,
     flex: 1,
+    marginLeft: 5,
     fontSize: 14
+  },
+
+  subHeaderContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 10
+  },
+
+  subHeaderText: {
+    fontSize: 12,
+    fontFamily: 'MaisonNeueTRIAL-Medium',
+    color: '#CECED1',
+    paddingLeft: 10
   },
 
   cancelButton: {
@@ -144,6 +163,7 @@ const styles = StyleSheet.create({
 
   userList: {
     flex: 1,
+    height: 1000
   },
 
   userRow: {
