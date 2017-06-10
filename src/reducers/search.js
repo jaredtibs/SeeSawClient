@@ -1,6 +1,6 @@
 const initialState = {
   suggestedUsers: [],
-  selectedUsers: []
+  selectedUser: {}
 }
 
 export default function search(state = initialState, action) {
@@ -9,6 +9,11 @@ export default function search(state = initialState, action) {
       return {
         ...state,
         suggestedUsers: action.data.data
+      };
+    case 'USER_SELECTED':
+      return {
+        ...state,
+        selectedUser: action.data
       };
     default:
       return state;

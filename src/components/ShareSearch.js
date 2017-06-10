@@ -39,7 +39,10 @@ class ShareSearch extends Component {
     const data = rowData.attributes;
 
     return(
-      <View style={styles.userRow}>
+      <TouchableOpacity
+        style={styles.userRow}
+        onPress={() => console.log(data)}
+      >
         <View style={styles.avatarContainer}>
           <Image
             style={styles.avatar}
@@ -54,12 +57,11 @@ class ShareSearch extends Component {
         <View style={styles.additionalInfoContainer}>
           <Text style={styles.username}> {data.username} </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 
   render() {
-    console.log(this.props);
     const { suggestedUsers } = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     let dataSource = ds.cloneWithRows(suggestedUsers);
