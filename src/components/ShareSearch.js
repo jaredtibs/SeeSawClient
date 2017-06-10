@@ -96,6 +96,7 @@ class ShareSearch extends Component {
 
         <View style={{flex: 1}}>
           <ListView
+            keyboardShouldPersistTaps='always'
             enableEmptySections={true}
             dataSource={dataSource}
             style={styles.userList}
