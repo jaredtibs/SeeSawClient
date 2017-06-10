@@ -3,7 +3,7 @@ const initialState = {
   selectedUsers: []
 }
 
-export default function share(state = initialState, action) {
+export default function search(state = initialState, action) {
   switch(action.type) {
     case 'SUGGESTED_USERS_FETCHED':
       return {

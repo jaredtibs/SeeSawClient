@@ -31,10 +31,6 @@ class ShareForm extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.fetchSuggestedUsers();
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.feed.postPublishing === true && this.props.feed.postPublishing == false) {
       this._goBack();
@@ -91,7 +87,7 @@ class ShareForm extends Component {
   }
 
   _openUserSearch() {
-    Actions.shareSearch({suggestedUsers: this.props.share.suggestedUsers});
+    Actions.shareSearch();
   }
 
   _toggleAnonymity() {

@@ -27,6 +27,10 @@ class ShareSearch extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.fetchSuggestedUsers();
+  }
+
   _goBack() {
     Actions.pop({refresh: {keyboardShown: true}});
   }
@@ -55,6 +59,7 @@ class ShareSearch extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { suggestedUsers } = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     let dataSource = ds.cloneWithRows(suggestedUsers);

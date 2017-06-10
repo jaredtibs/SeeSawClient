@@ -26,3 +26,10 @@ export function suggestedUsersFetched(users) {
     data: users
   }
 }
+
+export function selectUser(user) {
+  return {
+    type: "USER_SELECTED",
+    data: user
+  }
+}
