@@ -74,6 +74,7 @@ class ShareSearch extends Component {
           <TextInput
             style={styles.input}
             autoFocus={true}
+            autoCorrect={false}
             ref="searchInput"
             returnKeyType='search'
             placeholder="Search"
