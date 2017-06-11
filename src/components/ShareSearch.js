@@ -35,13 +35,18 @@ class ShareSearch extends Component {
     Actions.pop({refresh: {keyboardShown: true}});
   }
 
+  _selectDirectUser(data) {
+    this.props.selectUser(data);
+    this._goBack();
+  }
+
   renderRow(rowData) {
     const data = rowData.attributes;
 
     return(
       <TouchableOpacity
         style={styles.userRow}
-        onPress={() => this.props.selectUser(data)}
+        onPress={() => this._selectDirectUser(data)}
       >
         <View style={styles.avatarContainer}>
           <Image
