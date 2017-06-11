@@ -107,34 +107,28 @@ const styles = StyleSheet.create({
 
   cardBody: {
     width: 285,
-    minHeight: 50,
+    minHeight: 40,
     backgroundColor: 'white',
     borderRadius: 4,
     borderWidth: 1,
     borderColor: 'white',
-    flexWrap: 'wrap',
-    shadowOffset: {
-      width: 0.5,
-      height: 1
-    },
-    shadowColor: 'rgba(0, 0, 0, 0.17)',
-    shadowOpacity: 5
+    flexWrap: 'wrap'
   },
 
   anonymousCardBody: {
     width: 285,
-    minHeight: 50,
+    minHeight: 40,
     backgroundColor: '#343442',
     borderRadius: 4,
     borderWidth: 1,
     borderColor: '#343442',
     flexWrap: 'wrap',
-    shadowOffset: {
-      width: 0.5,
-      height: 1
-    },
-    shadowColor: 'rgba(0, 0, 0, 0.17)',
-    shadowOpacity: 5
+    //shadowOffset: {
+    // width: 0.5,
+    // height: 1
+    //},
+    //shadowColor: 'rgba(0, 0, 0, 0.17)',
+    //shadowOpacity: 5
   },
 
   cardFooter: {
@@ -211,12 +205,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    shadowOffset: {
-      width: 0.5,
-      height: 1
-    },
-    shadowColor: 'rgba(0, 0, 0, 0.17)',
-    shadowOpacity: 2
+    borderWidth: 3,
+    borderColor: '#FAF8F7'
+    //shadowOffset: {
+    //  width: 0.5,
+    //  height: 1
+    //},
+    //shadowColor: 'rgba(0, 0, 0, 0.17)',
+    //shadowOpacity: 2
   },
 
   voteButtonVoted: {

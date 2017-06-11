@@ -41,7 +41,7 @@ class ShareSearch extends Component {
     return(
       <TouchableOpacity
         style={styles.userRow}
-        onPress={() => console.log(data)}
+        onPress={() => this.props.selectUser(data)}
       >
         <View style={styles.avatarContainer}>
           <Image

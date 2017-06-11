@@ -13,11 +13,12 @@ class ShareFormContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { user, location, feed } = state;
+  const { user, location, feed, search } = state;
   return {
     user,
     location,
-    feed
+    feed,
+    search
   }
 };
 

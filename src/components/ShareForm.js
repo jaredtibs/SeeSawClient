@@ -100,6 +100,7 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled || this.props.feed.postPublishing;
+    const { selectedUser } = this.props.search;
 
     return(
       <View style={styles.container}>
@@ -177,7 +178,7 @@ class ShareForm extends Component {
           visible={this.state.keyboardShown}
           heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
           openUserSearch={this._openUserSearch.bind(this)}
-
+          selectedUser={selectedUser}
         />
       </View>
     )

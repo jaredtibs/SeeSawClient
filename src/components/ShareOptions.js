@@ -15,7 +15,8 @@ class ShareOptions extends Component {
   }
 
   render() {
-    const margin = this.props.heights[0] - this.props.heights[1]
+    const margin = this.props.heights[0] - this.props.heights[1];
+    const { selectedUser } = this.props;
 
     if (this.props.visible) {
       return(
@@ -24,7 +25,9 @@ class ShareOptions extends Component {
             <View style={styles.options}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.optionsText}> To: </Text>
-                <Text style={styles.visibilityText}> Everyone </Text>
+                <Text style={styles.visibilityText}>
+                  { selectedUser.username ? selectedUser.username : "Everyone"}
+                </Text>
               </View>
 
               <View>
