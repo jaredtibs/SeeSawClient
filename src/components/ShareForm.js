@@ -69,8 +69,9 @@ class ShareForm extends Component {
   }
 
   _goBack() {
+    this.props.resetShareSettings();
     dismissKeyboard();
-    Actions.pop()
+    Actions.pop();
   }
 
   _publishPost() {

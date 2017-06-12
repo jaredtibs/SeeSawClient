@@ -29,9 +29,14 @@ export function suggestedUsersFetched(users) {
 
 export function selectUser(user) {
   Actions.shareForm({refresh: {keyboardShown: true}});
-
   return {
     type: "USER_SELECTED",
     data: user
+  }
+}
+
+export function resetShareSettings() {
+  return {
+    type: "SHARE_SETTINGS_RESET"
   }
 }
