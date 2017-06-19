@@ -11,7 +11,7 @@ import LoginContainer from './LoginContainer';
 import RegisterContainer from './RegisterContainer';
 import MainContainer from './MainContainer';
 import ShareFormContainer from './ShareFormContainer';
-import ShareSearch from '../components/ShareSearch';
+import ShareSearchContainer from './SearchContainer';
 import SettingsContainer from './SettingsContainer';
 import ProfileContainer from './ProfileContainer';
 import NotificationsContainer from './NotificationsContainer';
@@ -34,7 +34,7 @@ class App extends Component {
           <Scene key="profile" component={ProfileContainer} title="Profile"/>
           <Scene key="notifications" component={NotificationsContainer} title="Notifications" />
           <Scene key="shareForm" direction='vertical' component={ShareFormContainer} title="Share"/>
-          <Scene key="shareSearch" direction='vertical' component={ShareSearch} title="Share Search"/>
+          <Scene key="shareSearch" direction='vertical' component={ShareSearchContainer} title="Share Search"/>
           <Scene key="settings"  direction='vertical' component={SettingsContainer} title="Settings"/>
         </Scene>
       </RouterWithRedux>

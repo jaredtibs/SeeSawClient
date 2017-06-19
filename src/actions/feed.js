@@ -1,5 +1,6 @@
 import store from 'react-native-simple-store';
 import {postCountChanged} from '../actions/location.js'
+import {resetShareSettings} from '../actions/search.js'
 
 export function createPost (locationId, text, visibility) {
   return dispatch => {
@@ -21,8 +22,9 @@ export function createPost (locationId, text, visibility) {
       })
       .then((response) => response.json())
       .then((responseData) => {
-        dispatch(postPublished(responseData))
+        dispatch(postPublished(responseData));
         dispatch(postCountChanged("create"));
+        dispatch(resetShareSettings());
       })
       .catch(error => console.log(error))
     });

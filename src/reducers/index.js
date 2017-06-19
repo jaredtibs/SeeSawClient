@@ -3,6 +3,7 @@ import user from  '../reducers/user'
 import location from '../reducers/location'
 import feed from '../reducers/feed'
 import notifications from '../reducers/notifications'
+import search from '../reducers/search'
 import routes from '../reducers/routes'
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   location,
   feed,
   notifications,
+  search,
   routes
 })
 

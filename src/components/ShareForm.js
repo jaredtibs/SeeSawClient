@@ -69,8 +69,9 @@ class ShareForm extends Component {
   }
 
   _goBack() {
+    this.props.resetShareSettings();
     dismissKeyboard();
-    Actions.pop()
+    Actions.pop();
   }
 
   _publishPost() {
@@ -100,6 +101,7 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled || this.props.feed.postPublishing;
+    const { selectedUser } = this.props.search;
 
     return(
       <View style={styles.container}>
@@ -176,8 +178,8 @@ class ShareForm extends Component {
         <ShareOptions
           visible={this.state.keyboardShown}
           heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
-          openUserSearch={this._openUserSearch}
-
+          openUserSearch={this._openUserSearch.bind(this)}
+          selectedUser={selectedUser}
         />
       </View>
     )
