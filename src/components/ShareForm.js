@@ -162,15 +162,16 @@ class ShareForm extends Component {
             <Text style={styles.username}> {!this.state.anonymous ? this.props.user.username : "anonymous"} </Text>
           </View>
 
-          <View style={styles.anonymousButtonContainer}>
-            <TouchableHighlight
-              style={styles.anonymousButton}
-              onPress={() => this._toggleAnonymity() }
-              underlayColor='white'>
-              <Text style={styles.anonymousText}> {!this.state.anonymous ? "Hide me" : "Show me" } </Text>
-            </TouchableHighlight>
-          </View>
-
+          { !selectedUser.id ?
+            <View style={styles.anonymousButtonContainer}>
+              <TouchableHighlight
+                style={styles.anonymousButton}
+                onPress={() => this._toggleAnonymity() }
+                underlayColor='white'>
+                <Text style={styles.anonymousText}> {!this.state.anonymous ? "Hide me" : "Show me" } </Text>
+              </TouchableHighlight>
+            </View>
+            : null }
         </View>
 
         <TextInput
