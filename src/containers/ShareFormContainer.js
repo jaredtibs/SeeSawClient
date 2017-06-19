@@ -25,8 +25,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createPost: (locationId, text, visibility) => {
-      dispatch(createPost(locationId, text, visibility))
+    createPost: (locationId, text, visibility, participants) => {
+      dispatch(createPost(locationId, text, visibility, participants))
     },
 
     resetShareSettings: () => {
