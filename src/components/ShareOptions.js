@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
   Text,
+  Image,
   TouchableOpacity
 } from 'react-native';
 
@@ -75,6 +76,14 @@ const styles = StyleSheet.create({
   addOption: {
     color: '#9B9B9B',
     marginRight: 19
+  },
+
+  avatar: {
+    width: 30,
+    height: 30,
+    borderColor: 'rgba(56, 55, 61, .20)',
+    borderWidth: 1,
+    borderRadius: 15
   }
 });
 

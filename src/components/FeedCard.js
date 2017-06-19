@@ -52,8 +52,8 @@ class FeedCard extends Component {
             </Text>
           </View>
 
-          <View style={anonymous ? styles.anonymousCardBody : styles.cardBody}>
-            <Text style={anonymous ? styles.anonymousPostBody : styles.postBody}>{post.attributes.body}</Text>
+          <View style={styles.cardBody}>
+            <Text style={styles.postBody}>{post.attributes.body}</Text>
           </View>
 
           <View style={styles.cardFooter}>
@@ -65,7 +65,7 @@ class FeedCard extends Component {
 
         <View style={styles.voteContainer}>
           <TouchableOpacity
-            style={permissions['voted-for'] ? styles.voteButtonVoted : styles.voteButton}
+            style={styles.voteButton}
             onPress={() => {
               if (permissions['voted-for']) {
                 this.props.castVote(post.id, 'unvote')
@@ -73,7 +73,7 @@ class FeedCard extends Component {
                 this.props.castVote(post.id, 'upvote')
               }
             }}>
-            <Icon name='md-arrow-up' size={18} style={styles.voteIcon}></Icon>
+            <Icon name='md-arrow-up' size={18} style={permissions['voted-for'] ? styles.votedIcon : styles.voteIcon}></Icon>
           </TouchableOpacity>
         </View>
       </View>
@@ -207,31 +207,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 3,
     borderColor: '#FAF8F7'
-    //shadowOffset: {
-    //  width: 0.5,
-    //  height: 1
-    //},
-    //shadowColor: 'rgba(0, 0, 0, 0.17)',
-    //shadowOpacity: 2
-  },
-
-  voteButtonVoted: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#23EC69',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    shadowOffset: {
-      width: 0.5,
-      height: 1
-    },
-    shadowColor: 'rgba(0, 0, 0, 0.17)',
-    shadowOpacity: 2
   },
 
   voteIcon: {
     color: '#343442'
+  },
+
+  votedIcon: {
+    color: '#23EC69'
   },
 
   voteCount: {
