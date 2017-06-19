@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
   Text,
+  Image,
   TouchableOpacity
 } from 'react-native';
 
@@ -15,7 +16,8 @@ class ShareOptions extends Component {
   }
 
   render() {
-    const margin = this.props.heights[0] - this.props.heights[1]
+    const margin = this.props.heights[0] - this.props.heights[1];
+    const { selectedUser } = this.props;
 
     if (this.props.visible) {
       return(
@@ -24,7 +26,9 @@ class ShareOptions extends Component {
             <View style={styles.options}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.optionsText}> To: </Text>
-                <Text style={styles.visibilityText}> Everyone </Text>
+                <Text style={styles.visibilityText}>
+                  { selectedUser.username ? selectedUser.username : "Everyone"}
+                </Text>
               </View>
 
               <View>
@@ -72,6 +76,14 @@ const styles = StyleSheet.create({
   addOption: {
     color: '#9B9B9B',
     marginRight: 19
+  },
+
+  avatar: {
+    width: 30,
+    height: 30,
+    borderColor: 'rgba(56, 55, 61, .20)',
+    borderWidth: 1,
+    borderRadius: 15
   }
 });
 

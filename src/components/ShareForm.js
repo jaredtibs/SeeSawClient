@@ -37,6 +37,12 @@ class ShareForm extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.keyboardShown && nextProps.keyboardShown === true) {
+      this.refs.textInput.focus();
+    }
+  }
+
   componentWillMount () {
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
@@ -63,8 +69,9 @@ class ShareForm extends Component {
   }
 
   _goBack() {
+    this.props.resetShareSettings();
     dismissKeyboard();
-    Actions.pop()
+    Actions.pop();
   }
 
   _publishPost() {
@@ -94,6 +101,7 @@ class ShareForm extends Component {
 
   render() {
     let disabled = this.state.disabled || this.props.feed.postPublishing;
+    const { selectedUser } = this.props.search;
 
     return(
       <View style={styles.container}>
@@ -162,15 +170,16 @@ class ShareForm extends Component {
           multiline={true}
           maxLength={300}
           placeholder="Drop some knowledge, share a review, or just post a funny comment…"
-          placeholderStyle={[styles.input, {color: "#CECED1"}]}
+          placeholderStyle={styles.input}
+          placeholderTextColor="#CECED1"
           onChangeText={(text) => this._onInputChange(text)}
         />
 
         <ShareOptions
           visible={this.state.keyboardShown}
           heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
-          openUserSearch={this._openUserSearch}
-
+          openUserSearch={this._openUserSearch.bind(this)}
+          selectedUser={selectedUser}
         />
       </View>
     )

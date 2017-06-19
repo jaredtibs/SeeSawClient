@@ -61,8 +61,6 @@ class Main extends Component {
             return l["place_id"] != currentLocation["place_id"]
           }).slice(0, 5);
 
-          console.log(otherLocations);
-
           this.setState({otherLocations: this._processOtherLocations(otherLocations)});
         } else {
           // fetch raw location
@@ -89,6 +87,7 @@ class Main extends Component {
     return location.threshold_met === 'low'
   }
 
+  // specific formatter for modal library
   _processOtherLocations(locations) {
     let index = 0;
     const otherLocations = locations.map((location) => {
@@ -117,12 +116,26 @@ class Main extends Component {
     return otherLocations;
   }
 
+  // specific formatter for modal library
+  _processApiLocation(index, data) {
+    return(
+      {
+        key: index,
+        label: data['name'],
+        name: data['name'],
+        place_id: data['place-id'],
+        latitude: data['latitude'],
+        longitude: data['longitude']
+      }
+    )
+  }
+
   _changeLocation(data) {
-    //need to replace the location chosen (data) with the current location
-    //this.setState({otherLocations: })
-    //let otherLocations = this.state.otherLocations;
-    //var chosenIndex = otherLocations.findIndex(item => item['place_id'] == data['place_id']);
-    //this.setState({otherLocations: otherLocations})
+    let otherLocations = this.state.otherLocations;
+    let chosenIndex = otherLocations.findIndex(item => item['place_id'] == data['place_id']);
+    let currentLocationData = this.props.location.data.data.attributes;
+    otherLocations[chosenIndex] = this._processApiLocation(chosenIndex, currentLocationData);
+    this.setState({otherLocations: otherLocations});
     this.props.changeCurrentLocation(data);
   }
 
