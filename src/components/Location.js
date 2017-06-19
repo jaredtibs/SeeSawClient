@@ -39,12 +39,6 @@ class Location extends Component {
     )
   }
 
-  _publishPost(text) {
-    locationId = this.props.location.data.data.id;
-    this.props.createPost(locationId, text);
-    this.refs.textInput.setNativeProps({text: ''})
-  }
-
   _onRefresh() {
     const locationId = this.props.location.data.data.id;
     const currentFeedType = this.props.feed.currentFeedType;

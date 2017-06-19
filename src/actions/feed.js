@@ -2,7 +2,7 @@ import store from 'react-native-simple-store';
 import {postCountChanged} from '../actions/location.js'
 import {resetShareSettings} from '../actions/search.js'
 
-export function createPost (locationId, text, visibility) {
+export function createPost (locationId, text, visibility, participants) {
   return dispatch => {
     dispatch(publishingPost());
     store.get('userToken')
@@ -17,7 +17,8 @@ export function createPost (locationId, text, visibility) {
         },
         body: JSON.stringify({
           body: text,
-          visibility: visibility
+          visibility: visibility,
+          direct_participants: participants
         })
       })
       .then((response) => response.json())
