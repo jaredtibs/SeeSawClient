@@ -41,7 +41,7 @@ class ShareSearch extends Component {
   }
 
   renderRow(rowData) {
-    const data = rowData.attributes;
+    const data = Object.assign({id: rowData.id}, rowData.attributes)
 
     return(
       <TouchableOpacity

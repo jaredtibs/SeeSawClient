@@ -24,6 +24,7 @@ class ShareForm extends Component {
       text: null,
       visibility: 1,
       anonymous: false,
+      participants: [],
       disabled: true,
       keyboardShown: false,
       heightWithoutKeyboard: Dimensions.get('window').height,
@@ -40,6 +41,10 @@ class ShareForm extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.keyboardShown && nextProps.keyboardShown === true) {
       this.refs.textInput.focus();
+    }
+
+    if (nextProps.search.selectedUser.id) {
+      this.setState({visibility: 2, anonymous: false, participants: [nextProps.search.selectedUser.id]})
     }
   }
 
@@ -75,8 +80,13 @@ class ShareForm extends Component {
   }
 
   _publishPost() {
-    locationId = this.props.location.data.data.id;
-    this.props.createPost(locationId, this.state.text, this.state.visibility);
+    const locationId = this.props.location.data.data.id;
+    this.props.createPost(
+      locationId,
+      this.state.text,
+      this.state.visibility,
+      this.state.participants
+    );
   }
 
   _onInputChange(text) {
@@ -152,15 +162,16 @@ class ShareForm extends Component {
             <Text style={styles.username}> {!this.state.anonymous ? this.props.user.username : "anonymous"} </Text>
           </View>
 
-          <View style={styles.anonymousButtonContainer}>
-            <TouchableHighlight
-              style={styles.anonymousButton}
-              onPress={() => this._toggleAnonymity() }
-              underlayColor='white'>
-              <Text style={styles.anonymousText}> {!this.state.anonymous ? "Hide me" : "Show me" } </Text>
-            </TouchableHighlight>
-          </View>
-
+          { !selectedUser.id ?
+            <View style={styles.anonymousButtonContainer}>
+              <TouchableHighlight
+                style={styles.anonymousButton}
+                onPress={() => this._toggleAnonymity() }
+                underlayColor='white'>
+                <Text style={styles.anonymousText}> {!this.state.anonymous ? "Hide me" : "Show me" } </Text>
+              </TouchableHighlight>
+            </View>
+            : null }
         </View>
 
         <TextInput
