@@ -1,5 +1,7 @@
 const initialState = {
+  searchingUsers: false,
   suggestedUsers: [],
+  searchResults: [],
   selectedUser: {}
 }
 
@@ -9,6 +11,17 @@ export default function search(state = initialState, action) {
       return {
         ...state,
         suggestedUsers: action.data.data
+      };
+    case 'SEARCH_RESULTS_RECEIVED':
+      return {
+        ...state,
+        searchingUsers: false,
+        searchResults: action.data.data
+      };
+    case 'SEARCHING_USERS':
+      return {
+        ...state,
+        searchingUsers: true
       };
     case 'USER_SELECTED':
       return {

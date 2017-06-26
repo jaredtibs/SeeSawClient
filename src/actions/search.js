@@ -5,7 +5,8 @@ export function searchUsers (query) {
   return dispatch => {
     store.get('userToken')
     .then(token => {
-      return fetch(`http://localhost:3000/api/v1/users/search?query=${query}`, {
+      dispatch(searchingUsers());
+      return fetch(`http://localhost:3000/api/v1/search/users?query=${query}`, {
         method: "GET",
         headers: {
           'Accept': 'application/json',
@@ -20,11 +21,16 @@ export function searchUsers (query) {
   }
 }
 
-export function searchResultsReceived(data) {
-  console.log(data);
+export function searchingUsers() {
+  return {
+    type: "SEARCHING_USERS"
+  };
+}
+
+export function searchResultsReceived(users) {
   return {
     type: "SEARCH_RESULTS_RECEIVED",
-    data: data
+    data: users
   }
 }
 

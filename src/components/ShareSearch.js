@@ -25,6 +25,10 @@ import {
 class ShareSearch extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      searchText: '',
+      searchInputted: false
+    }
   }
 
   componentDidMount() {
@@ -41,7 +45,12 @@ class ShareSearch extends Component {
   }
 
   _searchUsers(text) {
-    this.props.searchUsers(text);
+    if (text.length > 0) {
+      this.setState({searchText: text, searchInputted: true});
+      this.props.searchUsers(text);
+    } else {
+      this.setState({searchText: text, searchInputted: false});
+    }
   }
 
   renderRow(rowData) {
@@ -71,9 +80,11 @@ class ShareSearch extends Component {
   }
 
   render() {
-    const { suggestedUsers } = this.props;
+    const { suggestedUsers, searchResults } = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    let dataSource = ds.cloneWithRows(suggestedUsers);
+    let searchInputted = this.state.searchText.length > 0;
+    let users = this.state.searchInputted ? searchResults : suggestedUsers;
+    let dataSource = ds.cloneWithRows(users);
 
     return(
       <View style={styles.container}>
@@ -99,17 +110,23 @@ class ShareSearch extends Component {
           />
         </View>
 
-        <View style={styles.subHeaderContainer}>
-          <Text style={styles.subHeaderText}> Suggested </Text>
-        </View>
+        { !this.state.searchInputted ?
+          <View style={styles.subHeaderContainer}>
+            <Text style={styles.subHeaderText}> Suggested </Text>
+          </View>
+        : null }
 
         <View style={{flex: 1}}>
-          <ListView
-            keyboardShouldPersistTaps='always'
-            enableEmptySections={true}
-            dataSource={dataSource}
-            style={styles.userList}
-            renderRow={(rowData) => this.renderRow(rowData)}/>
+          { users.length == 0 && !this.props.searchingUsers ?
+            <Text> Sorry no results </Text>
+            :
+            <ListView
+              keyboardShouldPersistTaps='always'
+              enableEmptySections={true}
+              dataSource={dataSource}
+              style={styles.userList}
+              renderRow={(rowData) => this.renderRow(rowData)}/>
+          }
         </View>
 
       </View>
