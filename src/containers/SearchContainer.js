@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
-import {fetchSuggestedUsers, selectUser} from '../actions/search';
+import {
+  fetchSuggestedUsers,
+  selectUser,
+  searchUsers
+} from '../actions/search';
 
 import ShareSearch from '../components/ShareSearch';
 
@@ -25,6 +29,10 @@ const mapDispatchToProps = (dispatch) => {
 
     selectUser: (user) => {
       dispatch(selectUser(user))
+    },
+
+    searchUsers: (input) => {
+      dispatch(searchUsers(input))
     }
   }
 };

@@ -40,6 +40,10 @@ class ShareSearch extends Component {
     this._goBack();
   }
 
+  _searchUsers(text) {
+    this.props.searchUsers(text);
+  }
+
   renderRow(rowData) {
     const data = Object.assign({id: rowData.id}, rowData.attributes)
 
@@ -91,7 +95,7 @@ class ShareSearch extends Component {
             returnKeyType='search'
             placeholder="Search"
             placeholderTextStyle={styles.searchPlaceHolderStyle}
-            onChangeText={(text) => console.log(text)}
+            onChangeText={(text) => this._searchUsers(text)}
           />
         </View>
 
