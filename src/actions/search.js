@@ -1,6 +1,39 @@
 import { Actions } from 'react-native-router-flux';
 import store from 'react-native-simple-store';
 
+export function searchUsers (query) {
+  return dispatch => {
+    store.get('userToken')
+    .then(token => {
+      dispatch(searchingUsers());
+      return fetch(`http://localhost:3000/api/v1/search/users?query=${query}`, {
+        method: "GET",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + token
+        },
+      })
+      .then((response) => response.json())
+      .then((responseData) => dispatch(searchResultsReceived(responseData)))
+      .catch(error => console.error(error))
+    });
+  }
+}
+
+export function searchingUsers() {
+  return {
+    type: "SEARCHING_USERS"
+  };
+}
+
+export function searchResultsReceived(users) {
+  return {
+    type: "SEARCH_RESULTS_RECEIVED",
+    data: users
+  }
+}
+
 export function fetchSuggestedUsers () {
   return dispatch => {
     store.get('userToken')
@@ -32,6 +65,12 @@ export function selectUser(user) {
   return {
     type: "USER_SELECTED",
     data: user
+  }
+}
+
+export function clearSelectedUser() {
+  return {
+    type: "SELECTED_USER_CLEARED"
   }
 }
 

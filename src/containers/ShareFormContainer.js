@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {createPost} from '../actions/feed';
-import {resetShareSettings} from '../actions/search';
+import {resetShareSettings, clearSelectedUser} from '../actions/search';
 
 import ShareForm from '../components/ShareForm';
 
@@ -31,6 +31,10 @@ const mapDispatchToProps = (dispatch) => {
 
     resetShareSettings: () => {
       dispatch(resetShareSettings())
+    },
+
+    clearSelectedUser: () => {
+      dispatch(clearSelectedUser())
     }
   }
 };

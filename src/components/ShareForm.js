@@ -101,6 +101,10 @@ class ShareForm extends Component {
     Actions.shareSearch();
   }
 
+  _clearSelectedUser() {
+    this.props.clearSelectedUser();
+  }
+
   _toggleAnonymity() {
     if (this.state.anonymous === false) {
       this.setState({visibility: 3, anonymous: true})
@@ -191,6 +195,7 @@ class ShareForm extends Component {
           heights={[this.state.heightWithoutKeyboard, this.state.heightWithKeyboard]}
           openUserSearch={this._openUserSearch.bind(this)}
           selectedUser={selectedUser}
+          clearSelectedUser={this._clearSelectedUser.bind(this)}
         />
       </View>
     )

@@ -25,6 +25,10 @@ import {
 class ShareSearch extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      searchText: '',
+      searchInputted: false
+    }
   }
 
   componentDidMount() {
@@ -38,6 +42,15 @@ class ShareSearch extends Component {
   _selectDirectUser(data) {
     this.props.selectUser(data);
     this._goBack();
+  }
+
+  _searchUsers(text) {
+    if (text.length > 0) {
+      this.setState({searchText: text, searchInputted: true});
+      this.props.searchUsers(text);
+    } else {
+      this.setState({searchText: text, searchInputted: false});
+    }
   }
 
   renderRow(rowData) {
@@ -66,10 +79,40 @@ class ShareSearch extends Component {
     )
   }
 
-  render() {
-    const { suggestedUsers } = this.props;
+  renderSearchLoadingState() {
+    return(
+      <View style={{flex: 1}}>
+        <Text style={styles.loadingText}>
+          searching users...
+        </Text>
+      </View>
+    )
+  }
+
+  renderSearchResults() {
+    const { suggestedUsers, searchResults } = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    let dataSource = ds.cloneWithRows(suggestedUsers);
+    let searchInputted = this.state.searchText.length > 0;
+    let users = this.state.searchInputted ? searchResults : suggestedUsers;
+    let dataSource = ds.cloneWithRows(users);
+
+    return(
+      <View style={{flex: 1}}>
+        { users.length == 0 && !this.props.searchingUsers ?
+          <Text style={styles.loadingText}> Sorry no results </Text>
+          :
+          <ListView
+            keyboardShouldPersistTaps='always'
+            enableEmptySections={true}
+            dataSource={dataSource}
+            style={styles.userList}
+            renderRow={(rowData) => this.renderRow(rowData)}/>
+        }
+      </View>
+    );
+  }
+
+  render() {
 
     return(
       <View style={styles.container}>
@@ -87,27 +130,25 @@ class ShareSearch extends Component {
             style={styles.input}
             autoFocus={true}
             autoCorrect={false}
+            autoCapitalize='none'
             ref="searchInput"
             returnKeyType='search'
             placeholder="Search"
             placeholderTextStyle={styles.searchPlaceHolderStyle}
-            onChangeText={(text) => console.log(text)}
+            onChangeText={(text) => this._searchUsers(text)}
           />
         </View>
 
-        <View style={styles.subHeaderContainer}>
-          <Text style={styles.subHeaderText}> Suggested </Text>
-        </View>
+        { !this.state.searchInputted ?
+          <View style={styles.subHeaderContainer}>
+            <Text style={styles.subHeaderText}> Suggested </Text>
+          </View>
+        : null }
 
-        <View style={{flex: 1}}>
-          <ListView
-            keyboardShouldPersistTaps='always'
-            enableEmptySections={true}
-            dataSource={dataSource}
-            style={styles.userList}
-            renderRow={(rowData) => this.renderRow(rowData)}/>
-        </View>
-
+        { this.props.searchingUsers ?
+          this.renderSearchLoadingState() :
+          this.renderSearchResults()
+        }
       </View>
     )
   }
@@ -211,6 +252,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#96959C',
     fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  loadingText: {
+    fontFamily: 'MaisonNeueTRIAL-Demi',
+    fontSize: 12,
+    textAlign: 'center',
+    color: 'rgba(52,52,66,.50)',
+    lineHeight: 20,
+    marginTop: 80
   }
 
 });
