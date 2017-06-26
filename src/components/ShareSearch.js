@@ -79,12 +79,40 @@ class ShareSearch extends Component {
     )
   }
 
-  render() {
+  renderSearchLoadingState() {
+    return(
+      <View style={{flex: 1}}>
+        <Text style={styles.loadingText}>
+          searching users...
+        </Text>
+      </View>
+    )
+  }
+
+  renderSearchResults() {
     const { suggestedUsers, searchResults } = this.props;
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     let searchInputted = this.state.searchText.length > 0;
     let users = this.state.searchInputted ? searchResults : suggestedUsers;
     let dataSource = ds.cloneWithRows(users);
+
+    return(
+      <View style={{flex: 1}}>
+        { users.length == 0 && !this.props.searchingUsers ?
+          <Text style={styles.loadingText}> Sorry no results </Text>
+          :
+          <ListView
+            keyboardShouldPersistTaps='always'
+            enableEmptySections={true}
+            dataSource={dataSource}
+            style={styles.userList}
+            renderRow={(rowData) => this.renderRow(rowData)}/>
+        }
+      </View>
+    );
+  }
+
+  render() {
 
     return(
       <View style={styles.container}>
@@ -102,6 +130,7 @@ class ShareSearch extends Component {
             style={styles.input}
             autoFocus={true}
             autoCorrect={false}
+            autoCapitalize='none'
             ref="searchInput"
             returnKeyType='search'
             placeholder="Search"
@@ -116,19 +145,10 @@ class ShareSearch extends Component {
           </View>
         : null }
 
-        <View style={{flex: 1}}>
-          { users.length == 0 && !this.props.searchingUsers ?
-            <Text> Sorry no results </Text>
-            :
-            <ListView
-              keyboardShouldPersistTaps='always'
-              enableEmptySections={true}
-              dataSource={dataSource}
-              style={styles.userList}
-              renderRow={(rowData) => this.renderRow(rowData)}/>
-          }
-        </View>
-
+        { this.props.searchingUsers ?
+          this.renderSearchLoadingState() :
+          this.renderSearchResults()
+        }
       </View>
     )
   }
@@ -232,6 +252,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#96959C',
     fontFamily: 'MaisonNeueTRIAL-Bold'
+  },
+
+  loadingText: {
+    fontFamily: 'MaisonNeueTRIAL-Demi',
+    fontSize: 12,
+    textAlign: 'center',
+    color: 'rgba(52,52,66,.50)',
+    lineHeight: 20,
+    marginTop: 80
   }
 
 });
