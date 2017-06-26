@@ -28,6 +28,11 @@ export default function search(state = initialState, action) {
         ...state,
         selectedUser: action.data
       };
+    case 'SELECTED_USER_CLEARED':
+      return {
+        ...state,
+        selectedUser: {}
+      };
     case 'SHARE_SETTINGS_RESET':
       return {
         ...state,

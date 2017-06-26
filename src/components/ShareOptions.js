@@ -24,11 +24,17 @@ class ShareOptions extends Component {
         <TouchableOpacity onPress={() => this.props.openUserSearch() }>
           <View style={[styles.container, {marginBottom: margin}]}>
             <View style={styles.options}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={styles.optionsText}> To: </Text>
                 <Text style={styles.visibilityText}>
                   { selectedUser.username ? selectedUser.username : "Everyone"}
                 </Text>
+                { selectedUser.username ?
+                  <TouchableOpacity
+                    onPress={() => this.props.clearSelectedUser()}>
+                    <Icon name="ios-close" style={styles.cancelUserIcon} size={20}></Icon>
+                  </TouchableOpacity>
+                : null }
               </View>
 
               <View>
@@ -84,6 +90,12 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(56, 55, 61, .20)',
     borderWidth: 1,
     borderRadius: 15
+  },
+
+  cancelUserIcon: {
+    color: '#9B9B9B',
+    marginTop: 3,
+    padding: 8
   }
 });
 

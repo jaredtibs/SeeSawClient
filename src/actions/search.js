@@ -68,6 +68,12 @@ export function selectUser(user) {
   }
 }
 
+export function clearSelectedUser() {
+  return {
+    type: "SELECTED_USER_CLEARED"
+  }
+}
+
 export function resetShareSettings() {
   return {
     type: "SHARE_SETTINGS_RESET"
