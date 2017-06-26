@@ -4,7 +4,7 @@ import store from 'react-native-simple-store';
 export function requestLogin (username, password) {
   return dispatch => {
     dispatch(loading());
-    return fetch("http://localhost:3000/api/v1/sessions", {
+    return fetch("https://see-saw-api.herokuapp.com/api/v1/sessions", {
       method: "POST",
       headers: {
         'Accept': 'application/json',
@@ -37,7 +37,7 @@ export function checkUserSession() {
 
 export function fetchUserSession(token) {
   return dispatch => {
-    return fetch("http://localhost:3000/api/v1/sessions", {
+    return fetch("https://see-saw-api.herokuapp.com/api/v1/sessions", {
       method: "GET",
       headers: {
         'Accept': 'application/json',
@@ -99,7 +99,7 @@ export function pushToMain(reset) {
 export function register (email, username, password) {
   return dispatch => {
     dispatch(loading());
-    return fetch("http://localhost:3000/api/v1/registrations", {
+    return fetch("https://see-saw-api.herokuapp.com/api/v1/registrations", {
       method: "POST",
       headers: {
         'Accept': 'application/json',
@@ -149,7 +149,7 @@ export function updateAvatar(data) {
 
     store.get('userToken')
     .then(token => {
-      return fetch("http://localhost:3000/api/v1/user/avatar", {
+      return fetch("https://see-saw-api.herokuapp.com/api/v1/user/avatar", {
         method: "POST",
         headers: {
           'Accept': 'application/json',

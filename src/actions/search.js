@@ -38,7 +38,7 @@ export function fetchSuggestedUsers () {
   return dispatch => {
     store.get('userToken')
     .then(token => {
-      return fetch("http://localhost:3000/api/v1/users", {
+      return fetch("https://see-saw-api.herokuapp.com/api/v1/users", {
         method: "GET",
         headers: {
           'Accept': 'application/json',

@@ -4,7 +4,7 @@ export function fetchNotifications () {
   return dispatch => {
     store.get('userToken')
     .then(token => {
-      let url = `http://localhost:3000/api/v1/user/notifications`;
+      let url = `https://see-saw-api.herokuapp.com/api/v1/user/notifications`;
       return fetch(url, {
         method: "GET",
         headers: {
@@ -24,7 +24,7 @@ export function markNotificationsAsRead() {
   return dispatch => {
     store.get('userToken')
     .then(token => {
-      let url = `http://localhost:3000/api/v1/user/notifications`;
+      let url = `https://see-saw-api.herokuapp.com/api/v1/user/notifications`;
       return fetch(url, {
         method: "PUT",
         headers: {
